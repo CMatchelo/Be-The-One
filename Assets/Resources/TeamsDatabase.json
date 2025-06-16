@@ -1,0 +1,144 @@
+{
+  "teams": [
+    {
+      "team": "Red Bull",
+      "fastCorners": 95,
+      "slowCorners": 88,
+      "acceleration": 90,
+      "topSpeed": 98
+    },
+    {
+      "team": "Red Bull",
+      "fastCorners": 95,
+      "slowCorners": 88,
+      "acceleration": 90,
+      "topSpeed": 98
+    },
+    {
+      "team": "Ferrari",
+      "fastCorners": 90,
+      "slowCorners": 85,
+      "acceleration": 88,
+      "topSpeed": 94
+    },
+    {
+      "team": "Ferrari",
+      "fastCorners": 90,
+      "slowCorners": 85,
+      "acceleration": 88,
+      "topSpeed": 94
+    },
+    {
+      "team": "Mercedes",
+      "fastCorners": 87,
+      "slowCorners": 84,
+      "acceleration": 86,
+      "topSpeed": 91
+    },
+    {
+      "team": "Mercedes",
+      "fastCorners": 87,
+      "slowCorners": 84,
+      "acceleration": 86,
+      "topSpeed": 91
+    },
+    {
+      "team": "McLaren",
+      "fastCorners": 89,
+      "slowCorners": 82,
+      "acceleration": 83,
+      "topSpeed": 90
+    },
+    {
+      "team": "McLaren",
+      "fastCorners": 89,
+      "slowCorners": 82,
+      "acceleration": 83,
+      "topSpeed": 90
+    },
+    {
+      "team": "Aston Martin",
+      "fastCorners": 83,
+      "slowCorners": 80,
+      "acceleration": 81,
+      "topSpeed": 87
+    },
+    {
+      "team": "Aston Martin",
+      "fastCorners": 83,
+      "slowCorners": 80,
+      "acceleration": 81,
+      "topSpeed": 87
+    },
+    {
+      "team": "Alpine",
+      "fastCorners": 78,
+      "slowCorners": 75,
+      "acceleration": 78,
+      "topSpeed": 85
+    },
+    {
+      "team": "Alpine",
+      "fastCorners": 78,
+      "slowCorners": 75,
+      "acceleration": 78,
+      "topSpeed": 85
+    },
+    {
+      "team": "RB (AlphaTauri)",
+      "fastCorners": 76,
+      "slowCorners": 74,
+      "acceleration": 75,
+      "topSpeed": 83
+    },
+    {
+      "team": "RB (AlphaTauri)",
+      "fastCorners": 76,
+      "slowCorners": 74,
+      "acceleration": 75,
+      "topSpeed": 83
+    },
+    {
+      "team": "Haas",
+      "fastCorners": 72,
+      "slowCorners": 70,
+      "acceleration": 73,
+      "topSpeed": 82
+    },
+    {
+      "team": "Haas",
+      "fastCorners": 72,
+      "slowCorners": 70,
+      "acceleration": 73,
+      "topSpeed": 82
+    },
+    {
+      "team": "Williams",
+      "fastCorners": 80,
+      "slowCorners": 67,
+      "acceleration": 70,
+      "topSpeed": 89
+    },
+    {
+      "team": "Williams",
+      "fastCorners": 80,
+      "slowCorners": 67,
+      "acceleration": 70,
+      "topSpeed": 89
+    },
+    {
+      "team": "Sauber",
+      "fastCorners": 74,
+      "slowCorners": 69,
+      "acceleration": 71,
+      "topSpeed": 84
+    },
+    {
+      "team": "Sauber",
+      "fastCorners": 74,
+      "slowCorners": 69,
+      "acceleration": 71,
+      "topSpeed": 84
+    }
+  ]
+}

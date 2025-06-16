@@ -1,0 +1,40 @@
+{
+  "tracks": [
+    {
+      "circuitName": "Monaco",
+      "country": "Monaco",
+      "highSpeedCorners": 0.1,
+      "lowSpeedCorners": 0.6,
+      "acceleration": 0.4,
+      "topSpeed": 0.1,
+      "statsFactor": 10,
+      "lapLenghtFactor": 84,
+      "circuitLength": 3000,
+      "totalLaps": 78
+    },
+    {
+      "circuitName": "Interlagos",
+      "country": "Brazil",
+      "highSpeedCorners": 0.3,
+      "lowSpeedCorners": 0.2,
+      "acceleration": 0.3,
+      "topSpeed": 0.4,
+      "statsFactor": 10,
+      "lapLenghtFactor": 91,
+      "circuitLength": 4000,
+      "totalLaps": 72
+    },
+    {
+      "circuitName": "Spa Francochamps",
+      "country": "Belgium",
+      "highSpeedCorners": 0.4,
+      "lowSpeedCorners": 0.2,
+      "acceleration": 0.2,
+      "topSpeed": 0.4,
+      "statsFactor": 10,
+      "lapLenghtFactor": 120,
+      "circuitLength": 7004,
+      "totalLaps": 44
+    }
+  ]
+}
