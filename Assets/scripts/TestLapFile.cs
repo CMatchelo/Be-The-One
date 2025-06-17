@@ -40,8 +40,8 @@ public class MenuManager : MonoBehaviour
         LoadTracks();
         LoadTeams();
 
-        PopulateTrackDropdown();
-        trackDropdown.onValueChanged.AddListener(OnTrackSelected);
+        selectedTrack = ChampionshipManager.GetNextRace();
+        Debug.Log(selectedTrack.circuitName + " - " + selectedTrack.totalLaps + " Laps");
     }
     void StartSimulation()
     {
@@ -179,8 +179,8 @@ public class MenuManager : MonoBehaviour
 
     void LoadDrivers()
     {
-        TextAsset pilotsLocal = Resources.Load<TextAsset>("PilotsDatabase");
-        driversList = JsonUtility.FromJson<DriversList>(pilotsLocal.text);
+        TextAsset driversLocal = Resources.Load<TextAsset>("DriversDatabase");
+        driversList = JsonUtility.FromJson<DriversList>(driversLocal.text);
     }
 
     void LoadTracks()
@@ -193,32 +193,6 @@ public class MenuManager : MonoBehaviour
     {
         TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
         teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
-    }
-
-    void PopulateTrackDropdown()
-    {
-        trackDropdown.ClearOptions();
-
-        List<string> trackNames = new List<string>();
-        foreach (Track track in tracksList.tracks)
-        {
-            trackNames.Add(track.circuitName);
-        }
-
-        trackDropdown.AddOptions(trackNames);
-
-        // Seleciona a primeira pista por padr�o
-        if (tracksList.tracks.Count > 0)
-        {
-            selectedTrack = tracksList.tracks[0];
-            UpdateLapsInput();
-        }
-    }
-
-    void OnTrackSelected(int index)
-    {
-        selectedTrack = tracksList.tracks[index];
-        UpdateLapsInput();
     }
 
     void UpdateLapsInput()

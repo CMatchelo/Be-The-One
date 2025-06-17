@@ -14,6 +14,8 @@ public class Driver
     public int lowSpeedCorners;
     public int acceleration;
     public int topSpeed;
+    public int teamId;
+    public int id;
 }
 
 [Serializable]

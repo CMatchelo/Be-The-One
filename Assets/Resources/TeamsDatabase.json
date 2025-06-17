@@ -1,144 +1,94 @@
 {
   "teams": [
     {
-      "team": "Red Bull",
+      "realName": "Red Bull",
+      "teamName": "Raging Bull Motorsport",
       "fastCorners": 95,
       "slowCorners": 88,
       "acceleration": 90,
-      "topSpeed": 98
+      "topSpeed": 98,
+      "id": 1
     },
     {
-      "team": "Red Bull",
-      "fastCorners": 95,
-      "slowCorners": 88,
-      "acceleration": 90,
-      "topSpeed": 98
-    },
-    {
-      "team": "Ferrari",
+      "realName": "Ferrari",
+      "teamName": "Rosso Veloce",
       "fastCorners": 90,
       "slowCorners": 85,
       "acceleration": 88,
-      "topSpeed": 94
+      "topSpeed": 94,
+      "id": 2
     },
     {
-      "team": "Ferrari",
-      "fastCorners": 90,
-      "slowCorners": 85,
-      "acceleration": 88,
-      "topSpeed": 94
-    },
-    {
-      "team": "Mercedes",
+      "realName": "Mercedes",
+      "teamName": "Silver Arrow Racing",
       "fastCorners": 87,
       "slowCorners": 84,
       "acceleration": 86,
-      "topSpeed": 91
+      "topSpeed": 91,
+      "id": 3
     },
     {
-      "team": "Mercedes",
-      "fastCorners": 87,
-      "slowCorners": 84,
-      "acceleration": 86,
-      "topSpeed": 91
-    },
-    {
-      "team": "McLaren",
+      "realName": "McLaren",
+      "teamName": "McStorm Racing",
       "fastCorners": 89,
       "slowCorners": 82,
       "acceleration": 83,
-      "topSpeed": 90
+      "topSpeed": 90,
+      "id": 4
     },
     {
-      "team": "McLaren",
-      "fastCorners": 89,
-      "slowCorners": 82,
-      "acceleration": 83,
-      "topSpeed": 90
-    },
-    {
-      "team": "Aston Martin",
+      "realName": "Aston Martin",
+      "teamName": "Verdant Motorsports",
       "fastCorners": 83,
       "slowCorners": 80,
       "acceleration": 81,
-      "topSpeed": 87
+      "topSpeed": 87,
+      "id": 5
     },
     {
-      "team": "Aston Martin",
-      "fastCorners": 83,
-      "slowCorners": 80,
-      "acceleration": 81,
-      "topSpeed": 87
-    },
-    {
-      "team": "Alpine",
+      "realName": "Alpine",
+      "teamName": "Alphex Performance",
       "fastCorners": 78,
       "slowCorners": 75,
       "acceleration": 78,
-      "topSpeed": 85
+      "topSpeed": 85,
+      "id": 6
     },
     {
-      "team": "Alpine",
-      "fastCorners": 78,
-      "slowCorners": 75,
-      "acceleration": 78,
-      "topSpeed": 85
-    },
-    {
-      "team": "RB (AlphaTauri)",
+      "realName": "RB (AlphaTauri)",
+      "teamName": "TauriTech Racing",
       "fastCorners": 76,
       "slowCorners": 74,
       "acceleration": 75,
-      "topSpeed": 83
+      "topSpeed": 83,
+      "id": 7
     },
     {
-      "team": "RB (AlphaTauri)",
-      "fastCorners": 76,
-      "slowCorners": 74,
-      "acceleration": 75,
-      "topSpeed": 83
-    },
-    {
-      "team": "Haas",
+      "realName": "Haas",
+      "teamName": "Harsen Dynamics",
       "fastCorners": 72,
       "slowCorners": 70,
       "acceleration": 73,
-      "topSpeed": 82
+      "topSpeed": 82,
+      "id": 8
     },
     {
-      "team": "Haas",
-      "fastCorners": 72,
-      "slowCorners": 70,
-      "acceleration": 73,
-      "topSpeed": 82
-    },
-    {
-      "team": "Williams",
+      "realName": "Williams",
+      "teamName": "Willbourne Engineering",
       "fastCorners": 80,
       "slowCorners": 67,
       "acceleration": 70,
-      "topSpeed": 89
+      "topSpeed": 89,
+      "id": 9
     },
     {
-      "team": "Williams",
-      "fastCorners": 80,
-      "slowCorners": 67,
-      "acceleration": 70,
-      "topSpeed": 89
-    },
-    {
-      "team": "Sauber",
+      "realName": "Sauber",
+      "teamName": "Schweiger GP",
       "fastCorners": 74,
       "slowCorners": 69,
       "acceleration": 71,
-      "topSpeed": 84
-    },
-    {
-      "team": "Sauber",
-      "fastCorners": 74,
-      "slowCorners": 69,
-      "acceleration": 71,
-      "topSpeed": 84
+      "topSpeed": 84,
+      "id": 10
     }
   ]
 }

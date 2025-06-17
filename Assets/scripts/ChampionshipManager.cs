@@ -5,17 +5,9 @@ using System.IO;
 public static class ChampionshipManager
 {
     [System.Serializable]
-    public class TrackData
-    {
-        public string circuitName;
-        public int totalLaps;
-        // outros campos que você precisa
-    }
-
-    [System.Serializable]
     public class TracksDatabase
     {
-        public List<TrackData> tracks;
+        public List<Track> tracks;
     }
 
     [System.Serializable]
@@ -43,7 +35,7 @@ public static class ChampionshipManager
         }
     }
 
-    public static TrackData GetNextRace()
+    public static Track GetNextRace()
     {
         var progress = LoadProgress();
         return tracksData.tracks.Find(t => t.circuitName == progress.nextRace);
