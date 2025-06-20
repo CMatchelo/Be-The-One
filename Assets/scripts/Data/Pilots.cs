@@ -7,7 +7,9 @@ public class Driver
 {
     public string firstName;
     public string lastName;
-    public string nationality;
+    public string realFirstName;
+    public string realLastName;
+    public Nationality nationality;
     public string team;
     public string birthDate;
     public int highSpeedCorners;
@@ -16,6 +18,7 @@ public class Driver
     public int topSpeed;
     public int teamId;
     public int id;
+    public bool active;
 }
 
 [Serializable]

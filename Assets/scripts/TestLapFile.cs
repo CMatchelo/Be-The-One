@@ -2,6 +2,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using System.Collections.Generic;
 using System;
+using System.IO;
 using System.Collections;
 using TMPro;
 using System.Linq;
@@ -61,12 +62,11 @@ public class MenuManager : MonoBehaviour
 
         float trackFactor = CalculateTrackFactor(circuitLength);
         List<CarSimulationState> cars = new List<CarSimulationState>();
-
         for (int i = 0; i < 20; i++)
         {
             Driver driver = driversList.drivers[i];
-            Team team = teamsList.teams.Find(t => t.teamName == driver.team);
-
+            Team team = teamsList.teams.Find(t => t.id == driver.teamId);
+            Debug.Log($"Driver: {driver.firstName} {driver.lastName}, Team: {team.teamName}");
             float carFactor = PerformanceCalculator.CalculateCarFactor(driver, team, selectedTrack);
             cars.Add(new CarSimulationState(startingTire, carFactor, driver.lastName, team.teamName));
         }
@@ -135,7 +135,6 @@ public class MenuManager : MonoBehaviour
         RaceResult raceResult = new RaceResult
         {
             trackName = selectedTrack.circuitName,
-            /* date = DateTime.Now.ToString("yyyy-MM-dd HH:mm") */
             date = "2025",
             results = new List<DriverResult>()
         };
@@ -179,8 +178,17 @@ public class MenuManager : MonoBehaviour
 
     void LoadDrivers()
     {
-        TextAsset driversLocal = Resources.Load<TextAsset>("DriversDatabase");
-        driversList = JsonUtility.FromJson<DriversList>(driversLocal.text);
+        string path = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "activeDriversList.json");
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            driversList = JsonUtility.FromJson<DriversList>(json);
+            Debug.Log(driversList.drivers.Count + " drivers loaded from " + path);
+        }
+        else
+        {
+            Debug.LogWarning($"Arquivo não encontrado em: {path}");
+        }
     }
 
     void LoadTracks()

@@ -1,0 +1,104 @@
+{
+    "nationalities": [
+        {
+            "country": "Brazil",
+            "nationality": "Brazilian",
+            "pluralNationality": "Brazilians"
+        },
+        {
+            "country": "Argentina",
+            "nationality": "Argentine",
+            "pluralNationality": "Argentines"
+        },
+        {
+            "country": "Portugal",
+            "nationality": "Portuguese",
+            "pluralNationality": "Portuguese"
+        },
+        {
+            "country": "Spain",
+            "nationality": "Spanish",
+            "pluralNationality": "Spanish"
+        },
+        {
+            "country": "France",
+            "nationality": "French",
+            "pluralNationality": "French"
+        },
+        {
+            "country": "Italy",
+            "nationality": "Italian",
+            "pluralNationality": "Italians"
+        },
+        {
+            "country": "Germany",
+            "nationality": "German",
+            "pluralNationality": "Germans"
+        },
+        {
+            "country": "United Kingdom",
+            "nationality": "British",
+            "pluralNationality": "British"
+        },
+        {
+            "country": "United States",
+            "nationality": "American",
+            "pluralNationality": "Americans"
+        },
+        {
+            "country": "Canada",
+            "nationality": "Canadian",
+            "pluralNationality": "Canadians"
+        },
+        {
+            "country": "Mexico",
+            "nationality": "Mexican",
+            "pluralNationality": "Mexicans"
+        },
+        {
+            "country": "Japan",
+            "nationality": "Japanese",
+            "pluralNationality": "Japanese"
+        },
+        {
+            "country": "China",
+            "nationality": "Chinese",
+            "pluralNationality": "Chinese"
+        },
+        {
+            "country": "India",
+            "nationality": "Indian",
+            "pluralNationality": "Indians"
+        },
+        {
+            "country": "Russia",
+            "nationality": "Russian",
+            "pluralNationality": "Russians"
+        },
+        {
+            "country": "South Africa",
+            "nationality": "South African",
+            "pluralNationality": "South Africans"
+        },
+        {
+            "country": "Australia",
+            "nationality": "Australian",
+            "pluralNationality": "Australians"
+        },
+        {
+            "country": "New Zealand",
+            "nationality": "New Zealander",
+            "pluralNationality": "New Zealanders"
+        },
+        {
+            "country": "Egypt",
+            "nationality": "Egyptian",
+            "pluralNationality": "Egyptians"
+        },
+        {
+            "country": "Colombia",
+            "nationality": "Colombian",
+            "pluralNationality": "Colombians"
+        }
+    ]
+}

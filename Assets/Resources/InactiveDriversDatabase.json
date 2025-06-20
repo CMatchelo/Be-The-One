@@ -1,0 +1,19 @@
+{
+  "drivers": [
+    {
+      "firstName": "Piloto",
+      "lastName": "Generico",
+      "realFirstName": "Piloto",
+      "realLastName": "Generico",
+      "nationality": "American",
+      "birthDate": "1999-05-30",
+      "highSpeedCorners": 80,
+      "lowSpeedCorners": 80,
+      "acceleration": 80,
+      "topSpeed": 80,
+      "id": 20,
+      "teamId": 11,
+      "active": false
+    }
+  ]
+}

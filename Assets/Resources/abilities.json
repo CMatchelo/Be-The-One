@@ -1,0 +1,84 @@
+{
+    "abilities": [
+        {
+            "name": "vehicleControl",
+            "referenceSkill": "technique"
+        },
+        {
+            "name": "showman",
+            "referenceSkill": "technique"
+        },
+        {
+            "name": "trackAdaption",
+            "referenceSkill": "technique"
+        },
+        {
+            "name": "fastLapSpecialist",
+            "referenceSkill": "technique"
+        },
+        {
+            "name": "aggressiveOvertaking",
+            "referenceSkill": "bravery"
+        },
+        {
+            "name": "positionDefense",
+            "referenceSkill": "bravery"
+        },
+        {
+            "name": "simulatorTraining",
+            "referenceSkill": "potential"
+        },
+        {
+            "name": "continuousDevelopment",
+            "referenceSkill": "potential"
+        },
+        {
+            "name": "telemetryReading",
+            "referenceSkill": "potential"
+        },
+        {
+            "name": "technicalCoaching",
+            "referenceSkill": "potential"
+        },
+        {
+            "name": "mediaHandling",
+            "referenceSkill": "charisma"
+        },
+        {
+            "name": "contractNegotiation",
+            "referenceSkill": "charisma"
+        },
+        {
+            "name": "teamPresence",
+            "referenceSkill": "charisma"
+        },
+        {
+            "name": "socialMedia",
+            "referenceSkill": "charisma"
+        },
+        {
+            "name": "negotiator",
+            "referenceSkill": "focus"
+        },
+        {
+            "name": "pressureResistance",
+            "referenceSkill": "focus"
+        },
+        {
+            "name": "quickDecisionMaking",
+            "referenceSkill": "focus"
+        },
+        {
+            "name": "strategicInsight",
+            "referenceSkill": "awareness"
+        },
+        {
+            "name": "socialPerception",
+            "referenceSkill": "awareness"
+        },
+        {
+            "name": "mechanicalSensitivity",
+            "referenceSkill": "awareness"
+        }
+    ]
+}
