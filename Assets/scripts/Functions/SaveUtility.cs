@@ -8,6 +8,7 @@ using System.Linq;
 public static class SaveUtility
 {
     public static void CreateNewSave(
+        PlayerProfile profile,
         Driver player,
         int selectedTeamId,
         TMP_Dropdown companionDropdown,
@@ -26,6 +27,7 @@ public static class SaveUtility
 
         GameData gameData = new GameData()
         {
+            profile = profile,
             playerFirstName = player.firstName,
             playerLastName = player.lastName,
             teamId = selectedTeamId,

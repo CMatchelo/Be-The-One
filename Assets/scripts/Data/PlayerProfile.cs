@@ -2,11 +2,16 @@ using System;
 using System.Collections.Generic;
 
 [Serializable]
+public class AbilityList
+{
+    public Ability[] abilities;
+}
+[Serializable]
 public class Ability
 {
+    public int id;
     public string name;
     public string referenceSkill;
-
 }
 [Serializable]
 public class PlayerProfile
@@ -29,6 +34,6 @@ public class PlayerProfile
     public int charisma;
     public int focus;
     public int awareness;
-    public List<Ability> abilities;
+    public List<Ability> abilities = new List<Ability>();
 }
 

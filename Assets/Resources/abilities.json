@@ -1,84 +1,109 @@
 {
     "abilities": [
         {
-            "name": "vehicleControl",
-            "referenceSkill": "technique"
+            "name": "Cornering Mastery",
+            "referenceSkill": "technique",
+            "id": 0
         },
         {
-            "name": "showman",
-            "referenceSkill": "technique"
+            "name": "Vehicle Control",
+            "referenceSkill": "technique",
+            "id": 1
         },
         {
-            "name": "trackAdaption",
-            "referenceSkill": "technique"
+            "name": "Showman",
+            "referenceSkill": "technique",
+            "id": 2
         },
         {
-            "name": "fastLapSpecialist",
-            "referenceSkill": "technique"
+            "name": "Track Adaptation",
+            "referenceSkill": "technique",
+            "id": 3
         },
         {
-            "name": "aggressiveOvertaking",
-            "referenceSkill": "bravery"
+            "name": "Fast Lap Specialist",
+            "referenceSkill": "technique",
+            "id": 4
         },
         {
-            "name": "positionDefense",
-            "referenceSkill": "bravery"
+            "name": "Aggressive Overtaking",
+            "referenceSkill": "bravery",
+            "id": 5
         },
         {
-            "name": "simulatorTraining",
-            "referenceSkill": "potential"
+            "name": "Position Defense",
+            "referenceSkill": "bravery",
+            "id": 6
         },
         {
-            "name": "continuousDevelopment",
-            "referenceSkill": "potential"
+            "name": "Simulator Training",
+            "referenceSkill": "potential",
+            "id": 7
         },
         {
-            "name": "telemetryReading",
-            "referenceSkill": "potential"
+            "name": "Continuous Development",
+            "referenceSkill": "potential",
+            "id": 8
         },
         {
-            "name": "technicalCoaching",
-            "referenceSkill": "potential"
+            "name": "Telemetry Reading",
+            "referenceSkill": "potential",
+            "id": 9
         },
         {
-            "name": "mediaHandling",
-            "referenceSkill": "charisma"
+            "name": "Technical Coaching",
+            "referenceSkill": "potential",
+            "id": 10
         },
         {
-            "name": "contractNegotiation",
-            "referenceSkill": "charisma"
+            "name": "Media handling",
+            "referenceSkill": "charisma",
+            "id": 11
         },
         {
-            "name": "teamPresence",
-            "referenceSkill": "charisma"
+            "name": "Contract negotiation",
+            "referenceSkill": "charisma",
+            "id": 12
         },
         {
-            "name": "socialMedia",
-            "referenceSkill": "charisma"
+            "name": "Team presence",
+            "referenceSkill": "charisma",
+            "id": 13
         },
         {
-            "name": "negotiator",
-            "referenceSkill": "focus"
+            "name": "Social media",
+            "referenceSkill": "charisma",
+            "id": 14
         },
         {
-            "name": "pressureResistance",
-            "referenceSkill": "focus"
+            "name": "Negotiator",
+            "referenceSkill": "focus",
+            "id": 15
         },
         {
-            "name": "quickDecisionMaking",
-            "referenceSkill": "focus"
+            "name": "Pressure resistance",
+            "referenceSkill": "focus",
+            "id": 16
         },
         {
-            "name": "strategicInsight",
-            "referenceSkill": "awareness"
+            "name": "Quick decision-making",
+            "referenceSkill": "focus",
+            "id": 17
         },
         {
-            "name": "socialPerception",
-            "referenceSkill": "awareness"
+            "name": "Strategic insight",
+            "referenceSkill": "awareness",
+            "id": 18
         },
         {
-            "name": "mechanicalSensitivity",
-            "referenceSkill": "awareness"
+            "name": "Social perception",
+            "referenceSkill": "awareness",
+            "id": 19
+        },
+        {
+            "name": "Mechanical sensitivity",
+            "referenceSkill": "awareness",
+            "id": 20
         }
     ]
 }
