@@ -24,6 +24,7 @@ public class PlayerProfile
     public int companionId;
     public int id;
     public string past;
+    public string status;
     public int lowSpeedCorners;
     public int highSpeedCorners;
     public int topSpeed;
@@ -34,6 +35,10 @@ public class PlayerProfile
     public int charisma;
     public int focus;
     public int awareness;
+    public float Average
+    {
+        get { return (highSpeedCorners + lowSpeedCorners + acceleration + topSpeed) / 4f; }
+    }
     public List<Ability> abilities = new List<Ability>();
 }
 

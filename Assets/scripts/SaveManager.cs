@@ -331,7 +331,8 @@ public class SaveManager : MonoBehaviour
             selectedTeamId,
             companionDropdown,
             activeDriversList,
-            inactiveDriversList
+            inactiveDriversList,
+            teamsList
         );
     }
 }

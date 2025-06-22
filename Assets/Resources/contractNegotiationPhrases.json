@@ -1,0 +1,32 @@
+{
+  "profiles": {
+    "Rising_star": {
+      "firstPhrase": [
+        "We see great potential in you, and we believe our team can help you shine. Let’s discuss how we can build your career together.",
+        "You’re just starting, but we know you have what it takes to become a star. How about we make that happen with us?",
+        "This could be the beginning of something big. We want to be the team that launches your career—let’s talk terms."
+      ]
+    },
+    "Experienced_driver": {
+      "firstPhrase": [
+        "Your experience speaks for itself, and we think you’d be a perfect fit for our team. Let’s negotiate a deal that benefits both sides.",
+        "You’ve been around the track long enough to know what works. We’re ready to offer you a competitive package—shall we discuss?",
+        "We need someone with your skills to elevate our team. Let’s find an agreement that matches your expertise."
+      ]
+    },
+    "Legendary_veteran": {
+      "firstPhrase": [
+        "Your legacy in racing is undeniable, and we’d be honored to have you lead our team. Let’s talk about a worthy contract.",
+        "You’ve achieved so much—now let’s make sure your final chapters are written with us. What would it take to bring you on board?",
+        "A driver of your caliber deserves respect. We’re prepared to make an offer that reflects your legendary status."
+      ]
+    },
+    "Established_champion": {
+      "firstPhrase": [
+        "You’re not just a champion—you’re a symbol of excellence. Let’s discuss how we can make history together.",
+        "Winning is in your blood, and we want that for our team. How about we structure a deal that keeps you on top?",
+        "You’ve proven yourself time and again. Now, let’s negotiate a contract that matches your championship pedigree."
+      ]
+    }
+  }
+}

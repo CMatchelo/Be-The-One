@@ -19,6 +19,10 @@ public class Driver
     public int teamId;
     public int id;
     public bool active;
+    public float Average
+    {
+        get { return (highSpeedCorners + lowSpeedCorners + acceleration + topSpeed) / 4f; }
+    }
 }
 
 [Serializable]

@@ -1,8 +1,10 @@
 using UnityEngine;
+using TMPro;
+
+using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
-using System.Collections.Generic;
-using TMPro;
+using System.IO;
 
 
 public class RaceSimulator : MonoBehaviour
@@ -14,6 +16,10 @@ public class RaceSimulator : MonoBehaviour
 
     private List<string> logMessages = new List<string>();
 
+    private void Awake()
+    {
+        LoadUtility.LoadGame("Cicero_UYoD6K"); // Fix id load
+    }
     private void Start()
     {
         ChampionshipManager.Initialize();

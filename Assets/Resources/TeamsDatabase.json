@@ -3,8 +3,8 @@
     {
       "realName": "Red Bull",
       "teamName": "Raging Bull Motorsport",
-      "fastCorners": 95,
-      "slowCorners": 88,
+      "highSpeedCorners": 95,
+      "lowSpeedCorners": 88,
       "acceleration": 90,
       "topSpeed": 98,
       "id": 1
@@ -12,8 +12,8 @@
     {
       "realName": "Ferrari",
       "teamName": "Rosso Veloce",
-      "fastCorners": 90,
-      "slowCorners": 85,
+      "highSpeedCorners": 90,
+      "lowSpeedCorners": 85,
       "acceleration": 88,
       "topSpeed": 94,
       "id": 2
@@ -21,8 +21,8 @@
     {
       "realName": "Mercedes",
       "teamName": "Silver Arrow Racing",
-      "fastCorners": 87,
-      "slowCorners": 84,
+      "highSpeedCorners": 87,
+      "lowSpeedCorners": 84,
       "acceleration": 86,
       "topSpeed": 91,
       "id": 3
@@ -30,8 +30,8 @@
     {
       "realName": "McLaren",
       "teamName": "McStorm Racing",
-      "fastCorners": 89,
-      "slowCorners": 82,
+      "highSpeedCorners": 89,
+      "lowSpeedCorners": 82,
       "acceleration": 83,
       "topSpeed": 90,
       "id": 4
@@ -39,8 +39,8 @@
     {
       "realName": "Aston Martin",
       "teamName": "Verdant Motorsports",
-      "fastCorners": 83,
-      "slowCorners": 80,
+      "highSpeedCorners": 83,
+      "lowSpeedCorners": 80,
       "acceleration": 81,
       "topSpeed": 87,
       "id": 5
@@ -48,8 +48,8 @@
     {
       "realName": "Alpine",
       "teamName": "Alphex Performance",
-      "fastCorners": 78,
-      "slowCorners": 75,
+      "highSpeedCorners": 78,
+      "lowSpeedCorners": 75,
       "acceleration": 78,
       "topSpeed": 85,
       "id": 6
@@ -57,8 +57,8 @@
     {
       "realName": "RB (AlphaTauri)",
       "teamName": "TauriTech Racing",
-      "fastCorners": 76,
-      "slowCorners": 74,
+      "highSpeedCorners": 76,
+      "lowSpeedCorners": 74,
       "acceleration": 75,
       "topSpeed": 83,
       "id": 7
@@ -66,8 +66,8 @@
     {
       "realName": "Haas",
       "teamName": "Harsen Dynamics",
-      "fastCorners": 72,
-      "slowCorners": 70,
+      "highSpeedCorners": 72,
+      "lowSpeedCorners": 70,
       "acceleration": 73,
       "topSpeed": 82,
       "id": 8
@@ -75,8 +75,8 @@
     {
       "realName": "Williams",
       "teamName": "Willbourne Engineering",
-      "fastCorners": 80,
-      "slowCorners": 67,
+      "highSpeedCorners": 80,
+      "lowSpeedCorners": 67,
       "acceleration": 70,
       "topSpeed": 89,
       "id": 9
@@ -84,8 +84,8 @@
     {
       "realName": "Sauber",
       "teamName": "Schweiger GP",
-      "fastCorners": 74,
-      "slowCorners": 69,
+      "highSpeedCorners": 74,
+      "lowSpeedCorners": 69,
       "acceleration": 71,
       "topSpeed": 84,
       "id": 10

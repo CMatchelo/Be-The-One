@@ -13,7 +13,8 @@ public static class SaveUtility
         int selectedTeamId,
         TMP_Dropdown companionDropdown,
         DriversList activeDriversList,
-        DriversList inactiveDriversList)
+        DriversList inactiveDriversList,
+        TeamsList teamsList)
     {
         List<Driver> teamDrivers = activeDriversList.drivers.FindAll(d => d.teamId == selectedTeamId);
         Driver selectedDriver = teamDrivers[companionDropdown.value];
@@ -50,6 +51,9 @@ public static class SaveUtility
 
         string inactiveDriversPath = Path.Combine(saveFolder, "inactiveDriversList.json");
         File.WriteAllText(inactiveDriversPath, JsonUtility.ToJson(inactiveDriversList, true));
+
+        string teamsPath = Path.Combine(saveFolder, "teamsList.json");
+        File.WriteAllText(teamsPath, JsonUtility.ToJson(teamsList, true));
 
         SceneManager.LoadScene("MenuScene");
     }

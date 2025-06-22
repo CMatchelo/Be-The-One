@@ -58,7 +58,6 @@ public class LoadManager : MonoBehaviour
             GameObject buttonObj = Instantiate(SaveFileBtn, savesListContainer, false);
             Button button = buttonObj.GetComponent<Button>();
             TextMeshProUGUI buttonText = buttonObj.GetComponentInChildren<TextMeshProUGUI>();
-            Debug.Log(buttonText.text);
             if (buttonText == null)
             {
                 Debug.LogError("Componente TextMeshProUGUI não encontrado no botão");
@@ -69,10 +68,9 @@ public class LoadManager : MonoBehaviour
         }
     }
 
-    private void LoadSaveGame(string saveId)
+    public void LoadSaveGame(string saveId)
     {
-        // Define o save atual
-        SaveSession.CurrentSaveId = saveId;
+        LoadUtility.LoadGame(saveId);
         // Carrega a cena do jogo
         SceneManager.LoadScene("MenuScene");
     }
