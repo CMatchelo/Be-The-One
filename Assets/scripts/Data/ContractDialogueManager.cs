@@ -5,6 +5,9 @@ using UnityEngine;
 public class DialoguePhrases
 {
     public List<string> firstPhrase;
+    public List<string> positivePhrase;
+    public List<string> negativePhrase;
+    public List<string> failedPhrase;
 }
 
 [System.Serializable]
@@ -35,7 +38,7 @@ public class ContractNegotiationDialogue
     public DriverProfiles profiles;
 }
 public class ContractDialogueManager : MonoBehaviour
-{  
+{
     private ContractNegotiationDialogue dialogueData;
 
     private void Awake()
@@ -49,7 +52,6 @@ public class ContractDialogueManager : MonoBehaviour
         if (dialoguesJson != null)
         {
             dialogueData = JsonUtility.FromJson<ContractNegotiationDialogue>(dialoguesJson.text);
-            Debug.Log("Dados de diálogo carregados com sucesso!");
         }
         else
         {
@@ -75,5 +77,62 @@ public class ContractDialogueManager : MonoBehaviour
 
         int randomIndex = Random.Range(0, profile.firstPhrase.Count);
         return profile.firstPhrase[randomIndex];
+    }
+
+    public string GetRandomPositivePhrase(string profileType)
+    {
+        if (dialogueData == null || dialogueData.profiles == null)
+        {
+            Debug.LogError("Dados de diálogo não carregados!");
+            return "Default negotiation phrase.";
+        }
+
+        var profile = dialogueData.profiles.GetProfile(profileType);
+        if (profile == null || profile.positivePhrase == null || profile.positivePhrase.Count == 0)
+        {
+            Debug.LogError($"Perfil ou frases não encontrados para: {profileType}");
+            return "Default phrase for " + profileType;
+        }
+
+        int randomIndex = Random.Range(0, profile.positivePhrase.Count);
+        return profile.positivePhrase[randomIndex];
+    }
+
+    public string GetRandomNegativePhrase(string profileType)
+    {
+        if (dialogueData == null || dialogueData.profiles == null)
+        {
+            Debug.LogError("Dados de diálogo não carregados!");
+            return "Default negotiation phrase.";
+        }
+
+        var profile = dialogueData.profiles.GetProfile(profileType);
+        if (profile == null || profile.negativePhrase == null || profile.negativePhrase.Count == 0)
+        {
+            Debug.LogError($"Perfil ou frases não encontrados para: {profileType}");
+            return "Default phrase for " + profileType;
+        }
+
+        int randomIndex = Random.Range(0, profile.negativePhrase.Count);
+        return profile.negativePhrase[randomIndex];
+    }
+    
+    public string GetRandomFailedPhrase(string profileType)
+    {
+        if (dialogueData == null || dialogueData.profiles == null)
+        {
+            Debug.LogError("Dados de diálogo não carregados!");
+            return "Default negotiation phrase.";
+        }
+
+        var profile = dialogueData.profiles.GetProfile(profileType);
+        if (profile == null || profile.failedPhrase == null || profile.failedPhrase.Count == 0)
+        {
+            Debug.LogError($"Perfil ou frases não encontrados para: {profileType}");
+            return "Default phrase for " + profileType;
+        }
+
+        int randomIndex = Random.Range(0, profile.failedPhrase.Count);
+        return profile.failedPhrase[randomIndex];
     }
 }

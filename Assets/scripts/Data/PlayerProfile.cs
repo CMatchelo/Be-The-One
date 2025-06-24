@@ -24,6 +24,7 @@ public class PlayerProfile
     public int companionId;
     public int id;
     public string past;
+    public int lastResults;
     public string status;
     public int lowSpeedCorners;
     public int highSpeedCorners;

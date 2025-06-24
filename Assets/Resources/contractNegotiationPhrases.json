@@ -4,28 +4,123 @@
       "firstPhrase": [
         "We see great potential in you, and we believe our team can help you shine. Let’s discuss how we can build your career together.",
         "You’re just starting, but we know you have what it takes to become a star. How about we make that happen with us?",
-        "This could be the beginning of something big. We want to be the team that launches your career—let’s talk terms."
+        "This could be the beginning of something big. We want to be the team that launches your career—let’s talk terms.",
+        "You're one of the most exciting talents we've seen in years. With the right support, you could be the future of this sport — and we want to be part of that journey.",
+        "We’re not just offering you a seat — we’re offering you a launchpad. Let’s develop your raw speed into race-winning precision."
+      ],
+      "positivePhrase": [
+        "You drive a hard bargain — but we believe in your potential. Let’s make this official.",
+        "Alright, you've got yourself a deal. Time to show the world what you’re made of.",
+        "We’re investing in your future — and we expect big things. Welcome aboard.",
+        "We believe in backing our young talent. Let’s get to work.",
+        "If this is what it takes to unlock your best, we’re on board. Let’s grow together."
+      ],
+      "negativePhrase": [
+        "We see your ambition, and it’s one of the reasons we’re interested — but we’re not quite there yet. Let’s keep talking.",
+        "You're asking a bit more than we expected, but we still believe this partnership can work. Can we find some middle ground?",
+        "Let’s not rush this. We believe in you — now let’s find a deal that makes sense for both sides.",
+        "You're talented, no doubt — let’s try to align our expectations and make this happen.",
+        "The door’s not closed. Let’s go back to the table and figure this out together."
+      ],
+      "failedPhrase": [
+        "We truly see your potential, but at this time, we’re not able to move forward. Keep chasing your dream — we’ll be watching.",
+        "You’ve got a bright future ahead, but our paths don’t align right now. All the best in your journey.",
+        "We appreciate the discussions, but this opportunity won’t go forward. Stay focused — your time will come.",
+        "Our team isn’t the right fit at the moment. We believe you'll find the place that helps you grow.",
+        "You’ve left a strong impression. This just isn’t the right moment — but never stop pushing forward."
       ]
     },
     "Experienced_driver": {
       "firstPhrase": [
         "Your experience speaks for itself, and we think you’d be a perfect fit for our team. Let’s negotiate a deal that benefits both sides.",
         "You’ve been around the track long enough to know what works. We’re ready to offer you a competitive package—shall we discuss?",
-        "We need someone with your skills to elevate our team. Let’s find an agreement that matches your expertise."
+        "We need someone with your skills to elevate our team. Let’s find an agreement that matches your expertise.",
+        "With your experience and consistency, we believe you can bring both performance and leadership to our garage. Let’s explore this opportunity together.",
+        "You've proven yourself time and again. We need someone who understands the grind of a full season — and knows how to deliver results.",
+        "Our team is evolving, and a driver like you could be the key piece we’re missing. Let’s talk about building something solid together."
+      ],
+      "positivePhrase": [
+        "You've earned this. We know you’ll deliver on your side — and we’re ready to deliver on ours.",
+        "Fair enough. We appreciate your honesty and confidence — deal accepted.",
+        "Experience comes with value. You’ll get what you asked for — let’s make it count.",
+        "We know what you bring to the table. Let’s make this partnership work.",
+        "Consider your terms accepted. Now let’s focus on racing."
+      ],
+      "negativePhrase": [
+        "You make a fair case, but we’re not ready to commit to those terms yet. Let’s continue the conversation.",
+        "We value what you bring, but the current numbers don’t quite match. Can we take another look together?",
+        "We’re still interested — we just need to find the right balance. Let’s keep working on it.",
+        "It’s close, but not quite there yet. We respect your position and want to keep the dialogue open.",
+        "Let’s not walk away just yet — we think there’s still a solid agreement to be made here."
+      ],
+      "failedPhrase": [
+        "After careful consideration, we've decided not to proceed. We sincerely appreciate the dialogue and your professionalism.",
+        "It’s been a pleasure negotiating, but we won’t be pursuing this deal. Wishing you success wherever you land.",
+        "You bring experience and value, but our direction leads us elsewhere this season.",
+        "We’ve chosen to move in a different direction, but we hold you in high regard.",
+        "This isn't a reflection of your ability — it’s simply a matter of fit. Best of luck on the grid."
       ]
     },
     "Legendary_veteran": {
       "firstPhrase": [
         "Your legacy in racing is undeniable, and we’d be honored to have you lead our team. Let’s talk about a worthy contract.",
         "You’ve achieved so much—now let’s make sure your final chapters are written with us. What would it take to bring you on board?",
-        "A driver of your caliber deserves respect. We’re prepared to make an offer that reflects your legendary status."
+        "A driver of your caliber deserves respect. We’re prepared to make an offer that reflects your legendary status.",
+        "Your legacy in motorsport is undeniable. We’d be proud to give you the machinery and respect worthy of a legend in his final chapters.",
+        "There’s nothing you haven’t seen on track. Your presence would elevate our entire organization — from the engineers to the youngest drivers watching from the stands.",
+        "You’ve already written history. Now we’d like to offer you the chance to write one last unforgettable chapter with us."
+      ],
+      "positivePhrase": [
+        "For a legend like you, it’s only right. Let’s give you the send-off you deserve.",
+        "You’ve earned the right to set the terms. Welcome to the team.",
+        "We wouldn’t ask a legend to settle for less. Deal accepted.",
+        "Whatever you need to feel at home, we’ll provide it. Let’s finish this ride with pride.",
+        "Your legacy deserves respect — and this agreement shows ours. Let’s write the final chapter together."
+      ],
+      "negativePhrase": [
+        "Out of respect for everything you’ve achieved, we want to continue this conversation — even if we can’t meet your terms just yet.",
+        "We won’t pretend we can give you everything you asked for — but we want to find a way to work together.",
+        "Your legacy deserves our best offer — but we need to align expectations first.",
+        "We’d be honored to have you, but we’re not fully aligned yet. Let’s keep the dialogue open.",
+        "This isn’t a 'no' — it’s a 'not yet'. We still want to make this happen with you."
+      ],
+      "failedPhrase": [
+        "It’s been an honor to speak with a driver of your legacy. Unfortunately, this deal won’t move forward.",
+        "Out of respect for everything you've accomplished, we want to be clear — we won’t be proceeding, but it’s been a privilege to talk.",
+        "We can’t match the expectations, and we feel it’s best to part ways respectfully.",
+        "Thank you for considering us at this stage of your journey. We'll be cheering you on from afar.",
+        "You’ve already earned your place in history. We’re simply not the right chapter to follow."
       ]
     },
     "Established_champion": {
       "firstPhrase": [
         "You’re not just a champion—you’re a symbol of excellence. Let’s discuss how we can make history together.",
         "Winning is in your blood, and we want that for our team. How about we structure a deal that keeps you on top?",
-        "You’ve proven yourself time and again. Now, let’s negotiate a contract that matches your championship pedigree."
+        "You’ve proven yourself time and again. Now, let’s negotiate a contract that matches your championship pedigree.",
+        "Your track record speaks for itself. We’d be honored to have a driver of your caliber lead our team to even greater heights.",
+        "You know how to win — and we’re ready to give you the tools to keep doing it. Together, we can aim for titles, not just podiums.",
+        "You bring more than talent — you bring a champion’s mindset. That’s exactly what we need to take the next step."
+      ],
+      "positivePhrase": [
+        "Champions don’t compromise — and neither will we. You’ve got your deal.",
+        "You’ve proven your worth on track. We’re prepared to match that off it too.",
+        "Terms accepted. Now let’s win some races.",
+        "We know what it takes to keep a champion satisfied. Let’s chase another title together.",
+        "You've made your demands — and we respect every one of them. Let's dominate."
+      ],
+      "negativePhrase": [
+        "You’ve earned the right to negotiate hard — but we’re not ready to meet those terms just yet. Let’s keep talking.",
+        "We're serious about working with a champion — let’s just refine the details a bit more.",
+        "We’re close, but not quite there. Let’s keep the discussions going.",
+        "We won’t disrespect your value — let’s just take another look at what we can realistically offer.",
+        "It’s not a rejection — it’s a chance to find a better solution for both of us. We’re still in."
+      ],
+      "failedPhrase": [
+        "We respect what you’ve achieved at the highest level, but we’ve decided not to move forward with this deal.",
+        "It’s not a question of talent — it’s a matter of timing and fit. We’re choosing another path this season.",
+        "It’s been an honor to negotiate with a champion. Unfortunately, we won’t be continuing the talks.",
+        "We won’t be able to meet your expectations, and we prefer to be upfront. We wish you continued success.",
+        "You're a winner — just not with us this season. All the best in the championship."
       ]
     }
   }

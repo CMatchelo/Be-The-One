@@ -10,13 +10,13 @@ public static class SaveUtility
     public static void CreateNewSave(
         PlayerProfile profile,
         Driver player,
-        int selectedTeamId,
+        /* int selectedTeamId, */
         TMP_Dropdown companionDropdown,
         DriversList activeDriversList,
         DriversList inactiveDriversList,
         TeamsList teamsList)
     {
-        List<Driver> teamDrivers = activeDriversList.drivers.FindAll(d => d.teamId == selectedTeamId);
+        /* List<Driver> teamDrivers = activeDriversList.drivers.FindAll(d => d.teamId == selectedTeamId);
         Driver selectedDriver = teamDrivers[companionDropdown.value];
         Driver unselectedDriver = teamDrivers.First(d => d.id != selectedDriver.id);
         unselectedDriver.active = false;
@@ -24,15 +24,15 @@ public static class SaveUtility
         inactiveDriversList.drivers.Add(unselectedDriver);
         activeDriversList.drivers.RemoveAll(d => d.id == unselectedDriver.id);
 
-        activeDriversList.drivers.Add(player);
+        activeDriversList.drivers.Add(player); */
 
         GameData gameData = new GameData()
         {
             profile = profile,
             playerFirstName = player.firstName,
             playerLastName = player.lastName,
-            teamId = selectedTeamId,
-            companionId = selectedDriver.id
+            /* teamId = selectedTeamId,
+            companionId = selectedDriver.id */
         };
 
         // Save code
@@ -56,5 +56,13 @@ public static class SaveUtility
         File.WriteAllText(teamsPath, JsonUtility.ToJson(teamsList, true));
 
         SceneManager.LoadScene("MenuScene");
+    }
+
+    public static void UpdateProfile()
+    {
+        var gameData = SaveSession.CurrentGameData;
+        string saveFolder = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId);
+        string savePath = Path.Combine(saveFolder, "savegame.json");
+        File.WriteAllText(savePath, JsonUtility.ToJson(gameData, true));
     }
 }

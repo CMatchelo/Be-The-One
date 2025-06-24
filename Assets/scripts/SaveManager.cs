@@ -15,7 +15,7 @@ public class SaveManager : MonoBehaviour
     public TMP_InputField lastNameInput;
     public TMP_InputField ageInput;
     public TMP_Dropdown nationalityDropdown;
-    public TMP_Dropdown teamDropdown;
+    /* public TMP_Dropdown teamDropdown; */
     public TMP_Dropdown companionDropdown;
     public TMP_Dropdown categoryDropdown;
     public TMP_InputField[] inRaceskillInputs;
@@ -34,10 +34,10 @@ public class SaveManager : MonoBehaviour
     [SerializeField] private readonly int[] basePoints = { 60, 70, 80, 90 };
     private int remainingPoints = 10;
     private int limitPoints = 0;
-    private int remainingSkillsPoints = 21;
+    private int remainingSkillsPoints = 10;
     private int[] currentInRaceValues = new int[4];
     private int[] currentOffRaceValues = new int[6];
-    private List<Team> teams = new List<Team>();
+    /* private List<Team> teams = new List<Team>(); */
     private DriversList activeDriversList;
     private DriversList inactiveDriversList;
     private AbilityList abilityList;
@@ -45,20 +45,20 @@ public class SaveManager : MonoBehaviour
     private NationalitiesList nationalitiesList;
     private List<Toggle> selectedToggles = new List<Toggle>();
     private const int MAX_SELECTION = 4;
-    private int selectedTeamId = -1;
-    private int selectedTeammateId = -1;
+    /* private int selectedTeamId = -1;
+    private int selectedTeammateId = -1; */
     private Nationality playerNationality;
     private string playerCategory;
 
     void Start()
     {
         LoadDatabases();
-        PopulateTeamDropdown();
+        /* PopulateTeamDropdown(); */
         PopulateNationalityDropdown();
         PopulateAbilitiesToggle();
 
-        teamDropdown.onValueChanged.AddListener(OnTeamSelected);
-        companionDropdown.onValueChanged.AddListener(OnCompanionSelected);
+        /* teamDropdown.onValueChanged.AddListener(OnTeamSelected); */
+        /* companionDropdown.onValueChanged.AddListener(OnCompanionSelected); */
         categoryDropdown.onValueChanged.AddListener(OnCategorySelected);
         nationalityDropdown.onValueChanged.AddListener(OnNationalitySelected);
         for (int i = 0; i < inRaceSkillsPlusButtons.Length; i++)
@@ -89,16 +89,15 @@ public class SaveManager : MonoBehaviour
 
         confirmButton.interactable = false;
         OnCategorySelected(0);
-        OnNationalitySelected(0);
 
-        teamDropdown.value = 0;
-        OnTeamSelected(0);
+        /* teamDropdown.value = 0;
+        OnTeamSelected(0); */
 
-        companionDropdown.value = 0;
-        OnCompanionSelected(0);
+        /* companionDropdown.value = 0;
+        OnCompanionSelected(0); */
 
         nationalityDropdown.value = 0;
-        OnCompanionSelected(0);
+        OnNationalitySelected(0);
     }
 
     void OnCategorySelected(int categoryIndex)
@@ -168,21 +167,21 @@ public class SaveManager : MonoBehaviour
 
     void OnNationalitySelected(int index)
     {
-        if (index < 0 || index >= teamsList.teams.Count) return;
+        if (index < 0 || index >= nationalitiesList.nationalities.Count) return;
         playerNationality = nationalitiesList.nationalities[index];
     }
 
-    void OnTeamSelected(int index)
+    /* void OnTeamSelected(int index)
     {
         if (index < 0 || index >= teamsList.teams.Count) return;
         selectedTeamId = teamsList.teams[index].id;
         PopulateCompanionDropdown(selectedTeamId);
-    }
+    } */
 
-    void OnCompanionSelected(int index)
+    /* void OnCompanionSelected(int index)
     {
         selectedTeammateId = teamsList.teams[index].id;
-    }
+    } */
 
     public void NextPage()
     {
@@ -204,11 +203,11 @@ public class SaveManager : MonoBehaviour
         TextAsset NationsJson = Resources.Load<TextAsset>("Nationalities");
         nationalitiesList = JsonUtility.FromJson<NationalitiesList>(NationsJson.text);
 
-        TextAsset activeDriversJson = Resources.Load<TextAsset>("DriversDatabase");
+        /* TextAsset activeDriversJson = Resources.Load<TextAsset>("DriversDatabase");
         activeDriversList = JsonUtility.FromJson<DriversList>(activeDriversJson.text);
 
         TextAsset inactiveDriversJson = Resources.Load<TextAsset>("InactiveDriversDatabase");
-        inactiveDriversList = JsonUtility.FromJson<DriversList>(inactiveDriversJson.text);
+        inactiveDriversList = JsonUtility.FromJson<DriversList>(inactiveDriversJson.text); */
 
         TextAsset abilityJson = Resources.Load<TextAsset>("abilities");
         abilityList = JsonUtility.FromJson<AbilityList>(abilityJson.text);
@@ -241,7 +240,7 @@ public class SaveManager : MonoBehaviour
         nationalityDropdown.ClearOptions();
         nationalityDropdown.AddOptions(countryNames);
     }
-    void PopulateTeamDropdown()
+    /* void PopulateTeamDropdown()
     {
         teamDropdown.ClearOptions();
 
@@ -267,16 +266,15 @@ public class SaveManager : MonoBehaviour
         }
 
         companionDropdown.AddOptions(options);
-    }
+    } */
 
     public void CreateNewSave()
     {
-        if (string.IsNullOrEmpty(firstNameInput.text) || string.IsNullOrEmpty(lastNameInput.text) || selectedTeamId == -1 || companionDropdown.value == -1)
+        if (string.IsNullOrEmpty(firstNameInput.text) || string.IsNullOrEmpty(lastNameInput.text)/*  || selectedTeamId == -1 || companionDropdown.value == -1 */)
         {
             Debug.LogError("Preencha todos os campos!");
             return;
         }
-        ;
 
         Driver player = new Driver
         {
@@ -291,7 +289,7 @@ public class SaveManager : MonoBehaviour
             topSpeed = currentInRaceValues[2],
             acceleration = currentInRaceValues[3],
             id = 123321,
-            teamId = selectedTeamId,
+            /* teamId = selectedTeamId, */
             active = true
         };
 
@@ -301,7 +299,7 @@ public class SaveManager : MonoBehaviour
             playerLastName = lastNameInput.text,
             age = int.Parse(ageInput.text),
             nationality = playerNationality,
-            teamId = selectedTeamId,
+            /* teamId = selectedTeamId, */
             id = 123321,
             past = playerCategory,
             highSpeedCorners = currentInRaceValues[0],
@@ -328,7 +326,7 @@ public class SaveManager : MonoBehaviour
         SaveUtility.CreateNewSave(
             profile,
             player,
-            selectedTeamId,
+            /* selectedTeamId, */
             companionDropdown,
             activeDriversList,
             inactiveDriversList,
