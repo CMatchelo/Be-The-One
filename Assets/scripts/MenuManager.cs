@@ -18,7 +18,7 @@ public class RaceSimulator : MonoBehaviour
 
     private void Awake()
     {
-        LoadUtility.LoadGame("Cicero_UYoD6K"); // Fix id load
+        LoadUtility.LoadGame("Cicero_g15866"); // Fix id load
     }
     private void Start()
     {

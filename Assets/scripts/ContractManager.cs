@@ -4,6 +4,7 @@ using UnityEngine.UI;
 using System.Linq;
 using System.Collections.Generic;
 using System.IO;
+using System;
 
 public class ContractManager : MonoBehaviour
 {
@@ -14,10 +15,13 @@ public class ContractManager : MonoBehaviour
     public TMP_Dropdown statusOfferedDropdown;
     public TMP_Text teamDialogueBoxText;
     public TMP_Text salaryOfferedText;
+    public TMP_Text yearsOfferedText;
     public Button negotiateBtn;
     public Button signBtn;
     public Button minusSalaryBtn;
     public Button plusSalaryBtn;
+    public Button minusYearsBtn;
+    public Button plusYearsBtn;
 
 
     [Header("Settings")]
@@ -28,7 +32,10 @@ public class ContractManager : MonoBehaviour
     private int status;
     private float salaryOffered;
     private float salary;
-    private int difficulty = 10;
+    private int yearsOffered;
+    private int years;
+    private int difficulty = 11;
+    List<int> listDifficulty = Enumerable.Repeat(11, 10).ToList();
 
     [Header("Dialogues")]
     private ContractNegotiationDialogue dialogueData;
@@ -44,30 +51,39 @@ public class ContractManager : MonoBehaviour
         signBtn.onClick.AddListener(SignContract);
         minusSalaryBtn.onClick.AddListener(() => ChangeSalary(-0.05f));
         plusSalaryBtn.onClick.AddListener(() => ChangeSalary(0.05f));
+        minusYearsBtn.onClick.AddListener(() => ChangeYears(-1));
+        plusYearsBtn.onClick.AddListener(() => ChangeYears(1));
         negotiateBtn.interactable = false;
     }
 
     void SignContract()
     {
+        SaveSession.CurrentGameData.profile.driver.role = statusOfferedDropdown.value;
+        SaveSession.CurrentGameData.profile.driver.teamId = sortedTeams[selectedTeamIndex].id;
+        SaveSession.CurrentGameData.profile.driver.yearsOfContract = int.Parse(salaryOfferedText.text);
+        SaveSession.CurrentGameData.profile.driver.active = true;
+        SaveUtility.UpdateDrivers(SaveSession.CurrentGameData.profile.driver);
         ContractNegotiationPanel.SetActive(false);
         MenuPanel.SetActive(true);
-        Debug.Log(SaveSession.CurrentGameData.teamId);
-        SaveSession.CurrentGameData.teamId = 111;
-        Debug.Log(SaveSession.CurrentGameData.teamId);
         SaveUtility.UpdateProfile();
     }
 
     void NegotiateContract()
     {
         int distance = Mathf.Abs(statusOfferedDropdown.value - statusOffered);
-        difficulty = 10 + 5 * distance;
+        difficulty = listDifficulty[selectedTeamIndex] + 5 * distance;
+        listDifficulty[selectedTeamIndex] += 2;
         if (salary == 0f) return;
-        float percentDiff = Mathf.Abs((salaryOffered - salary) / salary) * 100f;
-        difficulty += Mathf.RoundToInt(percentDiff / 5f);
-        Debug.Log("Dificuldade: " + difficulty);
+        float maxImpact = 10f; // até 10 pontos de mudança na dificuldade
+        float salaryDiff = salaryOffered - salary;
+        float percentDiff = salaryDiff / salaryOffered;
+        int diffChange = Mathf.RoundToInt(percentDiff * maxImpact);
+        difficulty -= diffChange;
+        int yearsDif = Mathf.Abs(years - yearsOffered);
+        difficulty += 2 * yearsDif;
         string result = CalculateThrow.CalculateD20(difficulty, "charisma", 12);
-        Debug.Log(result);
         ContractDialogueManager dialogueManager = FindFirstObjectByType<ContractDialogueManager>();
+        Debug.Log(listDifficulty[selectedTeamIndex]);
         if (result == "fail")
         {
             teamDialogueBoxText.text = dialogueManager.GetRandomNegativePhrase("Rising star"); // Fix status
@@ -84,9 +100,26 @@ public class ContractManager : MonoBehaviour
         }
     }
 
+    void ChangeYears(int qty)
+    {
+        minusYearsBtn.interactable = true;
+        plusYearsBtn.interactable = true;
+        years += qty;
+        if (years <= 1)
+        {
+            minusYearsBtn.interactable = false;
+            years = 1;
+        }
+        if (years >= 5)
+        {
+            plusYearsBtn.interactable = false;
+            years = 5;
+        }
+        yearsOfferedText.text = "Years offered: " + years;
+    }
+
     void ChangeStatus()
     {
-        Debug.Log(statusOfferedDropdown.value + "//" + statusOffered);
         if (statusOfferedDropdown.value != statusOffered)
         {
             negotiateBtn.interactable = true;
@@ -130,13 +163,13 @@ public class ContractManager : MonoBehaviour
 
     void OnTeamSelected(int teamIndex)
     {
-        negotiateBtn.interactable = false;
-        signBtn.interactable = true;
         selectedTeamIndex = teamIndex;
         ContractDialogueManager dialogueManager = FindFirstObjectByType<ContractDialogueManager>();
-        string phrase = dialogueManager.GetRandomFirstPhrase("Rising star"); // Fix status
+        string phrase = dialogueManager.GetRandomFirstPhrase("Experienced driver"); // Fix status
         teamDialogueBoxText.text = phrase;
         CalculateOfferedStatus(teamIndex);
+        negotiateBtn.interactable = false;
+        signBtn.interactable = true;
     }
 
     void CalculateOfferedStatus(int teamIndex)
@@ -145,14 +178,13 @@ public class ContractManager : MonoBehaviour
 
         // Interpolar limites baseado na posição do time (0 = melhor, 9 = pior)
         float firstMin = Mathf.Lerp(95, 80, teamIndex / 9f);
-        float secondMin = Mathf.Lerp(88, 73, teamIndex / 9f);
-
-        if (SaveSession.CurrentGameData.profile.Average >= firstMin)
+        float secondMin = Mathf.Lerp(85, 75, teamIndex / 9f);
+        if (SaveSession.CurrentGameData.profile.driver.Average >= firstMin)
         {
             statusOfferedDropdown.value = 0; // Define o índice selecionado
             statusOfferedDropdown.RefreshShownValue();
         }
-        else if (SaveSession.CurrentGameData.profile.Average >= secondMin)
+        else if (SaveSession.CurrentGameData.profile.driver.Average >= secondMin)
         {
             statusOfferedDropdown.value = 1; // Define o índice selecionado
             statusOfferedDropdown.RefreshShownValue();
@@ -183,11 +215,19 @@ public class ContractManager : MonoBehaviour
         salaryOffered = Mathf.Round(salary / 10000f) * 10000f;
         salary = salaryOffered;
         salaryOfferedText.text = "Annual sallary: " + salary;
+        CalculateYearsOffered();
+    }
+
+    void CalculateYearsOffered()
+    {
+        yearsOffered = (SaveSession.CurrentGameData.profile.lastResults - 1) / 25 + 1;
+        years = yearsOffered;
+        yearsOfferedText.text = "Years offered: " + years;
     }
 
     void PopulateTeamDropdown()
     {
-        string path = Path.Combine(Application.persistentDataPath, "saves", "Cicero_UYoD6K", "teamsList.json"); // Fix id load
+        string path = Path.Combine(Application.persistentDataPath, "saves", "Cicero_g15866", "teamsList.json"); // Fix id load
 
         if (!File.Exists(path))
         {

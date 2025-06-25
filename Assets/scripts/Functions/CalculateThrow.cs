@@ -11,14 +11,12 @@ public static class CalculateThrow
         SelectSkillValue(skillName);
         bool abilityExists = SaveSession.CurrentGameData.profile.abilities.Any(ability => ability.id == abilityId);
         int roll = RollWithAdvantage(abilityId);
-        Debug.Log("Rolagem: " + roll);
         if (roll == 20) return "critSuc";
         if (roll == 1) return "critFail";
         roll += skillValue;
         if (roll >= difficulty) return "suc";
         return "fail";
     }
-
     public static void SelectSkillValue(string skillName)
     {
         switch (skillName.ToLower())

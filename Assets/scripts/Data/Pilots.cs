@@ -11,7 +11,8 @@ public class Driver
     public string realLastName;
     public Nationality nationality;
     public string team;
-    public string birthDate;
+    public int age;
+    public int yearsOfContract;
     public int highSpeedCorners;
     public int lowSpeedCorners;
     public int acceleration;
@@ -19,6 +20,7 @@ public class Driver
     public int teamId;
     public int id;
     public bool active;
+    public int role;
     public float Average
     {
         get { return (highSpeedCorners + lowSpeedCorners + acceleration + topSpeed) / 4f; }

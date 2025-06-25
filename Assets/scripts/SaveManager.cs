@@ -16,7 +16,7 @@ public class SaveManager : MonoBehaviour
     public TMP_InputField ageInput;
     public TMP_Dropdown nationalityDropdown;
     /* public TMP_Dropdown teamDropdown; */
-    public TMP_Dropdown companionDropdown;
+    /* public TMP_Dropdown companionDropdown; */
     public TMP_Dropdown categoryDropdown;
     public TMP_InputField[] inRaceskillInputs;
     public TMP_InputField[] skillsInputs;
@@ -203,11 +203,11 @@ public class SaveManager : MonoBehaviour
         TextAsset NationsJson = Resources.Load<TextAsset>("Nationalities");
         nationalitiesList = JsonUtility.FromJson<NationalitiesList>(NationsJson.text);
 
-        /* TextAsset activeDriversJson = Resources.Load<TextAsset>("DriversDatabase");
+        TextAsset activeDriversJson = Resources.Load<TextAsset>("DriversDatabase");
         activeDriversList = JsonUtility.FromJson<DriversList>(activeDriversJson.text);
 
         TextAsset inactiveDriversJson = Resources.Load<TextAsset>("InactiveDriversDatabase");
-        inactiveDriversList = JsonUtility.FromJson<DriversList>(inactiveDriversJson.text); */
+        inactiveDriversList = JsonUtility.FromJson<DriversList>(inactiveDriversJson.text);
 
         TextAsset abilityJson = Resources.Load<TextAsset>("abilities");
         abilityList = JsonUtility.FromJson<AbilityList>(abilityJson.text);
@@ -283,29 +283,21 @@ public class SaveManager : MonoBehaviour
             realFirstName = firstNameInput.text,
             realLastName = lastNameInput.text,
             nationality = playerNationality,
-            birthDate = "1992-12-10",
+            age = int.Parse(ageInput.text),
             highSpeedCorners = currentInRaceValues[0],
             lowSpeedCorners = currentInRaceValues[1],
             topSpeed = currentInRaceValues[2],
             acceleration = currentInRaceValues[3],
             id = 123321,
             /* teamId = selectedTeamId, */
-            active = true
+            active = false
         };
 
         PlayerProfile profile = new PlayerProfile
         {
-            playerFirstName = firstNameInput.text,
-            playerLastName = lastNameInput.text,
-            age = int.Parse(ageInput.text),
-            nationality = playerNationality,
-            /* teamId = selectedTeamId, */
+            driver = player,
             id = 123321,
             past = playerCategory,
-            highSpeedCorners = currentInRaceValues[0],
-            lowSpeedCorners = currentInRaceValues[1],
-            topSpeed = currentInRaceValues[2],
-            acceleration = currentInRaceValues[3],
             technique = int.Parse(skillsInputs[0].text),
             bravery = int.Parse(skillsInputs[1].text),
             potential = int.Parse(skillsInputs[2].text),
@@ -326,8 +318,8 @@ public class SaveManager : MonoBehaviour
         SaveUtility.CreateNewSave(
             profile,
             player,
-            /* selectedTeamId, */
-            companionDropdown,
+            /* selectedTeamId,
+            companionDropdown, */
             activeDriversList,
             inactiveDriversList,
             teamsList
