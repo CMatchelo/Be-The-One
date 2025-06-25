@@ -14,11 +14,20 @@ public class RaceSimulator : MonoBehaviour
     public TMP_Text nextRaceText;
     public TMP_Text driversStandings;
 
+    [Header("UI Panels")]
+    public GameObject ContractNegotiationPanel;
+    public GameObject MenuPanel;
+
     private List<string> logMessages = new List<string>();
 
     private void Awake()
     {
         LoadUtility.LoadGame("Cicero_g15866"); // Fix id load
+        if (SaveSession.CurrentGameData.profile.driver.yearsOfContract <= 0)
+        {
+            ContractNegotiationPanel.SetActive(true);
+            MenuPanel.SetActive(false);
+        }
     }
     private void Start()
     {
