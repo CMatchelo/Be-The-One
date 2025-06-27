@@ -18,7 +18,6 @@ public class DriverProfiles
     public DialoguePhrases Legendary_veteran;
     public DialoguePhrases Established_champion;
     
-    // Unity não desserializa propriedades corretamente, então usamos campos públicos
     public DialoguePhrases GetProfile(string profileName)
     {
         switch (profileName)

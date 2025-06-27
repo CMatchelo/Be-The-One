@@ -5,6 +5,7 @@ using System.Linq;
 using System.Collections.Generic;
 using System.IO;
 using System;
+using System.Collections;
 
 [System.Serializable]
 public class NegotiationLimit
@@ -79,6 +80,7 @@ public class ContractManager : MonoBehaviour
         ContractNegotiationPanel.SetActive(false);
         MenuPanel.SetActive(true);
         SaveUtility.UpdateProfile();
+        StartCoroutine(DisableContractManagerNextFrame());
     }
 
     void NegotiateContract()
@@ -86,7 +88,7 @@ public class ContractManager : MonoBehaviour
         //Calculate Status difficulty
         int distance = Mathf.Abs(statusOfferedDropdown.value - statusOffered);
         difficulty = listDifficulty[selectedTeamIndex] + 4 * distance;
-        
+
         //Calculate Salary difficulty
         if (salary == 0f) return;
         float maxImpact = 10f; // até 10 pontos de mudança na dificuldade
@@ -101,8 +103,7 @@ public class ContractManager : MonoBehaviour
 
         string result = CalculateThrow.CalculateD20(difficulty, "charisma", 12);
         ContractDialogueManager dialogueManager = FindFirstObjectByType<ContractDialogueManager>();
-        result = "faill";
-        
+
         listDifficulty[selectedTeamIndex] += 2;
         if (result == "critFail" | (listDifficulty[selectedTeamIndex] == 17 && result == "fail"))
         {
@@ -375,5 +376,11 @@ public class ContractManager : MonoBehaviour
         statusOfferedDropdown.interactable = newStatus;
         negotiateBtn.interactable = newStatus;
         signBtn.interactable = newStatus;
+    }
+    
+    private IEnumerator DisableContractManagerNextFrame()
+    {
+        yield return null; // Espera 1 frame
+        gameObject.SetActive(false);
     }
 }

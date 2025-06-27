@@ -1,0 +1,84 @@
+{
+  "pressOutlet": [
+    {
+      "outlet": "Velocity Sports News",
+      "reporters": [
+        "Ethan Crosswire",
+        "Lena Cousin",
+        "Marcus Revstone"
+      ]
+    },
+    {
+      "outlet": "Paddock Pulse",
+      "reporters": [
+        "Sophie Dubois",
+        "Diego Laurent",
+        "Nina Bertrand"
+      ]
+    },
+    {
+      "outlet": "Grand Prix Global",
+      "reporters": [
+        "James Müller",
+        "Aisha Fischer",
+        "Felix Hoffmann"
+      ]
+    },
+    {
+      "outlet": "The Checkered Flag",
+      "reporters": [
+        "Ollie Rossi",
+        "Zara Marino",
+        "Rudy De Luca"
+      ]
+    },
+    {
+      "outlet": "Pit Lane Times",
+      "reporters": [
+        "Claire Adams",
+        "Sebastian Vane",
+        "Anya Petrova"
+      ]
+    },
+    {
+      "outlet": "Full Throttle Media",
+      "reporters": [
+        "Max Oshay",
+        "Lila Duvivic",
+        "Troy Kent"
+      ]
+    },
+    {
+      "outlet": "Gridline Gazette",
+      "reporters": [
+        "Hannah Mont",
+        "Carlos Villa",
+        "Eva Black"
+      ]
+    },
+    {
+      "outlet": "RPM Chronicle",
+      "reporters": [
+        "Jack White",
+        "Mira Menezes",
+        "Leo Bezerra"
+      ]
+    },
+    {
+      "outlet": "The Downforce Digest",
+      "reporters": [
+        "Sam Madsen",
+        "Ruby Nielsen",
+        "Viktor Andersen"
+      ]
+    },
+    {
+      "outlet": "DRS Tribune",
+      "reporters": [
+        "Paul Makinen",
+        "Gina Heikkinen",
+        "Oscar Salo"
+      ]
+    }
+  ]
+}

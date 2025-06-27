@@ -19,7 +19,11 @@ public class PlayerProfile
     public Driver driver;
     public int id;
     public string past;
-    public int lastResults;
+    public int ambitious = 5;
+    public int loyal = 5;
+    public int charismatic = 5;
+    public int neutral = 0;
+    public int lastResults = 49;
     public string status;
     public int technique;
     public int bravery;

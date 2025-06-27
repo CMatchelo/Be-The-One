@@ -1,0 +1,940 @@
+{
+  "teamResults": {
+    "fightingForWins": {
+      "badResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "Despite poor recent results, you're driving for a top team. How do you explain this opportunity?",
+              "answers": [
+                "Because talent always shines through - the paddock knows what I can do with proper machinery!",
+                "The team saw beyond temporary setbacks to my long-term potential in this project.",
+                "To all the fans who kept believing - this is for you! The comeback starts now!"
+              ]
+            },
+            {
+              "question": "What are your goals for this season?",
+              "answers": [
+                "To remind everyone why I belong at the front - podiums, wins, maybe more!",
+                "To integrate perfectly with this legendary team and help continue their success.",
+                "I want to give our supporters something to cheer about at every race weekend!"
+              ]
+            },
+            {
+              "question": "How do you handle the pressure of driving for such a popular team?",
+              "answers": [
+                "Pressure? I thrive on it! The louder they cheer, the faster I'll go!",
+                "I respect the team's history, but we're writing a new chapter together now.",
+                "To the team's fans - watch me win you over with some spectacular drives!"
+              ]
+            },
+            {
+              "question": "Can this team return to championship contention?",
+              "answers": [
+                "With me behind the wheel? Absolutely! I'm the missing piece they needed!",
+                "This organization has all the tools and history - it's just about putting them together.",
+                "The championship dream lives in every fan's heart - we'll fight to make it real!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With poor results, how do you contribute as test driver?",
+              "answers": [
+                "Even champions have bad stretches - my expertise is still top class!",
+                "My feedback is helping refine this car into a consistent winner.",
+                "To the fans - don't judge by numbers alone. My work here will show in the races!"
+              ]
+            },
+            {
+              "question": "Do you still hope to race this season?",
+              "answers": [
+                "Watch me turn simulator laps so fast they'll have to put me in the car!",
+                "My focus is making this team successful in whatever role they need.",
+                "Every fan knows - never count out a racer. I'll be ready when called!"
+              ]
+            }
+          ]
+        }
+      },
+      "averageResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "Your recent results are average. How will you lead this team?",
+              "answers": [
+                "Average? Wait until you see what I can do with proper support and resources!",
+                "My methodical approach complements this team's engineering excellence perfectly.",
+                "The supporters will see - I'm just getting warmed up for something special!"
+              ]
+            },
+            {
+              "question": "Can you challenge for the championship?",
+              "answers": [
+                "I don't just challenge - I conquer! This could be my breakthrough season!",
+                "With this team's heritage and our collective effort, anything is possible.",
+                "The championship would be for everyone who's supported me through the ups and downs!"
+              ]
+            },
+            {
+              "question": "How do you view your teammate?",
+              "answers": [
+                "As my first rival to crush on track - may the best driver win!",
+                "We have a great dynamic that pushes the team forward in all areas.",
+                "The fans are the real winners getting to watch our exciting battles!"
+              ]
+            },
+            {
+              "question": "Will you have equal treatment with your teammate?",
+              "answers": [
+                "I'll make sure I get equal treatment by being faster when it counts!",
+                "This team has always valued fairness - the best strategy will emerge naturally.",
+                "The media loves this debate, but the stopwatch never lies - watch our times!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With decent results, do you deserve a race seat?",
+              "answers": [
+                "Put me in any car and I'll show you why I should be racing Sundays!",
+                "My work here directly contributes to our race drivers' success.",
+                "The fans who've seen my potential know I belong on the grid!"
+              ]
+            },
+            {
+              "question": "How important is simulator work?",
+              "answers": [
+                "So important that teams should pay test drivers like race winners!",
+                "Our unseen hours in the sim make those glorious race moments possible.",
+                "Next time you see a perfect setup - remember the test drivers behind it!"
+              ]
+            }
+          ]
+        }
+      },
+      "goodResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With good results, are you the team's championship hope?",
+              "answers": [
+                "The numbers don't lie - I'm the rising star this team needs to dominate!",
+                "We're building something special here - the results will come naturally.",
+                "To everyone betting on me - this season will make you look like geniuses!"
+              ]
+            },
+            {
+              "question": "How do you handle pressure?",
+              "answers": [
+                "Pressure? I am pressure! The other drivers should be nervous!",
+                "The team provides such great support that pressure becomes motivation.",
+                "The louder the grandstands cheer, the calmer I get - bring it on!"
+              ]
+            },
+            {
+              "question": "Could you steal a win this season?",
+              "answers": [
+                "Steal? I'll take what's mine fair and square with blistering pace!",
+                "With this team's strategy and my speed, victory is always possible.",
+                "Imagine the scenes if we pull it off - the fans would go absolutely wild!"
+              ]
+            },
+            {
+              "question": "How do you compare to other top drivers?",
+              "answers": [
+                "Put us in equal cars and I'll show you who's truly the fastest!",
+                "Every driver brings something unique - our team benefits from my approach.",
+                "The debates in the fan forums are fun, but the track is where we settle it!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With good results, are you frustrated not racing?",
+              "answers": [
+                "Frustrated? I'm the most dangerous test driver in history - just wait!",
+                "Seeing our work translate to race success is its own reward.",
+                "The fans who recognize my contribution keep me motivated every day!"
+              ]
+            },
+            {
+              "question": "How close are you to a race seat?",
+              "answers": [
+                "So close I can taste the champagne! It's inevitable at this point!",
+                "That decision rests with management - I just focus on doing my job well.",
+                "When it happens, my supporters will have the celebration of a lifetime!"
+              ]
+            }
+          ]
+        }
+      },
+      "excelentResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With excellent results, is the championship your only goal?",
+              "answers": [
+                "Not just win - I want to dominate in a way they'll talk about for decades!",
+                "We're building a legacy here that goes beyond any single season.",
+                "The championship would be for every fan who's been with me from the start!"
+              ]
+            },
+            {
+              "question": "Are you the best driver on the grid right now?",
+              "answers": [
+                "The standings speak for themselves - I'm in a league of my own!",
+                "What matters is that I'm getting the maximum from this incredible team.",
+                "Let's have the fans vote - I think I know how that would turn out!"
+              ]
+            },
+            {
+              "question": "Could this be the start of a dynasty?",
+              "answers": [
+                "Dynasty? More like complete and total world domination coming soon!",
+                "The foundations we're building now will pay off for years to come.",
+                "Imagine future generations of fans remembering this as the golden era!"
+              ]
+            },
+            {
+              "question": "How do you stay motivated at the top?",
+              "answers": [
+                "I'm addicted to winning - each victory just makes me hungrier!",
+                "This team deserves nothing less than 100% every single day.",
+                "Seeing new fans join our journey keeps the fire burning brighter!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With exceptional results, why stay as test driver?",
+              "answers": [
+                "Because I'm revolutionizing what it means to be a test driver - watch this space!",
+                "My role is crucial in maintaining this team's championship standards.",
+                "The fans appreciate that every great team needs great support players too!"
+              ]
+            },
+            {
+              "question": "Are other teams approaching you?",
+              "answers": [
+                "Let's just say my phone's been blowing up - I'm the hottest free agent around!",
+                "My complete focus is on helping this team achieve its goals.",
+                "The rumor mills can keep spinning - I'll let my work do the talking!"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "fightingForPodium": {
+      "badResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With poor results, how will you help this podium-contending team?",
+              "answers": [
+                "Bad streaks end - and mine ends here with some spectacular performances!",
+                "This team knows how to develop drivers - I'll repay their faith tenfold.",
+                "The doubters will eat their words when they see what I can really do!"
+              ]
+            },
+            {
+              "question": "Can you deliver podiums this season?",
+              "answers": [
+                "I'll be spraying champagne so often they'll need to restock the podium!",
+                "With this team's resources and my dedication, top threes are realistic.",
+                "The fans deserve to see our car up there - we'll make it happen!"
+              ]
+            },
+            {
+              "question": "How do you compare to your teammate?",
+              "answers": [
+                "Just watch me outqualify and outrace them all season long!",
+                "We push each other to new heights - that's what makes us strong.",
+                "The teammate battles will give fans something exciting to watch!"
+              ]
+            },
+            {
+              "question": "Will you get equal strategy calls?",
+              "answers": [
+                "I'll make sure I get the best strategies by being ahead when it counts!",
+                "The team always makes decisions based on maximizing our combined result.",
+                "Fair play makes for great racing - the fans wouldn't accept anything less!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "Why should a podium-contending team keep you?",
+              "answers": [
+                "Because I'm the secret weapon they'll unleash when least expected!",
+                "My feedback is helping bridge the gap to the very top teams.",
+                "Every fan loves an underdog story - mine's coming sooner than they think!"
+              ]
+            },
+            {
+              "question": "With your recent bad results, do you feel your career is fading?",
+              "answers": [
+                "Fading? I'm just loading up for the greatest comeback in history!",
+                "Every role in a top team contributes to their success in different ways.",
+                "The true fans know - form is temporary, but class is permanent!"
+              ]
+            }
+          ]
+        }
+      },
+      "averageResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With decent results, can you lead this team to podiums?",
+              "answers": [
+                "I'll be dragging this team to the podium kicking and screaming!",
+                "Our collective effort is what will get us those champagne moments.",
+                "Just wait until the cameras catch our first podium celebration together!"
+              ]
+            },
+            {
+              "question": "What's your podium target?",
+              "answers": [
+                "As many as possible! I want to need extra shelf space for trophies!",
+                "We're aiming for consistent top-five finishes with podium potential.",
+                "Every fan loves a podium - we'll give them plenty to cheer about!"
+              ]
+            },
+            {
+              "question": "Could you challenge for wins?",
+              "answers": [
+                "In the right circumstances? Absolutely - I've got the killer instinct!",
+                "We need perfect execution and some luck, but it's within reach.",
+                "Imagine the scenes if we pull off a win - social media would explode!"
+              ]
+            },
+            {
+              "question": "How do you handle being 'best of the rest'?",
+              "answers": [
+                "By never accepting it - I'm always pushing to join the elite!",
+                "We're methodically closing the gap to the very front runners.",
+                "The fans appreciate our honest effort against the big budgets!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With decent results, do you expect a race seat?",
+              "answers": [
+                "My performances speak for themselves!",
+                "Those decisions come from above - I focus on delivering value.",
+                "The fan petitions for me to race are heartwarming - keep them coming!"
+              ]
+            },
+            {
+              "question": "How does testing help podium ambitions?",
+              "answers": [
+                "My secret sauce in the sim is what gives us that extra edge!",
+                "Every setup improvement we find gets us closer to champagne.",
+                "Fans don't always see it, but test drivers are podium architects too!"
+              ]
+            }
+          ]
+        }
+      },
+      "goodResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With good results, can you exceed expectations?",
+              "answers": [
+                "I'm about to shatter every prediction out there!",
+                "This team thrives on being underestimated - we'll surprise people.",
+                "The experts said we couldn't - wait until they see what's coming!"
+              ]
+            },
+            {
+              "question": "Is your team the best of the rest?",
+              "answers": [
+                "We're not 'best of the rest' - we're the next top team in the making!",
+                "Our progress this season proves we belong in higher conversations.",
+                "The fans have voted us 'most improved' - and we're just getting started!"
+              ]
+            },
+            {
+              "question": "Could you steal a win this season?",
+              "answers": [
+                "I'll take it with both hands and dare anyone to take it back!",
+                "In this , opportunities appear when you're prepared - and we will be.",
+                "The highlight reels would play our underdog win for decades!"
+              ]
+            },
+            {
+              "question": "How do you view the top teams?",
+              "answers": [
+                "As targets - and I've got perfect aim when it matters most!",
+                "We study them closely to learn what makes champions.",
+                "The fans deserve to see us mixing it with the big names - we're coming!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With good results, are you frustrated as test driver?",
+              "answers": [
+                "Frustrated? I'm the most motivated person in this paddock!",
+                "Seeing our work translate to race success is incredibly rewarding.",
+                "The fans who recognize test drivers' contributions keep me going!"
+              ]
+            },
+            {
+              "question": "Would you move to a backmarker to race?",
+              "answers": [
+                "I'd rather win in the simulator than lose in real life!",
+                "My commitment is to this team's success in whatever capacity.",
+                "True fans understand - sometimes the right move is waiting!"
+              ]
+            }
+          ]
+        }
+      },
+      "excelentResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With excellent results, can you overachieve in this car?",
+              "answers": [
+                "This car's potential is whatever I can squeeze out of it - watch me!",
+                "We're extracting every ounce of performance through perfect teamwork.",
+                "The fans love an overachiever - I'm happy to play the role!"
+              ]
+            },
+            {
+              "question": "Could you move to a championship team soon?",
+              "answers": [
+                "Let's just say my stock is rising faster than a qualifying lap!",
+                "I'm fully focused on delivering for this incredible team.",
+                "The transfer rumors are flattering - but I'll let my driving do the talking!"
+              ]
+            },
+            {
+              "question": "Are you underrated?",
+              "answers": [
+                "Not for long - I'm about to become very properly rated!",
+                "The people who matter in this sport know exactly what I bring.",
+                "The fan polls suggest I'm getting the recognition I deserve!"
+              ]
+            },
+            {
+              "question": "How do you stay grounded with success?",
+              "answers": [
+                "I'm aiming for the stars - why limit myself?",
+                "This team keeps me focused on constant improvement, not past results.",
+                "Interacting with fans reminds me why we do this - for their passion!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With exceptional results, why stay as test driver?",
+              "answers": [
+                "Because I'm redefining what a test driver can be - game changer coming!",
+                "My role is crucial in maintaining our competitive edge.",
+                "The fans who appreciate the unsung heroes motivate me daily!"
+              ]
+            },
+            {
+              "question": "Are you being groomed for a future seat?",
+              "answers": [
+                "Let's just say the future's so bright I need racing sunglasses!",
+                "Those discussions happen privately between me and management.",
+                "The fan theories are entertaining - stay tuned for developments!"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "fightingForPoints": {
+      "badResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With poor results, how will you help this points-scoring team?",
+              "answers": [
+                "By reminding everyone what I'm capable of - expect some surprises!",
+                "My experience will help develop the car into consistent points scorer.",
+                "The fans haven't seen my best yet - that changes starting now!"
+              ]
+            },
+            {
+              "question": "What's a realistic target?",
+              "answers": [
+                "I'm here to exceed every expectation placed on me!",
+                "Steady progress toward regular Q2 appearances and point finishes.",
+                "The supporters deserve to see us moving forward - we owe them that!"
+              ]
+            },
+            {
+              "question": "How do you stay motivated?",
+              "answers": [
+                "I'm fueled by proving doubters wrong every session!",
+                "This team's work ethic inspires me to give 100% every day.",
+                "Seeing fans cheer for us even at the back - that's pure motivation!"
+              ]
+            },
+            {
+              "question": "Can you score points this season?",
+              "answers": [
+                "I'll be scoring so many points they'll need to invent new numbers!",
+                "With smart strategies and reliability, points are within reach.",
+                "Imagine the celebrations when we get that first point - epic!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "Why keep a poorly-performing test driver?",
+              "answers": [
+                "Because my bad luck streak has to end - then watch me shine!",
+                "My technical feedback is helping move this team forward.",
+                "The loyal fans know my true potential - their support means everything!"
+              ]
+            },
+            {
+              "question": "What are your currently ambitions?",
+              "answers": [
+                "I'm just getting warmed up for my best moment!",
+                "My focus is on contributing to this team's success however I can.",
+                "To everyone who still believes - I'm not done writing my story yet!"
+              ]
+            }
+          ]
+        }
+      },
+      "averageResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With decent results, can you lead this team forward?",
+              "answers": [
+                "I'll be dragging us up the standings single-handedly!",
+                "We're building momentum that will show in our championship position.",
+                "The progress might seem small, but the fans will notice the difference!"
+              ]
+            },
+            {
+              "question": "How many points is a good season?",
+              "answers": [
+                "I'm not aiming' for good - I want record-breaking numbers!",
+                "Doubling last year's tally would show meaningful progress.",
+                "Every single point will feel like a victory to our supporters!"
+              ]
+            },
+            {
+              "question": "Could you challenge for podiums?",
+              "answers": [
+                "In absolute chaos? I'll be the chaos agent making it happen!",
+                "We'd need extraordinary circumstances but will be ready.",
+                "The underdog podium is every fan's dream - we could make it real!"
+              ]
+            },
+            {
+              "question": "How do you view midfield rivals?",
+              "answers": [
+                "As speed bumps on my way to the front - watch me pass them all!",
+                "We study their strengths to improve our own package.",
+                "The midfield battles are what make this championship exciting for fans!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With decent results, do you want to race?",
+              "answers": [
+                "I was born to race - it's not want, it's need!",
+                "I'm happy contributing where the team needs me most.",
+                "The fan messages asking when I'll race again keep me pushing!"
+              ]
+            },
+            {
+              "question": "How crucial is simulator work?",
+              "answers": [
+                "So crucial they should put our faces on the race trophies too!",
+                "Our unseen work directly translates to on-track performance.",
+                "Next time you see a great overtake - remember the sim made it possible!"
+              ]
+            }
+          ]
+        }
+      },
+      "goodResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With good results, can you exceed expectations?",
+              "answers": [
+                "I'm rewriting the rulebook on what's possible here!",
+                "We're outperforming our car's predicted potential through teamwork.",
+                "The experts said we couldn't - now they're running out of excuses!"
+              ]
+            },
+            {
+              "question": "Could you move to a better team?",
+              "answers": [
+                "Let's just say my phone's been busy with interesting calls lately!",
+                "I'm fully committed to this team's upward trajectory.",
+                "The transfer rumors show fans believe in me - that means everything!"
+              ]
+            },
+            {
+              "question": "How many points can you personally score?",
+              "answers": [
+                "All of them! Okay maybe not all, but definitely most of them!",
+                "Every point contributes to the team's championship position.",
+                "However many it is, the fans will celebrate each one like a win!"
+              ]
+            },
+            {
+              "question": "Is your team the most improved?",
+              "answers": [
+                "We've gone from background actors to lead roles!",
+                "Our development curve this season speaks for itself.",
+                "The fan forums are calling us 'most exciting to watch' - love that!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With good results, are you seeking a race seat?",
+              "answers": [
+                "Seeking? I'm hunting one down like it's the last lap of the season!",
+                "My focus remains on doing my current job to the best of my ability.",
+                "The fan campaigns to get me racing are incredible - thank you all!"
+              ]
+            },
+            {
+              "question": "Would you consider other racing series?",
+              "answers": [
+                "No. This is where I belong!",
+                "My complete focus is on contributing to this team's success.",
+                "To the fans who ask - I'm not going anywhere except maybe up the grid!"
+              ]
+            }
+          ]
+        }
+      },
+      "excelentResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With excellent results, are you overperforming?",
+              "answers": [
+                "This is just me getting started - scary thought!",
+                "We're extracting everything from this package through perfect execution.",
+                "The media loves an underdog story - happy to give them a great one!"
+              ]
+            },
+            {
+              "question": "Could you move to a top team?",
+              "answers": [
+                "Let's just say the big teams would be crazy not to call!",
+                "I'm focused on continuing this team's incredible progress.",
+                "The fan speculation is fun - but I'll let my results do the talking!"
+              ]
+            },
+            {
+              "question": "Are you underrated?",
+              "answers": [
+                "I'm the most exciting talent nobody saw coming!",
+                "The people who matter in this sport recognize true performance.",
+                "The fan polls suggest I'm finally getting the respect I deserve!"
+              ]
+            },
+            {
+              "question": "How do you stay grounded?",
+              "answers": [
+                "I'm aiming for the stars - why limit the ambition?",
+                "This team keeps me focused on constant improvement, not hype.",
+                "Meeting fans reminds me why we do this - their passion is everything!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With exceptional results, why not racing?",
+              "answers": [
+                "Because I'm playing the long game - and it's going to be legendary!",
+                "My role here is crucial to the team's continued success.",
+                "The fans who appreciate the behind-the-scenes work inspire me daily!"
+              ]
+            },
+            {
+              "question": "Are you talking to other teams?",
+              "answers": [
+                "Let's just say my options are opening up like DRS zones!",
+                "My complete focus is on helping this team achieve its goals.",
+                "The rumor mill can keep spinning - I'll surprise everyone when ready!"
+              ]
+            }
+          ]
+        }
+      }
+    },
+    "fidfieldRunners": {
+      "badResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With poor results, why are you driving for this team?",
+              "answers": [
+                "Because diamonds form under pressure - and I'm about to shine!",
+                "This team sees long-term potential that temporary results don't show.",
+                "The true fans know my capabilities - their support keeps me going!"
+              ]
+            },
+            {
+              "question": "What can you realistically achieve?",
+              "answers": [
+                "I make the impossible possible - just wait and see!",
+                "Steady progress toward more competitive performances.",
+                "However small, every improvement gives our fans something to cheer!"
+              ]
+            },
+            {
+              "question": "How do you stay motivated at the back?",
+              "answers": [
+                "Every backmarker today is a future champion!",
+                "This team's work ethic inspires maximum effort every session.",
+                "Seeing even one fan cheering for us in the stands - that's why!"
+              ]
+            },
+            {
+              "question": "Could you score points this season?",
+              "answers": [
+                "I will! And it'll be the story of the season when I do!",
+                "In chaotic races with some luck, points are possible.",
+                "Imagine the scenes when we score - the underdog story fans love!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "Why keep a poorly-performing test driver?",
+              "answers": [
+                "Because my comeback story needs this dramatic setup first!",
+                "My technical feedback helps identify key areas for improvement.",
+                "The loyal fans who see beyond numbers know what I still can do!"
+              ]
+            },
+            {
+              "question": "With the team struggling, how does your work in the simulator actually help?",
+              "answers": [
+                "I'm finding tenths in virtual laps that we'll soon show on real tarmac - just wait!",
+                "Every setup tweak we validate saves the race drivers crucial practice time.",
+                "Fans don't see it, but my late-night sim sessions are where we plant seeds for progress!"
+              ]
+            }
+          ]
+        }
+      },
+      "averageResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With decent results, can you lead this team forward?",
+              "answers": [
+                "Lead? I'll be the spark that ignites this team's rise!",
+                "My experience is helping build foundations for future success.",
+                "The progress might seem slow, but the fans will notice the difference!"
+              ]
+            },
+            {
+              "question": "How do you stay motivated?",
+              "answers": [
+                "Motivated? I'm addicted to proving people wrong every session!",
+                "This team's passion makes coming to work inspiring every day.",
+                "Seeing fans still wearing our colors at every race - that's everything!"
+              ]
+            },
+            {
+              "question": "Could you challenge for points?",
+              "answers": [
+                "Challenge? I'll be taking points like they're going out of style!",
+                "With perfect execution and some luck, top tens are possible.",
+                "The celebrations when we score will show what it really means!"
+              ]
+            },
+            {
+              "question": "How do you view your rivals?",
+              "answers": [
+                "As temporary obstacles before I claim my rightful place ahead!",
+                "We study them closely to learn and improve our own package.",
+                "The close midfield battles are what make this championship exciting for fans!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With decent results, do you want to race?",
+              "answers": [
+                "Want to? Racing's in my blood - I'll race shopping carts if needed!",
+                "I'm happy contributing where the team needs me most right now.",
+                "The fan support for me to race is incredible - thank you all!"
+              ]
+            },
+            {
+              "question": "How do you help such a struggling team?",
+              "answers": [
+                "By being the secret weapon they'll unleash when least expected!",
+                "My feedback is identifying the key areas needing improvement.",
+                "Fans don't always see it, but test drivers are the unsung heroes!"
+              ]
+            }
+          ]
+        }
+      },
+      "goodResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With good results, are you carrying this team?",
+              "answers": [
+                "Carrying? I'm practically the entire moving company at this point!",
+                "We're all pushing equally hard to move this team forward.",
+                "The fans appreciate honest effort - that's what we're giving them!"
+              ]
+            },
+            {
+              "question": "Could you move to a better team?",
+              "answers": [
+                "Let's just say my performances are opening interesting doors!",
+                "I'm fully committed to this team's upward trajectory.",
+                "The transfer rumors show fans believe in me - that means the world!"
+              ]
+            },
+            {
+              "question": "How do you handle being underestimated?",
+              "answers": [
+                "Underestimated? Perfect! I love surprising people!",
+                "We let our progress on track do the talking.",
+                "The fans who recognize our true potential - that's who we race for!"
+              ]
+            },
+            {
+              "question": "Is your team the most improved?",
+              "answers": [
+                "Improved? We've gone from invisible to unavoidable!",
+                "Our development curve this season speaks for itself.",
+                "The fan forums are calling us 'best turnaround' - love that!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With good results, are you frustrated not racing?",
+              "answers": [
+                "Frustrated? I'm the most motivated test driver in history!",
+                "Seeing our work translate to race success is incredibly rewarding.",
+                "The fans who recognize test drivers' contributions keep me going!"
+              ]
+            },
+            {
+              "question": "Would you join a rival backmarker to race?",
+              "answers": [
+                "I'd rather help build something great here than start over!",
+                "My commitment is to this team's success in whatever capacity.",
+                "True fans understand - sometimes the right move is being patient!"
+              ]
+            }
+          ]
+        }
+      },
+      "excelentResults": {
+        "race": {
+          "questions": [
+            {
+              "question": "With excellent results, are you the surprise of the season?",
+              "answers": [
+                "Surprise? I'm the shockwave shaking up the entire grid!",
+                "We've worked incredibly hard for these results - they're no accident.",
+                "The fans love an underdog story - happy to provide a great one!"
+              ]
+            },
+            {
+              "question": "Are top teams noticing you?",
+              "answers": [
+                "Noticing? They're probably studying my data with magnifying glasses!",
+                "My complete focus is on delivering for this team right now.",
+                "The fan theories about my future are entertaining - stay tuned!"
+              ]
+            },
+            {
+              "question": "Could this be a breakthrough season?",
+              "answers": [
+                "Breakthrough? This is just the trailer for the main feature!",
+                "We're building something special here that could last years.",
+                "The fans who've been with us from the start - this is for you!"
+              ]
+            },
+            {
+              "question": "How do you stay grounded?",
+              "answers": [
+                "I'm aiming for the moon - why think small now?",
+                "This team keeps me focused on constant improvement, not hype.",
+                "Meeting fans reminds me why we do this - their passion fuels us!"
+              ]
+            }
+          ]
+        },
+        "test": {
+          "questions": [
+            {
+              "question": "With exceptional results, why stay with a backmarker?",
+              "answers": [
+                "Because I'm helping build the greatest comeback story in this championship!",
+                "My role is crucial in this team's long-term development.",
+                "The fans who appreciate the grind - this is for you!"
+              ]
+            },
+            {
+              "question": "Are you being considered for promotion?",
+              "answers": [
+                "Let's just say my career GPS says 'promotion ahead'!",
+                "Those decisions are made by management based on many factors.",
+                "The fan campaigns are amazing - your support means everything!"
+              ]
+            }
+          ]
+        }
+      }
+    }
+  }
+}
