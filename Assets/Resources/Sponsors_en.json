@@ -1,0 +1,199 @@
+{
+  "sponsors": [
+    {
+      "realName": "Red Bull",
+      "name": "Blue Ox",
+      "presentation": "Blue Ox is a high-octane energy brand known for pushing boundaries and dominating extreme sports. We thrive on raw talent and bold ambition. Our ideal partner is a fearless and ambitious driver who lives for the podium and never backs down from a challenge.",
+      "valuePerGoal": 500000,
+      "valuePerRace": 100000,
+      "preferredProfile": "ambitious",
+      "minimumDriverAverage": 88,
+      "goals": [
+        "Beat teammate",
+        "Win race"
+      ]
+    },
+    {
+      "realName": "Petronas",
+      "name": "Petrosys",
+      "presentation": "Petrosys is a leader in global energy innovation and sustainability. With a legacy of efficiency and reliability, we value drivers who stay committed through every lap. We proudly support loyal athletes who embody teamwork and long-term vision.",
+      "valuePerGoal": 500000,
+      "valuePerRace": 100000,
+      "preferredProfile": "loyal",
+      "minimumDriverAverage": 88,
+      "goals": [
+        "Beat teammate",
+        "Win race"
+      ]
+    },
+    {
+      "realName": "Shell",
+      "name": "Shield Oil",
+      "presentation": "Shield Oil has powered engines around the world for over a century. We fuel champions who not only win, but inspire. Our preferred drivers are charismatic figures who shine both on and off the track.",
+      "valuePerGoal": 500000,
+      "valuePerRace": 100000,
+      "preferredProfile": "charismatic",
+      "minimumDriverAverage": 88,
+      "goals": [
+        "Beat teammate",
+        "Win race"
+      ]
+    },
+    {
+      "realName": "Monster Energy",
+      "name": "Savage Boost",
+      "presentation": "Savage Boost is the face of adrenaline culture. Whether it’s racing, skateboarding, or snowboarding, we crave speed and edge. We align best with ambitious drivers who take risks and keep audiences on the edge of their seats.",
+      "valuePerGoal": 300000,
+      "valuePerRace": 75000,
+      "preferredProfile": "ambitious",
+      "minimumDriverAverage": 83,
+      "goals": [
+        "Beat teammate",
+        "Finish in podium"
+      ]
+    },
+    {
+      "realName": "Pirelli",
+      "name": "Tirelli",
+      "presentation": "Tirelli is synonymous with grip, durability, and precision in racing. We believe that endurance and consistency win championships. That’s why we trust loyal drivers who stay focused, disciplined, and never crack under pressure.",
+      "valuePerGoal": 300000,
+      "valuePerRace": 75000,
+      "preferredProfile": "loyal",
+      "minimumDriverAverage": 83,
+      "goals": [
+        "Beat teammate",
+        "Finish in podium"
+      ]
+    },
+    {
+      "realName": "Emirates",
+      "name": "SkyLink Air",
+      "presentation": "SkyLink Air is a luxury airline redefining travel at the highest level. We believe racing is as much about elegance as it is about speed. We look for charismatic drivers who embody sophistication, class, and world-stage appeal.",
+      "valuePerGoal": 300000,
+      "valuePerRace": 75000,
+      "preferredProfile": "charismatic",
+      "minimumDriverAverage": 83,
+      "goals": [
+        "Beat teammate",
+        "Finish in podium"
+      ]
+    },
+    {
+      "realName": "Rolex",
+      "name": "Rolux",
+      "presentation": "Rolux represents timeless excellence and absolute precision. Just like our watches, we admire drivers who are driven by perfection. We favor ambitious talents who are not satisfied with second place.",
+      "valuePerGoal": 200000,
+      "valuePerRace": 60000,
+      "preferredProfile": "ambitious",
+      "minimumDriverAverage": 78,
+      "goals": [
+        "Beat teammate",
+        "Get some points"
+      ]
+    },
+    {
+      "realName": "DHL",
+      "name": "DHS",
+      "presentation": "DHS is a global logistics powerhouse, delivering results with speed and reliability. We support loyal racers who bring steady performance, dedication, and a commitment to finishing strong in every race.",
+      "valuePerGoal": 200000,
+      "valuePerRace": 60000,
+      "preferredProfile": "loyal",
+      "minimumDriverAverage": 78,
+      "goals": [
+        "Beat teammate",
+        "Get some points"
+      ]
+    },
+    {
+      "realName": "Amazon Web Services",
+      "name": "Jungle Cloud",
+      "presentation": "Jungle Cloud empowers the digital world through cutting-edge cloud solutions. We believe in smart, connected racers who can adapt quickly. Our ideal partners are charismatic drivers who represent the future of the sport.",
+      "valuePerGoal": 200000,
+      "valuePerRace": 60000,
+      "preferredProfile": "charismatic",
+      "minimumDriverAverage": 78,
+      "goals": [
+        "Beat teammate",
+        "Get some points"
+      ]
+    },
+    {
+      "realName": "Lenovo",
+      "name": "Lanova",
+      "presentation": "Lanova delivers powerful tech to those who demand performance. Whether on a track or a circuit board, we expect bold thinkers and doers. We seek ambitious drivers who innovate behind the wheel.",
+      "valuePerGoal": 150000,
+      "valuePerRace": 50000,
+      "preferredProfile": "ambitious",
+      "minimumDriverAverage": 70,
+      "goals": [
+        "Beat teammate",
+        "Finish 13th or above"
+      ]
+    },
+    {
+      "realName": "Aramco",
+      "name": "Aromco",
+      "presentation": "Aromco fuels industries across the globe with clean, efficient energy. Our values lie in stability, excellence, and progress. We admire loyal drivers who respect the craft and consistently deliver.",
+      "valuePerGoal": 150000,
+      "valuePerRace": 50000,
+      "preferredProfile": "loyal",
+      "minimumDriverAverage": 70,
+      "goals": [
+        "Beat teammate",
+        "Finish 13th or above"
+      ]
+    },
+    {
+      "realName": "Heineken",
+      "name": "Heinbrew",
+      "presentation": "Heinbrew is where celebration meets competition. We champion drivers who bring charm and flair to every race weekend. Our ideal partners are charismatic racers who connect with fans and the media alike.",
+      "valuePerGoal": 150000,
+      "valuePerRace": 50000,
+      "preferredProfile": "charismatic",
+      "minimumDriverAverage": 70,
+      "goals": [
+        "Beat teammate",
+        "Finish 13th or above"
+      ]
+    },
+    {
+      "realName": "Castrol",
+      "name": "Gastrol",
+      "presentation": "Gastrol is the lifeblood of high-performance engines. We stand with racers who fight their way up the grid. We prefer ambitious drivers who never stop pushing limits.",
+      "valuePerGoal": 100000,
+      "valuePerRace": 40000,
+      "preferredProfile": "ambitious",
+      "minimumDriverAverage": 65,
+      "goals": [
+        "Beat teammate",
+        "Finish 17th or above"
+      ]
+    },
+    {
+      "realName": "AMD",
+      "name": "CMD",
+      "presentation": "CMD builds the processors that power possibility. We partner with sharp-minded athletes who are precise and dependable. Our faith lies in loyal drivers who build trust lap after lap.",
+      "valuePerGoal": 100000,
+      "valuePerRace": 40000,
+      "preferredProfile": "loyal",
+      "minimumDriverAverage": 65,
+      "goals": [
+        "Beat teammate",
+        "Finish 17th or above"
+      ]
+    },
+    {
+      "realName": "Kaspersky",
+      "name": "Kaspersafe",
+      "presentation": "Kaspersafe protects the digital world with top-tier cybersecurity. On track, we look for drivers who are magnetic and media-savvy. We’re drawn to charismatic personalities who make headlines for all the right reasons.",
+      "valuePerGoal": 100000,
+      "valuePerRace": 40000,
+      "preferredProfile": "charismatic",
+      "minimumDriverAverage": 65,
+      "goals": [
+        "Beat teammate",
+        "Finish 17th or above"
+      ]
+    }
+  ]
+}

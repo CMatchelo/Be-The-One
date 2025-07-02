@@ -4,8 +4,6 @@ public static class PerformanceCalculator
 {
     public static float CalculateCarFactor(Driver driver, Team team, Track selectedTrack)
     {
-        Debug.Log($"Calculating performance for {driver.firstName} from {team.teamName} on {selectedTrack.circuitName}");
-
         if (driver == null || team == null || selectedTrack == null)
         {
             Debug.LogError("Driver, Team or Track is null!");

@@ -1,109 +1,109 @@
 {
-    "abilities": [
-        {
-            "name": "Cornering Mastery",
-            "referenceSkill": "technique",
-            "id": 0
-        },
-        {
-            "name": "Vehicle Control",
-            "referenceSkill": "technique",
-            "id": 1
-        },
-        {
-            "name": "Showman",
-            "referenceSkill": "technique",
-            "id": 2
-        },
-        {
-            "name": "Track Adaptation",
-            "referenceSkill": "technique",
-            "id": 3
-        },
-        {
-            "name": "Fast Lap Specialist",
-            "referenceSkill": "technique",
-            "id": 4
-        },
-        {
-            "name": "Aggressive Overtaking",
-            "referenceSkill": "bravery",
-            "id": 5
-        },
-        {
-            "name": "Position Defense",
-            "referenceSkill": "bravery",
-            "id": 6
-        },
-        {
-            "name": "Simulator Training",
-            "referenceSkill": "potential",
-            "id": 7
-        },
-        {
-            "name": "Continuous Development",
-            "referenceSkill": "potential",
-            "id": 8
-        },
-        {
-            "name": "Telemetry Reading",
-            "referenceSkill": "potential",
-            "id": 9
-        },
-        {
-            "name": "Technical Coaching",
-            "referenceSkill": "potential",
-            "id": 10
-        },
-        {
-            "name": "Media handling",
-            "referenceSkill": "charisma",
-            "id": 11
-        },
-        {
-            "name": "Contract negotiation",
-            "referenceSkill": "charisma",
-            "id": 12
-        },
-        {
-            "name": "Team presence",
-            "referenceSkill": "charisma",
-            "id": 13
-        },
-        {
-            "name": "Social media",
-            "referenceSkill": "charisma",
-            "id": 14
-        },
-        {
-            "name": "Negotiator",
-            "referenceSkill": "focus",
-            "id": 15
-        },
-        {
-            "name": "Pressure resistance",
-            "referenceSkill": "focus",
-            "id": 16
-        },
-        {
-            "name": "Quick decision-making",
-            "referenceSkill": "focus",
-            "id": 17
-        },
-        {
-            "name": "Strategic insight",
-            "referenceSkill": "awareness",
-            "id": 18
-        },
-        {
-            "name": "Social perception",
-            "referenceSkill": "awareness",
-            "id": 19
-        },
-        {
-            "name": "Mechanical sensitivity",
-            "referenceSkill": "awareness",
-            "id": 20
-        }
-    ]
+  "abilities": [
+    {
+      "name": "corneringMastery",
+      "referenceSkill": "technique",
+      "id": 0
+    },
+    {
+      "name": "vehicleControl",
+      "referenceSkill": "technique",
+      "id": 1
+    },
+    {
+      "name": "showman",
+      "referenceSkill": "technique",
+      "id": 2
+    },
+    {
+      "name": "trackAdaptation",
+      "referenceSkill": "technique",
+      "id": 3
+    },
+    {
+      "name": "fastLapSpecialist",
+      "referenceSkill": "technique",
+      "id": 4
+    },
+    {
+      "name": "aggressiveOvertaking",
+      "referenceSkill": "bravery",
+      "id": 5
+    },
+    {
+      "name": "positionDefense",
+      "referenceSkill": "bravery",
+      "id": 6
+    },
+    {
+      "name": "simulatorTraining",
+      "referenceSkill": "potential",
+      "id": 7
+    },
+    {
+      "name": "continuousDevelopment",
+      "referenceSkill": "potential",
+      "id": 8
+    },
+    {
+      "name": "telemetryReading",
+      "referenceSkill": "potential",
+      "id": 9
+    },
+    {
+      "name": "technicalCoaching",
+      "referenceSkill": "potential",
+      "id": 10
+    },
+    {
+      "name": "mediaHandling",
+      "referenceSkill": "charisma",
+      "id": 11
+    },
+    {
+      "name": "contractNegotiation",
+      "referenceSkill": "charisma",
+      "id": 12
+    },
+    {
+      "name": "teamPresence",
+      "referenceSkill": "charisma",
+      "id": 13
+    },
+    {
+      "name": "socialMedia",
+      "referenceSkill": "charisma",
+      "id": 14
+    },
+    {
+      "name": "negotiator",
+      "referenceSkill": "focus",
+      "id": 15
+    },
+    {
+      "name": "pressureResistance",
+      "referenceSkill": "focus",
+      "id": 16
+    },
+    {
+      "name": "quickDecisionMaking",
+      "referenceSkill": "focus",
+      "id": 17
+    },
+    {
+      "name": "strategicInsight",
+      "referenceSkill": "awareness",
+      "id": 18
+    },
+    {
+      "name": "socialPerception",
+      "referenceSkill": "awareness",
+      "id": 19
+    },
+    {
+      "name": "mechanicalSensitivity",
+      "referenceSkill": "awareness",
+      "id": 20
+    }
+  ]
 }

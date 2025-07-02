@@ -213,18 +213,19 @@ public class SaveManager : MonoBehaviour
         abilityList = JsonUtility.FromJson<AbilityList>(abilityJson.text);
     }
 
-    void PopulateAbilitiesToggle()
+    async void PopulateAbilitiesToggle()
     {
         for (int i = 0; i < toggleGroup.Length && i < abilityList.abilities.Length; i++)
         {
             Toggle toggle = toggleGroup[i];
             string abilityName = abilityList.abilities[i].name;
+            string localizedString = await SearchTextLocation.GetLocalizedStringAsync("AbilityNames", abilityName);
 
             // Atribui ao texto filho do Toggle
             Text label = toggle.GetComponentInChildren<Text>();
             if (label != null)
             {
-                label.text = abilityName;
+                label.text = localizedString;
             }
         }
     }
@@ -240,6 +241,7 @@ public class SaveManager : MonoBehaviour
         nationalityDropdown.ClearOptions();
         nationalityDropdown.AddOptions(countryNames);
     }
+
     /* void PopulateTeamDropdown()
     {
         teamDropdown.ClearOptions();
@@ -326,12 +328,3 @@ public class SaveManager : MonoBehaviour
         );
     }
 }
-
-/* public string playerFirstName;
-    public int technique;
-    public int bravery;
-    public int potential;
-    public int charisma;
-    public int focus;
-    public int awareness;
-    public List<Ability> abilities; */

@@ -1,0 +1,107 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: AbilityNames_pt-BR
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: pt-BR
+  m_SharedData: {fileID: 11400000, guid: aa83312bd3617e74eb2ef6d251a10346, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 61188427776
+    m_Localized: "Dom\xEDnio em curvas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9190900584448
+    m_Localized: "Controle do ve\xEDculo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9193417166848
+    m_Localized: Showman
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9195199746048
+    m_Localized: "Adapta\xE7\xE3o \xE0 pista"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9197221400576
+    m_Localized: "Especialista em voltas r\xE1pidas"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9201654779904
+    m_Localized: Ultrapassagem agressiva
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9203353473024
+    m_Localized: "Defesa de posi\xE7\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9204393660416
+    m_Localized: Treinamento em simulador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9205119275008
+    m_Localized: "Desenvolvimento cont\xEDnuo"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9206021050368
+    m_Localized: Leitura de telemetria
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9206868299776
+    m_Localized: "Orienta\xE7\xE3o t\xE9cnica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9207665217536
+    m_Localized: "Gest\xE3o de m\xEDdia"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9208415997952
+    m_Localized: "Negocia\xE7\xE3o de contrato"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9209233887232
+    m_Localized: "Presen\xE7a na equipe"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9210014027776
+    m_Localized: "M\xEDdias sociais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9210873860096
+    m_Localized: Negociador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9211616251904
+    m_Localized: "Resist\xEAncia \xE0 press\xE3o"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9212400586752
+    m_Localized: "Decis\xE3o r\xE1pida"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9213122007040
+    m_Localized: "Vis\xE3o estrat\xE9gica"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9214086696960
+    m_Localized: "Percep\xE7\xE3o social"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9455779270656
+    m_Localized: "Sensibilidade mec\xE2nica"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

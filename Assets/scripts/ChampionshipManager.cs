@@ -5,12 +5,6 @@ using System.IO;
 public static class ChampionshipManager
 {
     [System.Serializable]
-    public class TracksDatabase
-    {
-        public List<Track> tracks;
-    }
-
-    [System.Serializable]
     public class ChampionshipProgress
     {
         public List<string> completedRaces = new List<string>();
@@ -18,19 +12,21 @@ public static class ChampionshipManager
     }
 
     private static string ProgressPath => Path.Combine(Application.persistentDataPath, "championship_progress.json");
-    private static TracksDatabase tracksData;
+    private static TracksList tracksData;
 
     public static void Initialize()
     {
         // Carrega os dados das pistas
         TextAsset jsonFile = Resources.Load<TextAsset>("tracksdatabase");
-        tracksData = JsonUtility.FromJson<TracksDatabase>(jsonFile.text);
+        tracksData = JsonUtility.FromJson<TracksList>(jsonFile.text);
         
         // Se não houver progresso salvo, define a primeira corrida
         if (!File.Exists(ProgressPath))
         {
-            var progress = new ChampionshipProgress();
-            progress.nextRace = tracksData.tracks[0].circuitName;
+            var progress = new ChampionshipProgress
+            {
+                nextRace = tracksData.tracks[0].circuitName
+            };
             SaveProgress(progress);
         }
     }
@@ -38,6 +34,7 @@ public static class ChampionshipManager
     public static Track GetNextRace()
     {
         var progress = LoadProgress();
+        Debug.Log("Proxima corrida: " + progress.nextRace);
         return tracksData.tracks.Find(t => t.circuitName == progress.nextRace);
     }
 

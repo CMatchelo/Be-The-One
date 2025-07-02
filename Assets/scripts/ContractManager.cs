@@ -47,6 +47,8 @@ public class ContractManager : MonoBehaviour
     private int years;
     private int difficulty = 11;
     List<int> listDifficulty = Enumerable.Repeat(11, 10).ToList();
+    private string yearOfferedLocate = ""; 
+    private string salaryOfferedLocate = ""; 
 
     [Header("Dialogues")]
     private ContractNegotiationDialogue dialogueData;
@@ -55,7 +57,7 @@ public class ContractManager : MonoBehaviour
 
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
-    void Start()
+    async void Start()
     {
         PopulateTeamDropdown();
         OnTeamSelected(0);
@@ -68,6 +70,8 @@ public class ContractManager : MonoBehaviour
         minusYearsBtn.onClick.AddListener(() => ChangeYears(-1));
         plusYearsBtn.onClick.AddListener(() => ChangeYears(1));
         negotiateBtn.interactable = false;
+        yearOfferedLocate = await SearchTextLocation.GetLocalizedStringAsync("ContractNegotiationPanel", "contractLenghtText");
+        salaryOfferedLocate = await SearchTextLocation.GetLocalizedStringAsync("ContractNegotiationPanel", "annualSallaryText");
     }
 
     void SignContract()
@@ -117,6 +121,13 @@ public class ContractManager : MonoBehaviour
         {
             teamDialogueBoxText.text = dialogueManager.GetRandomNegativePhrase("Rising star"); // Fix status
             RegisterProposal(selectedTeamIndex, salary, years, statusOfferedDropdown.value);
+            years = yearsOffered;
+            yearsOfferedText.text = yearOfferedLocate + years;
+            salary = salaryOffered;
+            salaryOfferedText.text = salaryOfferedLocate + salary;
+            status = statusOffered;
+            statusOfferedDropdown.value = statusOffered;
+            statusOfferedDropdown.RefreshShownValue();
         }
         else
         {
@@ -139,8 +150,9 @@ public class ContractManager : MonoBehaviour
         if (negotiationLimits.ContainsKey(selectedTeamIndex))
         {
             var limit = negotiationLimits[selectedTeamIndex];
-            if (years > limit.maxYears)
+            if (years >= limit.maxYears)
             {
+                years -= qty;
                 Debug.Log("Esse número de anos já foi negado por esse time.");
                 plusYearsBtn.interactable = false;
                 return;
@@ -156,8 +168,7 @@ public class ContractManager : MonoBehaviour
             plusYearsBtn.interactable = false;
             years = 5;
         }
-        yearsOfferedText.text = "Years offered: " + years;
-        Debug.Log("1");
+        yearsOfferedText.text = yearOfferedLocate + years;
         VerifiesChanges();
     }
 
@@ -166,14 +177,13 @@ public class ContractManager : MonoBehaviour
         if (negotiationLimits.ContainsKey(selectedTeamIndex))
         {
             var limit = negotiationLimits[selectedTeamIndex];
-            if (statusOfferedDropdown.value < limit.maxStatus)
+            if (statusOfferedDropdown.value <= limit.maxStatus)
             {
                 statusOfferedDropdown.value = statusOffered; // Volta pro anterior
                 statusOfferedDropdown.RefreshShownValue();
                 return;
             }
         }
-        Debug.Log("2");
         VerifiesChanges();
     }
 
@@ -193,10 +203,9 @@ public class ContractManager : MonoBehaviour
         if (negotiationLimits.ContainsKey(selectedTeamIndex))
         {
             var limit = negotiationLimits[selectedTeamIndex];
-            if (newSalary > limit.maxSalary)
+            if (newSalary >= limit.maxSalary)
             {
                 Debug.Log("Esse salário já foi negado por esse time.");
-                plusSalaryBtn.interactable = false;
                 return;
             }
         }
@@ -211,8 +220,7 @@ public class ContractManager : MonoBehaviour
             return; // Não permite aumentar mais
         }
         salary = newSalary;
-        salaryOfferedText.text = "Annual sallary: " + salary;
-        Debug.Log("3");
+        salaryOfferedText.text = salaryOfferedLocate + salary;
         VerifiesChanges();
     }
 
@@ -230,7 +238,7 @@ public class ContractManager : MonoBehaviour
         }
     }
 
-    void OnTeamSelected(int teamIndex)
+    async void OnTeamSelected(int teamIndex)
     {
         if (negotiationLimits.ContainsKey(teamIndex) && !negotiationLimits[teamIndex].negotiating && !negotiationLimits[teamIndex].dealClosed)
         {
@@ -240,14 +248,15 @@ public class ContractManager : MonoBehaviour
         }
         if (negotiationLimits.ContainsKey(teamIndex) && negotiationLimits[teamIndex].dealClosed)
         {
-            teamDialogueBoxText.text = "Voce ja tem um acordo com essa equipe";
+            string dealAlreadyClosed = await SearchTextLocation.GetLocalizedStringAsync("ContractNegotiationPanel", "dealAlreadyClosedText");
+            teamDialogueBoxText.text = dealAlreadyClosed;
             salary = negotiationLimits[teamIndex].maxSalary;
-            salaryOfferedText.text = "Annual sallary: " + salary;
+            salaryOfferedText.text = salaryOfferedLocate + salary;
             status = negotiationLimits[teamIndex].maxStatus;
-            statusOfferedDropdown.value = status; // Define o índice selecionado
+            statusOfferedDropdown.value = status;
             statusOfferedDropdown.RefreshShownValue();
             years = negotiationLimits[teamIndex].maxYears;
-            yearsOfferedText.text = "Years offered: " + years;
+            yearsOfferedText.text = yearOfferedLocate + years;
             ChangeBtns(false);
             signBtn.interactable = true;
             return; // Não continua com a negociação
@@ -303,7 +312,7 @@ public class ContractManager : MonoBehaviour
         salary *= (SaveSession.CurrentGameData.profile.lastResults / 100f);
         salaryOffered = Mathf.Round(salary / 10000f) * 10000f;
         salary = salaryOffered;
-        salaryOfferedText.text = "Annual sallary: " + salary;
+        salaryOfferedText.text = salaryOfferedLocate + salary;
         CalculateYearsOffered();
     }
 
@@ -311,7 +320,7 @@ public class ContractManager : MonoBehaviour
     {
         yearsOffered = (SaveSession.CurrentGameData.profile.lastResults - 1) / 25 + 1;
         years = yearsOffered;
-        yearsOfferedText.text = "Years offered: " + years;
+        yearsOfferedText.text = yearOfferedLocate + years;
     }
 
     void PopulateTeamDropdown()
@@ -377,7 +386,7 @@ public class ContractManager : MonoBehaviour
         negotiateBtn.interactable = newStatus;
         signBtn.interactable = newStatus;
     }
-    
+
     private IEnumerator DisableContractManagerNextFrame()
     {
         yield return null; // Espera 1 frame

@@ -1,0 +1,70 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: StartSceneTexts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: StartSceneTexts
+  m_TableCollectionNameGuidString: c49027e278efbfb40b3dff888b23165d
+  m_Entries:
+  - m_Id: 6914134016
+    m_Key: titleScreen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9028063232
+    m_Key: firstNameText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 10915500032
+    m_Key: lastNameText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 13046206464
+    m_Key: ageText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15546011648
+    m_Key: nationalityText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3179716366336
+    m_Key: newGameText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3225547526144
+    m_Key: loadGameText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 3408167522304
+    m_Key: 'ihhj
+
+'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 4653510905856
+    m_Key: past
+    m_Metadata:
+      m_Items: []
+  - m_Id: 269684697812992
+    m_Key: New Entry
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 556073185935622371
+  references:
+    version: 2
+    RefIds:
+    - rid: 556073185935622371
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1751241395132

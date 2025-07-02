@@ -10,20 +10,14 @@ using System.Linq;
 public class MenuManager : MonoBehaviour
 {
     // UI Elements
-    public TMP_InputField circuitLengthInput;
     public TMP_InputField lapsInput;
     public TMP_Dropdown tireDropdown;
-    public TMP_Dropdown trackDropdown;
-    public Button startButton;
+    public Button goToRaceBtn;
     public TMP_Text outputText;
-    public TMP_Text pitText;
-    public TMP_Text lapResume;
     private DriversList driversList;
     private TracksList tracksList;
     private TeamsList teamsList;
     private Track selectedTrack;
-    private Coroutine _simulationCoroutine;
-    private string _currentTireType;
 
     private bool isSimulating = false;
     private List<string> logMessages = new List<string>();
@@ -31,7 +25,7 @@ public class MenuManager : MonoBehaviour
     void Start()
     {
         // Initialize UI
-        startButton.onClick.AddListener(StartSimulation);
+        goToRaceBtn.onClick.AddListener(StartSimulation);
 
         // Populate tire dropdown
         tireDropdown.ClearOptions();
@@ -173,16 +167,18 @@ public class MenuManager : MonoBehaviour
     private void AddPitMessage(string message)
     {
         logMessages.Add(message);
-        pitText.text = string.Join("\n", logMessages);
     }
 
     void LoadDrivers()
     {
-        string path = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "activeDriversList.json");
+        string path = Path.Combine(Application.persistentDataPath, "saves", "Cicero_g15866", "activeDriversList1.json"); // fix status
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);
             driversList = JsonUtility.FromJson<DriversList>(json);
+            driversList.drivers = driversList.drivers
+                .Where(driver => driver.role == 0 || driver.role == 1)
+                .ToList();
             Debug.Log(driversList.drivers.Count + " drivers loaded from " + path);
         }
         else

@@ -1,0 +1,48 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bbb281ee3bf0b054c82ac2347e9e782c, type: 3}
+  m_Name: Localization-Assets-Shared
+  m_EditorClassIdentifier: 
+  m_GroupName: Localization-Assets-Shared
+  m_GUID: 0f91e89ed464ba747ae56162bd5fc839
+  m_SerializeEntries:
+  - m_GUID: 38965509c8e37064da2f5368c1707e39
+    m_Address: Assets/Localization/ContractNegotiationPanel Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 63f6771b63d5b414fa57ec540bdce7a5
+    m_Address: Assets/Localization/MenuScene Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: aa83312bd3617e74eb2ef6d251a10346
+    m_Address: Assets/Localization/New Table Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c49027e278efbfb40b3dff888b23165d
+    m_Address: Assets/Localization/StartSceneTexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: c5bad4fcce1242f45b84b6599ad9aafa
+    m_Address: Assets/Localization/Skills Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  m_ReadOnly: 1
+  m_Settings: {fileID: 11400000, guid: 2cbdb21d279cae2428e698b00c0fe9f3, type: 2}
+  m_SchemaSet:
+    m_Schemas:
+    - {fileID: 11400000, guid: 83b3e0bf780ff7147a08616a19df5bc7, type: 2}
+    - {fileID: 11400000, guid: 874f3b4b90ff96b419d8b1c56899f982, type: 2}

@@ -24,6 +24,8 @@ public class PlayerProfile
     public int charismatic = 5;
     public int neutral = 0;
     public int lastResults = 49;
+    public Sponsor sponsorMaster;
+    public Sponsor sponsorSecondary;
     public string status;
     public int technique;
     public int bravery;

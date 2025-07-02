@@ -1,0 +1,56 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: ContractNegotiationPanel Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: ContractNegotiationPanel
+  m_TableCollectionNameGuidString: 38965509c8e37064da2f5368c1707e39
+  m_Entries:
+  - m_Id: 14686179328
+    m_Key: ContractNegotiationTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 103332794368
+    m_Key: teamDropdownTItle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 206374260736
+    m_Key: managerRole
+    m_Metadata:
+      m_Items: []
+  - m_Id: 350704455680
+    m_Key: negotiateText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 985801773056
+    m_Key: contractLenghtText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6818799374336
+    m_Key: annualSallaryText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 7725398183936
+    m_Key: dealAlreadyClosedText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 556073204063666286
+  references:
+    version: 2
+    RefIds:
+    - rid: 556073204063666286
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1751312065333

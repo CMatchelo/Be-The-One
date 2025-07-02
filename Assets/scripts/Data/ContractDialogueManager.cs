@@ -1,5 +1,6 @@
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.Localization.Settings;
 
 [System.Serializable]
 public class DialoguePhrases
@@ -47,7 +48,10 @@ public class ContractDialogueManager : MonoBehaviour
 
     private void LoadDialogueData()
     {
-        TextAsset dialoguesJson = Resources.Load<TextAsset>("contractNegotiationPhrases");
+        TextAsset dialoguesJson = null;
+        string languageCode = LocalizationSettings.SelectedLocale.Identifier.Code;
+        if (languageCode == "en-US") dialoguesJson = Resources.Load<TextAsset>("contractNegotiationPhrases_en");
+        if (languageCode == "pt-BR") dialoguesJson = Resources.Load<TextAsset>("contractNegotiationPhrases_pt");
         if (dialoguesJson != null)
         {
             dialogueData = JsonUtility.FromJson<ContractNegotiationDialogue>(dialoguesJson.text);

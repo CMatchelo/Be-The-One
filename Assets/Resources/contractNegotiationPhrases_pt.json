@@ -1,0 +1,124 @@
+{
+  "profiles": {
+    "Rising_star": {
+      "firstPhrase": [
+        "Vemos um grande potencial em você e acreditamos que nossa equipe pode ajudá-lo a brilhar. Vamos construir sua carreira juntos.",
+        "Você está começando, mas sabemos que tem o que é preciso para se tornar uma estrela. Que tal fazermos isso acontecer com a gente?",
+        "Este pode ser o começo de algo grande. Queremos ser a equipe que vai te lançar - vamos discutir os termos.",
+        "Você é um dos talentos mais empolgantes que vimos em anos. Com o apoio certo, você pode ser o próximo Senna - e queremos te ajudar.",
+        "Não estamos oferecendo apenas um assento, mas uma plataforma de lançamento. Vamos transformar seu talento em vitórias."
+      ],
+      "positivePhrase": [
+        "Você pega pesado na negociação, mas acreditamos no seu potencial. Vamos fechar esse acordo.",
+        "Certo, aceitamos o acordo. Hora de mostrar ao mundo do que você é capaz.",
+        "Estamos investindo no seu futuro, e esperamos grandes coisas. Bem vindo ao time.",
+        "Acreditamos em apoiar nossos jovens talentos. Vamos trabalhar.",
+        "Se é isso que precisa para se juntar a gente, estamos dentro. Vamos nessa crescer juntos."
+      ],
+      "negativePhrase": [
+        "Vemos sua ambição, e é uma das razões pelas quais estamos interessados, mas ainda não chegamos lá. Vamos continuar conversando.",
+        "Você está pedindo um pouco mais do que esperávamos, mas ainda acreditamos que essa parceria pode funcionar. Podemos encontrar um meio-termo?",
+        "Não vamos apressar isso. Acreditamos em você, agora vamos encontrar um acordo que faça sentido para ambos os lados.",
+        "Você é talentoso, sem dúvida, vamos tentar alinhar nossas expectativas e fazer isso acontecer.",
+        "A porta não está fechada. Vamos voltar à mesa e resolver isso juntos."
+      ],
+      "failedPhrase": [
+        "Vemos realmente seu potencial, mas neste momento não podemos avançar. Continue perseguindo seu sonho, estaremos de olho.",
+        "Você tem um futuro brilhante pela frente, mas nossos caminhos não se alinham agora. Tudo de melhor em sua jornada.",
+        "Apreciamos as discussões, mas acho que já deu por aqui. Mantenha o foco, sua hora vai chegar.",
+        "Nossa equipe não é a certa no momento. Acreditamos que você encontrará o lugar que o ajudará a crescer.",
+        "É, você deixou uma forte impressão aqui, mas este não é o momento certo/"
+      ]
+    },
+    "Experienced_driver": {
+      "firstPhrase": [
+        "Sua experiência fala por si, e achamos que você seria perfeito para nossa equipe. Vamos fechar um acordo bom para os dois lados.",
+        "Você já correu o suficiente para saber como isso funciona. Estamos prontos para oferecer um acordo competitivo, vamos discutir?",
+        "Precisamos de alguém com suas habilidades para elevar nossa equipe. Vamos encontrar um acordo que corresponda à sua expertise.",
+        "Com sua experiência e consistência, acreditamos que você pode trazer desempenho e liderança para nossa equipe. Vamos explorar essa oportunidade juntos.",
+        "Você já provou seu valor repetidas vezes. Precisamos de alguém que entenda o desafio de uma temporada completa, e saiba como entregar resultados."
+      ],
+      "positivePhrase": [
+        "Você merece isso. Sabemos que você vai cumprir sua parte, e estamos prontos para cumprir a nossa.",
+        "Justo. Apreciamos sua honestidade e confiança, acordo aceito.",
+        "Experiência tem valor. Daremos o que você pediu, vamos assinar.",
+        "Sabemos o que você traz para a mesa. Vamos fazer essa parceria funcionar.",
+        "Considere seus termos aceitos. Agora vamos focar nas corridas."
+      ],
+      "negativePhrase": [
+        "Você é bom, mas não vamos nos comprometer com esses termos. Vamos continuar a conversa.",
+        "Valorizamos o que você traz, mas esses valores não colam. Podemos dar outra olhada juntos?",
+        "Ainda estamos interessados, só precisamos encontrar o equilíbrio certo. Vamos continuar trabalhando nisso.",
+        "Está perto, mas ainda não chegamos lá. Respeitamos sua posição e queremos manter o diálogo aberto.",
+        "Não vamos parar por aqui, achamos que ainda podemos fechar um bom contrato."
+      ],
+      "failedPhrase": [
+        "Após cuidadosa consideração, decidimos não prosseguir. Apreciamos sinceramente o diálogo e seu profissionalismo.",
+        "Foi um prazer negociar, mas não vamos mais negociar. Desejamos sucesso onde quer que você vá.",
+        "Você traz experiência e valor, mas nossos valores não vão combinar. Boa sorte no futuro",
+        "Escolhemos seguir em outra direção, mas ainda consideramos você como uma opção futura.",
+        "O que voce pede não bate com sua habilidade, é simplesmente uma questão de negócios. Boa sorte no grid."
+      ]
+    },
+    "Legendary_veteran": {
+      "firstPhrase": [
+        "Seu legado nas corridas é inegável, e seria uma honra tê-lo liderando nossa equipe. Vamos falar sobre um contrato à altura.",
+        "Você conquistou tanto - agora vamos garantir que seus capítulos finais sejam escritos conosco. O que precisaria para trazê-lo a bordo?",
+        "Um piloto do seu calibre merece respeito. Estamos preparados para fazer uma oferta que reflite seu status lendário.",
+        "Seu legado no automobilismo é inegável. Teríamos orgulho de dar a você o carro e o respeito dignos de uma lenda em seus capítulos finais.",
+        "Não há nada que você já não tenha visto na pista. Sua presença elevaria toda nossa organização, dos engenheiros aos pilotos mais jovens nas arquibancadas."
+      ],
+      "positivePhrase": [
+        "Para uma lenda como você, só poderia ser assim. Vamos dar a despedida que você merece.",
+        "Você conquistou o direito de ditar os termos. Bem-vindo à equipe.",
+        "Não pediríamos a uma lenda para aceitar menos. Acordo aceito.",
+        "O que você precisar para se sentir em casa, nós forneceremos. Vamos terminar essa jornada com orgulho.",
+        "Seu legado merece respeito, e este acordo mostra o nosso. Vamos escrever o capítulo final juntos."
+      ],
+      "negativePhrase": [
+        "Por respeito a tudo que você conquistou, queremos continuar esta conversa, mesmo que não possamos atender seus termos agora.",
+        "Não vamos fingir que podemos dar tudo o que você pediu, mas queremos encontrar uma maneira de trabalhar juntos.",
+        "Seu legado merece nossa melhor oferta, mas precisamos alinhar expectativas primeiro.",
+        "Seria uma honra tê-lo, mas ainda não estamos totalmente alinhados. Vamos manter o diálogo aberto.",
+        "Não é um 'não', é um 'ainda não'. Ainda queremos fazer isso acontecer com você."
+      ],
+      "failedPhrase": [
+        "Foi uma honra conversar com um piloto do seu legado. Infelizmente, este acordo não irá adiante.",
+        "Por respeito a tudo que você conquistou, queremos ser claros, não vamos prosseguir, mas foi um privilégio conversar.",
+        "Não podemos atender às expectativas, e achamos melhor partirmos com respeito.",
+        "Obrigado por nos considerar nesta fase de sua jornada. Torceremos por você de longe.",
+        "Você já garantiu seu lugar na história. Simplesmente não somos o capítulo certo para seguir."
+      ]
+    },
+    "Established_champion": {
+      "firstPhrase": [
+        "Você não é apenas um campeão - você é um símbolo de excelência. Vamos discutir como podemos fazer história juntos.",
+        "Vencer está no seu sangue, e queremos isso para nossa equipe. Que tal estruturarmos um acordo que o mantenha no topo?",
+        "Você provou seu valor repetidas vezes. Agora, vamos negociar um contrato que corresponda ao seu pedigree de campeão.",
+        "Seu histórico fala por si. Seria uma honra ter um piloto do seu calibre liderando nossa equipe a alturas ainda maiores.",
+        "Você sabe como vencer - e estamos prontos para dar as ferramentas para continuar fazendo isso. Juntos, podemos mirar em títulos, não apenas pódios."
+      ],
+      "positivePhrase": [
+        "Campeões não fazem concessões - e nós também não. Você tem seu acordo.",
+        "Você provou seu valor na pista. Estamos preparados para corresponder a isso fora dela também.",
+        "Termos aceitos. Agora vamos vencer algumas corridas.",
+        "Sabemos o que é preciso para manter um campeão satisfeito. Vamos atrás de outro título juntos.",
+        "Você fez suas demandas - e respeitamos cada uma delas. Vamos dominar."
+      ],
+      "negativePhrase": [
+        "Você conquistou o direito de negociar duro - mas não estamos prontos para atender esses termos ainda. Vamos continuar conversando.",
+        "Estamos falando sério sobre trabalhar com um campeão - vamos apenas refinar os detalhes um pouco mais.",
+        "Estamos perto, mas ainda não chegamos lá. Vamos continuar as discussões.",
+        "Não vamos desrespeitar seu valor - vamos apenas dar outra olhada no que podemos realisticamente oferecer.",
+        "Não é uma rejeição - é uma chance de encontrar uma solução melhor para ambos. Ainda estamos dentro."
+      ],
+      "failedPhrase": [
+        "Respeitamos o que você conquistou no mais alto nível, mas decidimos não avançar com este acordo.",
+        "Não é uma questão de talento - é uma questão de tempo e adequação. Estamos escolhendo outro caminho nesta temporada.",
+        "Foi uma honra negociar com um campeão. Infelizmente, não continuaremos as conversas.",
+        "Não seremos capazes de atender suas expectativas, e preferimos ser diretos. Desejamos a você sucesso contínuo.",
+        "Você é um vencedor - apenas não conosco nesta temporada. Tudo de melhor no campeonato."
+      ]
+    }
+  }
+}

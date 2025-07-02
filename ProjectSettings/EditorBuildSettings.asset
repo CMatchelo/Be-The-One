@@ -15,5 +15,7 @@ EditorBuildSettings:
     path: Assets/Scenes/RaceScene.unity
     guid: 8c9cfa26abfee488c85f1582747f6a02
   m_configObjects:
+    com.unity.addressableassets: {fileID: 11400000, guid: a8a3957702f9f6e49b8bfd35760cb252, type: 2}
     com.unity.input.settings.actions: {fileID: -944628639613478452, guid: 2bcd2660ca9b64942af0de543d8d7100, type: 3}
+    com.unity.localization.settings: {fileID: 11400000, guid: effb2a70fbb6cf2488d30a396a8763d9, type: 2}
   m_UseUCBPForAssetBundles: 0
