@@ -21,6 +21,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en-US
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3e517fc90d94ade4893dc6c522a153c6
+    m_Address: GeneralTexts_en-US
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 558d7afd3e7484447b4a2ba7e36d9673
     m_Address: SponsorPanel_en-US
     m_ReadOnly: 1
@@ -33,8 +39,20 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en-US
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 81679560e2d001f46918e662c4d0d1e6
+    m_Address: RaceMenu_en-US
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 88e79c29ea9dc1a4d900b94cea2b8eba
     m_Address: ContractNegotiationPanel_en-US
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: e2c5fbf42c875984da45acc644d535c8
+    m_Address: FreePractice_en-US
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-en-US

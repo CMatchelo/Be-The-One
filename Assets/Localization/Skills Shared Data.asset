@@ -52,7 +52,15 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 4498170662921
-    m_Key: perception
+    m_Key: awareness
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1129606788501504
+    m_Key: skillText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1129648798650368
+    m_Key: abilityText
     m_Metadata:
       m_Items: []
   m_Metadata:

@@ -22,12 +22,17 @@ public class MenuManager : MonoBehaviour
     private bool isSimulating = false;
     private List<string> logMessages = new List<string>();
 
+    private void Awake()
+    {
+        LoadUtility.LoadGame("Cicero_g15866"); // Fix id load
+    }
     void Start()
     {
         // Initialize UI
         goToRaceBtn.onClick.AddListener(StartSimulation);
 
         // Populate tire dropdown
+        ChampionshipManager.Initialize();
         tireDropdown.ClearOptions();
         tireDropdown.AddOptions(new List<string>(TireDatabase.TireParameters.Keys));
 

@@ -58,6 +58,14 @@ MonoBehaviour:
     m_Localized: "Percep\xE7\xE3o"
     m_Metadata:
       m_Items: []
+  - m_Id: 1129606788501504
+    m_Localized: Skill
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1129648798650368
+    m_Localized: Habilidade
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

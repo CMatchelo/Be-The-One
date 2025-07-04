@@ -13,9 +13,9 @@ public static class CalculateThrow
         int roll = RollWithAdvantage(abilityId);
         if (roll == 20) return "critSuc";
         if (roll == 1) return "critFail";
+        
         roll += skillValue;
-        if (roll >= difficulty) return "suc";
-        return "fail";
+        return roll >= difficulty ? "suc" : "fail";
     }
     public static void SelectSkillValue(string skillName)
     {

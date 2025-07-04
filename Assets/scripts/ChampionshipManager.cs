@@ -17,9 +17,9 @@ public static class ChampionshipManager
     public static void Initialize()
     {
         // Carrega os dados das pistas
-        TextAsset jsonFile = Resources.Load<TextAsset>("tracksdatabase");
+        TextAsset jsonFile = Resources.Load<TextAsset>("TracksDatabase");
         tracksData = JsonUtility.FromJson<TracksList>(jsonFile.text);
-        
+
         // Se não houver progresso salvo, define a primeira corrida
         if (!File.Exists(ProgressPath))
         {
@@ -35,6 +35,16 @@ public static class ChampionshipManager
     {
         var progress = LoadProgress();
         Debug.Log("Proxima corrida: " + progress.nextRace);
+        if (tracksData == null)
+        {
+            Debug.LogError("tracksData is null");
+            return null;
+        }
+        if (tracksData.tracks == null)
+        {
+            Debug.LogError("tracksData.tracks is null");
+            return null;
+        }
         return tracksData.tracks.Find(t => t.circuitName == progress.nextRace);
     }
 
@@ -42,7 +52,7 @@ public static class ChampionshipManager
     {
         var progress = LoadProgress();
         progress.completedRaces.Add(progress.nextRace);
-        
+
         // Define a próxima corrida
         int currentIndex = tracksData.tracks.FindIndex(t => t.circuitName == progress.nextRace);
         if (currentIndex < tracksData.tracks.Count - 1)
@@ -53,7 +63,7 @@ public static class ChampionshipManager
         {
             progress.nextRace = "FIM_DO_CAMPEONATO";
         }
-        
+
         SaveProgress(progress);
     }
 

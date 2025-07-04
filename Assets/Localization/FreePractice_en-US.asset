@@ -1,0 +1,45 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: FreePractice_en-US
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en-US
+  m_SharedData: {fileID: 11400000, guid: 78099cd3b8f7cd549956dcb159908380, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 7954321408
+    m_Localized: Start FP
+    m_Metadata:
+      m_Items: []
+  - m_Id: 102217109504
+    m_Localized: Roll d20
+    m_Metadata:
+      m_Items: []
+  - m_Id: 236338368512
+    m_Localized: End TL
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363955601887232
+    m_Localized: Pick a <color=#FFD700><b>skill</b></color> to train. Improving it
+      gives a <color=#FF6B6B><b>temporary boost</b></color> for race day!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 363911410700288
+    m_Localized: <color=#FFD700><b>Softer tires</b></color> = <color=#FF6B6B><b>harder
+      tests</b></color> but <color=#4CAF50><b>higher rewards</b></color>!
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

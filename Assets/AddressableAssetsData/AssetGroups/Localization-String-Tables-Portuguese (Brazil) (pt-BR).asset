@@ -15,8 +15,26 @@ MonoBehaviour:
   m_GroupName: Localization-String-Tables-Portuguese (Brazil) (pt-BR)
   m_GUID: e15b0a2356884cd4b8301928f2cbb0f0
   m_SerializeEntries:
+  - m_GUID: 13082a519abe2184a88bf2a5789d7b54
+    m_Address: FreePractice_pt-BR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-pt-BR
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: 29557f4b95fbb2d4899c90c4025f0ddd
     m_Address: StartSceneTexts_pt-BR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-pt-BR
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 3011662ef1c17b742b2a97fd3722f7c0
+    m_Address: GeneralTexts_pt-BR
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-pt-BR
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 71b75a1eea3b56e48aa49cd72fcbaaac
+    m_Address: RaceMenu_pt-BR
     m_ReadOnly: 1
     m_SerializedLabels:
     - Locale-pt-BR

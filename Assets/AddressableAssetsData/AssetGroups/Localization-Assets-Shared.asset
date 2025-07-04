@@ -25,6 +25,16 @@ MonoBehaviour:
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 78099cd3b8f7cd549956dcb159908380
+    m_Address: Assets/Localization/FreePractice Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: 7c4b1008092f5734e960628f57f611ea
+    m_Address: Assets/Localization/GeneralTexts Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: aa83312bd3617e74eb2ef6d251a10346
     m_Address: Assets/Localization/New Table Shared Data.asset
     m_ReadOnly: 1
@@ -37,6 +47,11 @@ MonoBehaviour:
     FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: c5bad4fcce1242f45b84b6599ad9aafa
     m_Address: Assets/Localization/Skills Shared Data.asset
+    m_ReadOnly: 1
+    m_SerializedLabels: []
+    FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d4edefa640acb3e4ea00e0d09a65fa7a
+    m_Address: Assets/Localization/RaceMenu Shared Data.asset
     m_ReadOnly: 1
     m_SerializedLabels: []
     FlaggedDuringContentUpdateRestriction: 0
