@@ -6,6 +6,20 @@
         "Durante sua volta rápida, você se aproxima rapidamente de um carro em ritmo lento perto da curva. Você precisa reagir rapidamente para não comprometer sua volta.",
         "Você está voando na pista, mas de repente, um piloto lento aparece à frente próximo de uma curva. Um obstáculo inesperado no seu traçado ideal que você precisa evitar sem perder tempo."
       ],
+      "decisions": [
+        {
+          "decision": "Frear levemente para ajustar sua trajetória e ultrapassar pelo lado interno da curva",
+          "referenceSkill": "technique",
+          "ability": 17,
+          "hasAbility": true
+        },
+        {
+          "decision": "Manter a velocidade e fazer uma ultrapassagem agressiva pelo lado externo da curva",
+          "referenceSkill": "bravery",
+          "ability": 5,
+          "hasAbility": true
+        }
+      ],
       "successText": [
         "Você reage com precisão, desvia no momento certo e mantém sua volta rápida!",
         "Com uma manobra ousada, você contorna o carro rival sem perder décimos preciosos."
@@ -13,16 +27,27 @@
       "failureText": [
         "Você hesita ao tentar ultrapassar e perde um tempo valioso. A volta foi arruinada. Você ouve no rádio 'Box Box, Box Box'",
         "Preso atrás do piloto mais lento, você perde ritmo e aborta a volta. Essa sessão não gerou bons resultados."
-      ],
-      "referenceSkill": "focus",
-      "hasAbility": true,
-      "ability": 17
+      ]
     },
     {
       "id": "event_02",
       "descriptions": [
         "A equipe destaca setores onde você perde tempo em relação aos outros. Nessa sessão você atacar seus pontos fracos.",
         "Com base na telemetria apresentada pela equipe, você vai fazer uma sessão para focar nos seus setores onde mais fracos"
+      ],
+      "decisions": [
+        {
+          "decision": "Repetir várias vezes o setor problemático com pequenas variações para encontrar o melhor traçado",
+          "referenceSkill": "potential",
+          "ability": 9,
+          "hasAbility": true
+        },
+        {
+          "decision": "Pedir ao engenheiro sugestões específicas e implementá-las imediatamente",
+          "referenceSkill": "charisma",
+          "ability": 13,
+          "hasAbility": true
+        }
       ],
       "successText": [
         "Você se supera e transforma seus setores fracos nos mais fortes da volta.",
@@ -31,15 +56,27 @@
       "failureText": [
         "Você tenta forçar demais e acaba errando nas curvas decisivas. A sessão não rende o esperado e atrapalha o rendimento do treino.",
         "Mesmo com foco, os erros persistem. Você faz um tempo abaixo do esperado. É necessário melhorar esses setores para o dia da corrida."
-      ],
-      "referenceSkill": "focus",
-      "hasAbility": false
+      ]
     },
     {
       "id": "event_03",
       "descriptions": [
         "Simulação de classificação: apenas uma volta no limite. Nada pode dar errado. Dê o seu máximo, precisamos desses dados para o dia da classificação",
         "Você ativa o modo de motor mais agressivo e parte para uma volta de qualificação simulada. É hora de dar o seu melhor"
+      ],
+      "decisions": [
+        {
+          "decision": "Concentrar-se em ser perfeito nas curvas mais técnicas onde se ganha mais tempo",
+          "referenceSkill": "technique",
+          "ability": 4,
+          "hasAbility": true
+        },
+        {
+          "decision": "Arriscar frenagens mais tardias em todas as curvas possíveis",
+          "referenceSkill": "bravery",
+          "ability": null,
+          "hasAbility": false
+        }
       ],
       "successText": [
         "Você extrai tudo do carro e executa uma volta perfeita, digna de primeira fila. Lembre de tudo que fez para repetir no dia da classificação",
@@ -48,16 +85,27 @@
       "failureText": [
         "Você comete um pequeno erro durante a volta, que arruina o seu tempo. É necessário fazer muito melhor no dia do quali",
         "Por centímetros, o carro passa dos limites da pista em uma curva. A volta foi descartada. Vai ser preciso ser bem melhor no quali."
-      ],
-      "referenceSkill": "technique",
-      "hasAbility": true,
-      "ability": 4
+      ]
     },
     {
       "id": "event_04",
       "descriptions": [
         "Hora de praticar largadas. Reações, tração e precisão são tudo agora. Você foca no rádio esperando o comando de largada",
         "Você se posiciona na linha de saída e se prepara para arrancar como se fosse o dia da corrida."
+      ],
+      "decisions": [
+        {
+          "decision": "Focar na sincronia perfeita entre embreagem e acelerador para evitar patinação",
+          "referenceSkill": "focus",
+          "ability": null,
+          "hasAbility": false
+        },
+        {
+          "decision": "Priorizar a reação instantânea ao sinal de largada, mesmo com risco de alguma patinação",
+          "referenceSkill": "awareness",
+          "ability": null,
+          "hasAbility": false
+        }
       ],
       "successText": [
         "Você arranca com maestria, sem patinar. Seria uma largada perfeita. Repita isso na corrida e com certeza ganhará posições de cara",
@@ -66,15 +114,27 @@
       "failureText": [
         "Você patina e perde tempo precioso. Largada para esquecer. Tem que melhorar para o dia da corrida",
         "A reação atrasada faz você sair lento e errar as primeiras marchas. Melhor não repetir isso na corrida"
-      ],
-      "referenceSkill": "awareness",
-      "hasAbility": false
+      ]
     },
     {
       "id": "event_05",
       "descriptions": [
         "Você decide desafiar os limites da frenagem em curvas críticas. Qualquer erro pode significar exceder os limites da pista.",
         "É hora de freiar mais tarde nas curvas, ver até onde o carro aguenta. Vamos forçar as curvas ao máximo."
+      ],
+      "decisions": [
+        {
+          "decision": "Frear progressivamente mais tarde a cada tentativa, aumentando o risco gradualmente",
+          "referenceSkill": "potential",
+          "ability": 8,
+          "hasAbility": true
+        },
+        {
+          "decision": "Ir direto para o ponto de frenagem estimado como limite máximo",
+          "referenceSkill": "technique",
+          "ability": 0,
+          "hasAbility": true
+        }
       ],
       "successText": [
         "Você freia no último milésimo e ainda acerta o ponto de curva. Brilhante!",
@@ -83,16 +143,27 @@
       "failureText": [
         "Freou tarde demais e passou reto em uma das curvas. A volta está comprometida.",
         "Os pneus travam e o carro acaba escapando. Você perde segundos preciosos."
-      ],
-      "referenceSkill": "technique",
-      "hasAbility": true,
-      "ability": 0
+      ]
     },
     {
       "id": "event_06",
       "descriptions": [
         "Você simula uma ultrapassagem forçada, buscando o traçado mais agressivo nas curvas.",
         "O engenheiro te desafia a imaginar uma disputa por posição e reagir como numa corrida."
+      ],
+      "decisions": [
+        {
+          "decision": "Forçar uma ultrapassagem pelo lado interno, exigindo frenagem mais precisa",
+          "referenceSkill": "focus",
+          "hasAbility": false,
+          "ability": null
+        },
+        {
+          "decision": "Tentar uma manobra pelo lado externo, mantendo mais velocidade mas com trajetória mais longa",
+          "referenceSkill": "technique",
+          "hasAbility": true,
+          "ability": 1
+        }
       ],
       "successText": [
         "Você encontra o espaço e executa uma ultrapassagem perfeita — mesmo que imaginária.",
@@ -101,16 +172,27 @@
       "failureText": [
         "Você exagera e escapa da linha ideal, perdendo tempo.",
         "A tentativa resulta em subesterço e tempo jogado fora."
-      ],
-      "referenceSkill": "technique",
-      "hasAbility": true,
-      "ability": 1
+      ]
     },
     {
       "id": "event_07",
       "descriptions": [
         "Você entra no trecho mais técnico da pista, onde cada curva exige precisão milimétrica. Qualquer erro afeta o rendimento em todo o trecho.",
         "Esse setor em que você entra é dificil, dominar ele é essencial. É hora de mostrar consistência."
+      ],
+      "decisions": [
+        {
+          "decision": "Reduzir levemente a velocidade para garantir a precisão em todas as curvas",
+          "referenceSkill": "technique",
+          "hasAbility": false,
+          "ability": null
+        },
+        {
+          "decision": "Manter velocidade máxima e focar em ajustes mínimos no volante",
+          "referenceSkill": "bravery",
+          "hasAbility": false,
+          "ability": null
+        }
       ],
       "successText": [
         "Você domina cada curva como um metrônomo. Ritmo impecável.",
@@ -119,15 +201,27 @@
       "failureText": [
         "Erros pequenos se acumulam e comprometem a volta. É necessário fazer bem melhor",
         "Você sai da linha ideal várias vezes. A consistência não veio."
-      ],
-      "referenceSkill": "technique",
-      "hasAbility": false
+      ]
     },
     {
       "id": "event_08",
       "descriptions": [
         "Seu engenheiro passa a sugerir uma nova linha nas curvas rápidas. Pode ser mais eficiente, mas exige coragem e confiança nele. Essa é a hora de testar",
         "Hora de testar um traçado alternativo ousado, que vai ser indicado pela equipe."
+      ],
+      "decisions": [
+        {
+          "decision": "Seguir exatamente as instruções do engenheiro, mesmo que contra seu instinto",
+          "referenceSkill": "charisma",
+          "hasAbility": true,
+          "ability": 13
+        },
+        {
+          "decision": "Adaptar a sugestão do engenheiro com pequenos ajustes baseados em sua experiência",
+          "referenceSkill": "potential",
+          "hasAbility": true,
+          "ability": 7
+        }
       ],
       "successText": [
         "O novo traçado funciona perfeitamente e melhora seu tempo. 'É a melhor volta da sessão', você ouve no rádio.",
@@ -136,16 +230,27 @@
       "failureText": [
         "A linha nova te faz perder estabilidade. Tempo perdido. 'Ok ok, vamos nos manter no traçado antigo', diz o engenheiro",
         "Você hesita ao tentar o traçado e sai prejudicado. 'Ok ok, vamos nos manter no traçado antigo', diz o engenheiro"
-      ],
-      "referenceSkill": "charisma",
-      "hasAbility": true,
-      "ability": 13
+      ]
     },
     {
       "id": "event_09",
       "descriptions": [
         "A meta atual é forçar o ritmo por várias voltas para entender o desgaste dos pneus. Precisamos entender o comportamento dos compostos na corrida",
         "Seu engenheiro passa uma nova meta: manter a velocidade sem destruir o composto. Esses dados ajudarão no dia da corrida."
+      ],
+      "decisions": [
+        {
+          "decision": "Manter um ritmo constante ligeiramente abaixo do máximo para preservar os pneus",
+          "referenceSkill": "technique",
+          "hasAbility": true,
+          "ability": 3
+        },
+        {
+          "decision": "Variar o ritmo intencionalmente para testar diferentes níveis de desgaste",
+          "referenceSkill": "awareness",
+          "hasAbility": true,
+          "ability": 18
+        }
       ],
       "successText": [
         "Você encontra o equilíbrio e os pneus respondem bem. Dados valiosos coletados para o dia da corrida.",
@@ -154,16 +259,27 @@
       "failureText": [
         "Os pneus aquecem demais e perdem aderência. Você precisa ir para os box, infelizmente sem os dados necessários.",
         "Forçar demais cobra o preço. Você perde o controle e aborta a simulação, não obtendo os dados necessários."
-      ],
-      "referenceSkill": "technique",
-      "hasAbility": true,
-      "ability": 3
+      ]
     },
     {
       "id": "event_10",
       "descriptions": [
         "Você simula um ritmo de corrida, buscando consistência e regularidade. Precisamos desses dados para entender o carro durante a corrida",
         "Três voltas em ritmo constante, é isso que a equipe quer ver para simularmos a corrida e obter dados essenciais."
+      ],
+      "decisions": [
+        {
+          "decision": "Focar em repetir exatamente os mesmos pontos de frenagem e aceleração em cada volta",
+          "referenceSkill": "focus",
+          "hasAbility": false,
+          "ability": null
+        },
+        {
+          "decision": "Ajustar levemente o ritmo conforme a sensação do carro em cada setor",
+          "referenceSkill": "technique",
+          "hasAbility": true,
+          "ability": 3
+        }
       ],
       "successText": [
         "Ritmo sólido e sem erros. Uma simulação de corrida exemplar que gera dados excelentes.",
@@ -172,15 +288,27 @@
       "failureText": [
         "Você começa bem, mas um erro de frenagem no segundo setor desestabiliza sua confiança. As voltas seguintes ficam cheias de correções.",
         "As diferenças entre as voltas são grandes demais — escorregões, tangências perdidas e um ritmo que vai embora curva após curva."
-      ],
-      "referenceSkill": "focus",
-      "hasAbility": false
+      ]
     },
     {
       "id": "event_11",
       "descriptions": [
         "Nuvens carregadas cobrem o céu — a pista começa a receber uma leve garoa.",
         "Clima traiçoeiro! As primeiras gotas tornam cada curva um desafio extra."
+      ],
+      "decisions": [
+        {
+          "decision": "Reduzir significativamente a velocidade e focar em trajetórias mais seguras",
+          "referenceSkill": "focus",
+          "hasAbility": false,
+          "ability": null
+        },
+        {
+          "decision": "Manter o ritmo mas com correções mais suaves e antecipadas",
+          "referenceSkill": "bravery",
+          "hasAbility": false,
+          "ability": null
+        }
       ],
       "successText": [
         "Você adapta sua pilotagem como um mestre da chuva. Estável e rápido.",
@@ -189,15 +317,27 @@
       "failureText": [
         "O carro escapa de traseira e você perde o controle por alguns segundos. Após alguns poucos minutos, o céu está claro novamente.",
         "As condições te pegam de surpresa. A volta é desastrosa. Mas logo o céu está limpo de novo"
-      ],
-      "referenceSkill": "focus",
-      "hasAbility": false
+      ]
     },
     {
       "id": "event_12",
       "descriptions": [
         "Sua equipe quer testar um novo acerto no carro. É arriscado, mas pode trazer ganhos.",
         "Você vai testar um setup mais agressivo, focado em ultrapassagens."
+      ],
+      "decisions": [
+        {
+          "decision": "Testar o novo setup gradualmente, aumentando o ritmo conforme se adapta",
+          "referenceSkill": "awareness",
+          "hasAbility": false,
+          "ability": null
+        },
+        {
+          "decision": "Ir direto para o limite máximo para avaliar imediatamente o potencial",
+          "referenceSkill": "focus",
+          "hasAbility": false,
+          "ability": null
+        }
       ],
       "successText": [
         "O novo acerto traz mais velocidade sem comprometer a estabilidade.",
@@ -206,15 +346,27 @@
       "failureText": [
         "Você sente o carro instável e impreciso. Difícil de controlar.",
         "O ajuste comprometeu curvas e frenagens. Piorou seu ritmo."
-      ],
-      "referenceSkill": "awareness",
-      "hasAbility": false
+      ]
     },
     {
       "id": "event_13",
       "descriptions": [
         "Você está mantendo um bom ritmo, mas encontra a pista congestionada.",
         "Muitos carros ocupam o traçado ideal. Você precisa mostrar talento e não perder tempo."
+      ],
+      "decisions": [
+        {
+          "decision": "Atacar com ousadia, mergulhando nas curvas e confiando nos reflexos",
+          "referenceSkill": "bravery",
+          "hasAbility": true,
+          "ability": 5
+        },
+        {
+          "decision": "Ultrapassar com precisão, estudando cada brecha no traçado",
+          "referenceSkill": "focus",
+          "hasAbility": true,
+          "ability": 17
+        }
       ],
       "successText": [
         "Você encontra uma janela limpa no tráfego e encaixa uma boa volta.",
@@ -223,16 +375,27 @@
       "failureText": [
         "Preso no tráfego, você não consegue completar uma volta limpa.",
         "Você tenta insistir, mas perde tempo atrás de carros lentos."
-      ],
-      "referenceSkill": "focus",
-      "hasAbility": true,
-      "ability": 17
+      ]
     },
     {
       "id": "event_14",
       "descriptions": [
         "Hora de testar o modo de motor mais potente. O risco de aquecimento é alto, mas um teste necessário",
         "Você ativa o modo agressivo de potência para extrair tudo do carro."
+      ],
+      "decisions": [
+        {
+          "decision": "Usar o modo potente apenas em retas longas e setores críticos",
+          "referenceSkill": "technique",
+          "ability": null,
+          "hasAbility": false
+        },
+        {
+          "decision": "Manter o modo ativado constantemente para avaliar o desempenho máximo",
+          "referenceSkill": "awareness",
+          "hasAbility": true,
+          "ability": 20
+        }
       ],
       "successText": [
         "O motor responde com potência brutal sem falhas. Você voa na pista.",
@@ -241,16 +404,27 @@
       "failureText": [
         "O motor superaquece e compromete o resto da sessão.",
         "Você perde tração nas saídas e o carro se torna instável."
-      ],
-      "referenceSkill": "awareness",
-      "hasAbility": true,
-      "ability": 20
+      ]
     },
     {
       "id": "event_15",
       "descriptions": [
         "Você testa uma linha alternativa nas curvas mais desafiadoras. Pode ser uma forma de ganhar décimos, ou perdê-los de vez.",
         "É hora de sair do convencional: uma nova abordagem no traçado pode surpreender — ou colocar tudo a perder."
+      ],
+      "decisions": [
+        {
+          "decision": "Experimentar uma entrada mais tardia para sair mais rápido das curvas",
+          "referenceSkill": "bravery",
+          "hasAbility": false,
+          "ability": null
+        },
+        {
+          "decision": "Testar uma linha com frenagem mais suave mas mantendo mais velocidade média",
+          "referenceSkill": "technique",
+          "hasAbility": true,
+          "ability": 3
+        }
       ],
       "successText": [
         "A nova linha funciona perfeitamente. Você tira tempo de onde ninguém espera.",
@@ -259,16 +433,27 @@
       "failureText": [
         "A tentativa custa tempo. Você perde a saída de algumas curvas. Melhor esquecer essa ideia",
         "A linha não encaixa com seu estilo. Ritmo prejudicado. Melhor voltar para o traçado original"
-      ],
-      "referenceSkill": "technique",
-      "hasAbility": true,
-      "ability": 3
+      ]
     },
     {
       "id": "event_16",
       "descriptions": [
         "Algo não parece certo — você sente vibrações incomuns e nota uma queda de potência.",
         "O rádio avisa: possível falha mecânica detectada. Decisão rápida — retornar aos boxes com cuidado ou arriscar mais uma volta?"
+      ],
+      "decisions": [
+        {
+          "decision": "Reduzir ligeiramente o ritmo e finalizar a volta antes de retornar aos boxes para evitar danos maiores",
+          "referenceSkill": "technique",
+          "ability": null,
+          "hasAbility": false
+        },
+        {
+          "decision": "Monitorar cuidadosamente o problema enquanto completa mais uma volta para coletar dados",
+          "referenceSkill": "awareness",
+          "hasAbility": true,
+          "ability": 20
+        }
       ],
       "successText": [
         "Você reduz o ritmo e conduz o carro de volta com precisão. A equipe inicia os reparos imediatamente.",
@@ -277,10 +462,7 @@
       "failureText": [
         "Você insiste em continuar e a falha piora, o carro para na pista e você perde boa parte da sessão aguardando reparo.",
         "A decisão de forçar mais uma volta cobra caro: o carro quebra, e você perder uns minutos esperando o reparo."
-      ],
-      "referenceSkill": "awareness",
-      "hasAbility": true,
-      "ability": 20
+      ]
     }
   ]
 }

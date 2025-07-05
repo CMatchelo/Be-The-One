@@ -7,6 +7,14 @@ public class AbilityList
     public Ability[] abilities;
 }
 [Serializable]
+public class WeekendBonus
+{
+    public int highSpeedCorners;
+    public int lowSpeedCorners;
+    public int acceleration;
+    public int topSpeed;
+}
+[Serializable]
 public class Ability
 {
     public int id;
@@ -17,6 +25,7 @@ public class Ability
 public class PlayerProfile
 {
     public Driver driver;
+    public WeekendBonus weekendBonus = new WeekendBonus();
     public int id;
     public string past;
     public int ambitious = 5;

@@ -25,6 +25,8 @@ public class MenuManager : MonoBehaviour
     private void Awake()
     {
         LoadUtility.LoadGame("Cicero_g15866"); // Fix id load
+        Debug.Log("Nova habilidade: " + SaveSession.CurrentGameData.profile.weekendBonus.highSpeedCorners);
+        Debug.Log("Nova habilidade: " + SaveSession.CurrentGameData.profile.driver.highSpeedCorners);
     }
     void Start()
     {

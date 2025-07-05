@@ -17,6 +17,8 @@ public class FreePracticeManager : MonoBehaviour
     [Header("UI Btns and Dropdowns")]
     public Button startSessionBtn;
     public Button endSessionBtn;
+    public Button decision1Btn;
+    public Button decision2Btn;
     public Button rollDiceBtn;
     public Button nextEventBtn;
     public TMP_Dropdown tireDropdown;
@@ -31,14 +33,21 @@ public class FreePracticeManager : MonoBehaviour
 
     private FreePracticeEventList eventList;
     private AbilityList abilityList;
+    private int totalSkillBonus = 0;
     private List<int> eventsDone = new List<int>();
     private int difficulty = 12;
     private int tireSelected;
     private int skillSelected;
-    private string eventReferenceSkill = null;
+    private string decisionReferenceSkill = null;
     private int abilityId = -1;
     private int selectedEventIndex = -1;
 
+
+    void Awake()
+    {
+        FPPanel.SetActive(true);
+        RaceMenuPanel.SetActive(false);
+    }
 
     void Start()
     {
@@ -46,6 +55,9 @@ public class FreePracticeManager : MonoBehaviour
         PopulateDropdowns();
         startSessionBtn.onClick.AddListener(StartFreePractice);
         rollDiceBtn.onClick.AddListener(RollDice);
+        endSessionBtn.onClick.AddListener(EndSession);
+        decision1Btn.interactable = false;
+        decision2Btn.interactable = false;
         nextEventBtn.interactable = false;
         endSessionBtn.interactable = false;
         rollDiceBtn.interactable = false;
@@ -64,8 +76,9 @@ public class FreePracticeManager : MonoBehaviour
         PickNextEvent();
     }
 
-    async void PickNextEvent()
+    void PickNextEvent()
     {
+        skillTestText.text = "";
         abilityTestText.text = "";
 
         // Select event
@@ -81,40 +94,57 @@ public class FreePracticeManager : MonoBehaviour
         int selectedEventDescription = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
         string selectedDescription = selectedEvent.descriptions[selectedEventDescription];
 
-        // Get texts locations
-        Ability eventAbility = null;
-        eventReferenceSkill = selectedEvent.referenceSkill;
-        string skillToTest = await SearchTextLocation.GetLocalizedStringAsync("Skills", eventReferenceSkill);
-        string skillText = await SearchTextLocation.GetLocalizedStringAsync("Skills", "skillText");
-        string abilityText = await SearchTextLocation.GetLocalizedStringAsync("Skills", "abilityText");
+        // Update UI Buttons
 
-        // Get ability to test
+        eventDescriptionText.text = selectedDescription;
+        TMP_Text decision1Text = decision1Btn.GetComponentInChildren<TMP_Text>();
+        TMP_Text decision2Text = decision2Btn.GetComponentInChildren<TMP_Text>();
+        decision1Text.text = selectedEvent.decisions[0].decision;
+        decision2Text.text = selectedEvent.decisions[1].decision;
+        decision1Btn.onClick.AddListener(() => SelectDecision(selectedEvent.decisions[0]));
+        decision2Btn.onClick.AddListener(() => SelectDecision(selectedEvent.decisions[1]));
+        decision1Btn.interactable = true;
+        decision2Btn.interactable = true;
+        nextEventBtn.interactable = false;
+    }
+
+    async void SelectDecision(Decision decision)
+    {
+        // Get ability if exists
+        Ability decisionAbility = null;
         abilityId = -1;
         string abilityToTest = "";
-
-        if (selectedEvent.hasAbility)
+        if (decision.hasAbility)
         {
-            eventAbility = abilityList.abilities.FirstOrDefault(a => a.id == selectedEvent.ability);
-            if (eventAbility != null)
+            decisionAbility = abilityList.abilities.FirstOrDefault(a => a.id == decision.ability);
+            if (decisionAbility != null)
             {
-                abilityId = eventAbility.id;
-                abilityToTest = await SearchTextLocation.GetLocalizedStringAsync("AbilityNames", eventAbility.name);
+                abilityId = decisionAbility.id;
+                abilityToTest = await SearchTextLocation.GetLocalizedStringAsync("AbilityNames", decisionAbility.name);
             }
         }
 
-        // Atualiza UI
+        // Get texts locations
+
+        decisionReferenceSkill = decision.referenceSkill;
+        string skillToTest = await SearchTextLocation.GetLocalizedStringAsync("Skills", decisionReferenceSkill);
+        string skillText = await SearchTextLocation.GetLocalizedStringAsync("Skills", "skillText");
+        string abilityText = await SearchTextLocation.GetLocalizedStringAsync("Skills", "abilityText");
 
         if (!string.IsNullOrEmpty(abilityToTest))
         {
-            Debug.Log($"{abilityText}: {abilityToTest} // ID: {abilityId}");
             abilityTestText.text = $"{abilityText}: {abilityToTest}";
         }
+        else
+        {
+            abilityTestText.text = $"";
+        }
 
-        nextEventBtn.interactable = false;
+        // Update UI
         rollDiceBtn.interactable = true;
-        int skillValue = GetSkillValue(SaveSession.CurrentGameData.profile, eventReferenceSkill);
+        int skillValue = GetSkillValue(SaveSession.CurrentGameData.profile, decisionReferenceSkill);
         skillTestText.text = $"{skillText}: {skillToTest} (+{skillValue})";
-        eventDescriptionText.text = selectedDescription;
+
     }
 
     void RollDice()
@@ -122,11 +152,12 @@ public class FreePracticeManager : MonoBehaviour
         // Get dice result
         FreePracticeEvent selectedEvent = eventList.events[selectedEventIndex];
         int resultEvent = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
-        string result = CalculateThrow.CalculateD20(difficulty, eventReferenceSkill, abilityId);
+        string result = CalculateThrow.CalculateD20(difficulty, decisionReferenceSkill, abilityId);
 
         // Update UI
         if (result == "suc" | result == "critSuc")
         {
+            totalSkillBonus += 1;
             eventDescriptionText.text = selectedEvent.successText[resultEvent];
         }
         else
@@ -134,7 +165,11 @@ public class FreePracticeManager : MonoBehaviour
             eventDescriptionText.text = selectedEvent.failureText[resultEvent];
         }
 
+        // Update UI
+
         rollDiceBtn.interactable = false;
+        decision1Btn.interactable = false;
+        decision2Btn.interactable = false;
 
         // If maximum events, end sessions
         if (eventsDone.Count >= 3)
@@ -145,6 +180,36 @@ public class FreePracticeManager : MonoBehaviour
         nextEventBtn.interactable = true;
     }
 
+    void EndSession()
+    {
+        int selectedIndex = inRaceSkillsDropdown.value;
+        if (SaveSession.CurrentGameData.profile.weekendBonus == null)
+        {
+            SaveSession.CurrentGameData.profile.weekendBonus = new WeekendBonus();
+        }
+        switch (selectedIndex)
+        {
+            case 0:
+                SaveSession.CurrentGameData.profile.weekendBonus.highSpeedCorners = totalSkillBonus;
+                break;
+            case 1:
+                SaveSession.CurrentGameData.profile.weekendBonus.lowSpeedCorners = totalSkillBonus;
+                break;
+            case 2:
+                SaveSession.CurrentGameData.profile.weekendBonus.acceleration = totalSkillBonus;
+                break;
+            case 3:
+                SaveSession.CurrentGameData.profile.weekendBonus.topSpeed = totalSkillBonus;
+                break;
+            default:
+                Debug.LogWarning("Índice inválido selecionado no dropdown.");
+                break;
+        }
+        Debug.Log("Nova habilidade: " + SaveSession.CurrentGameData.profile.weekendBonus.topSpeed);
+        SaveUtility.UpdateProfile();
+        /* FPPanel.SetActive(true);
+        RaceMenuPanel.SetActive(false); */
+    }
     private int GetSkillValue(PlayerProfile profile, string skillKey)
     {
         switch (skillKey)
