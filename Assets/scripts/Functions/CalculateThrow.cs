@@ -6,15 +6,23 @@ public static class CalculateThrow
 
     public static int skillValue = -1;
 
-    public static string CalculateD20(int difficulty, string skillName, int abilityId = -1)
+    public static string CalculateD20(int difficulty, string skillName, out int rollResult, int abilityId = -1)
     {
         SelectSkillValue(skillName);
         bool abilityExists = SaveSession.CurrentGameData.profile.abilities.Any(ability => ability.id == abilityId);
         int roll = RollWithAdvantage(abilityId);
-        if (roll == 20) return "critSuc";
-        if (roll == 1) return "critFail";
-        
+        if (roll == 20)
+        {
+            rollResult = roll;
+            return "critSuc";
+        }
+        if (roll == 1)
+        {
+            rollResult = roll;
+            return "critFail";
+        }
         roll += skillValue;
+        rollResult = roll;
         return roll >= difficulty ? "suc" : "fail";
     }
     public static void SelectSkillValue(string skillName)

@@ -27,6 +27,7 @@ public class FreePracticeManager : MonoBehaviour
     [Header("UI Texts")]
     public TMP_Text eventDescriptionText;
     public TMP_Text rollResultText;
+    public TMP_Text difficultyValueText;
     public TMP_Text skillTestText;
     public TMP_Text abilityTestText;
     public List<LocalizedString> localizedInRaceSkills;
@@ -35,49 +36,74 @@ public class FreePracticeManager : MonoBehaviour
     private AbilityList abilityList;
     private int totalSkillBonus = 0;
     private List<int> eventsDone = new List<int>();
-    private int difficulty = 12;
+    private int difficulty = 15;
     private int tireSelected;
     private int skillSelected;
     private string decisionReferenceSkill = null;
     private int abilityId = -1;
     private int selectedEventIndex = -1;
 
-
     void Awake()
     {
-        FPPanel.SetActive(true);
-        RaceMenuPanel.SetActive(false);
+
     }
 
     void Start()
     {
+
+    }
+
+    public void InitializePractice()
+    {
         LoadDatabases();
         PopulateDropdowns();
-        startSessionBtn.onClick.AddListener(StartFreePractice);
+
+        startSessionBtn.onClick.RemoveAllListeners();
+        rollDiceBtn.onClick.RemoveAllListeners();
+        endSessionBtn.onClick.RemoveAllListeners();
+        nextEventBtn.onClick.RemoveAllListeners();
+
+        startSessionBtn.onClick.AddListener(StartSession);
         rollDiceBtn.onClick.AddListener(RollDice);
         endSessionBtn.onClick.AddListener(EndSession);
+        nextEventBtn.onClick.AddListener(PickNextEvent);
+
         decision1Btn.interactable = false;
         decision2Btn.interactable = false;
         nextEventBtn.interactable = false;
         endSessionBtn.interactable = false;
         rollDiceBtn.interactable = false;
-        nextEventBtn.onClick.AddListener(PickNextEvent);
+        startSessionBtn.interactable = true;
+        tireDropdown.interactable = true;
+        inRaceSkillsDropdown.interactable = true;
+
+        rollResultText.text = "";
+        skillTestText.text = "";
+        abilityTestText.text = "";
+        eventDescriptionText.text = "";
+
+        difficulty = 15;
+        totalSkillBonus = 0;
+
+        eventsDone.Clear();
     }
 
-    void StartFreePractice()
+    void StartSession()
     {
+        Debug.Log("Dficuldade: " + difficulty);
         startSessionBtn.interactable = false;
         tireDropdown.interactable = false;
         inRaceSkillsDropdown.interactable = false;
-        if (tireDropdown.value == 1) difficulty = 14;
-        if (tireDropdown.value == 2) difficulty = 16;
+        difficulty -= tireDropdown.value * 2;
         tireSelected = tireDropdown.value;
         skillSelected = inRaceSkillsDropdown.value;
+        Debug.Log("Dficuldade: " + difficulty);
         PickNextEvent();
     }
 
     void PickNextEvent()
     {
+        rollResultText.text = "";
         skillTestText.text = "";
         abilityTestText.text = "";
 
@@ -96,6 +122,7 @@ public class FreePracticeManager : MonoBehaviour
 
         // Update UI Buttons
 
+        difficultyValueText.text = "" + difficulty;
         eventDescriptionText.text = selectedDescription;
         TMP_Text decision1Text = decision1Btn.GetComponentInChildren<TMP_Text>();
         TMP_Text decision2Text = decision2Btn.GetComponentInChildren<TMP_Text>();
@@ -152,7 +179,8 @@ public class FreePracticeManager : MonoBehaviour
         // Get dice result
         FreePracticeEvent selectedEvent = eventList.events[selectedEventIndex];
         int resultEvent = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
-        string result = CalculateThrow.CalculateD20(difficulty, decisionReferenceSkill, abilityId);
+        int rollResult;
+        string result = CalculateThrow.CalculateD20(difficulty, decisionReferenceSkill, out rollResult, abilityId);
 
         // Update UI
         if (result == "suc" | result == "critSuc")
@@ -165,8 +193,7 @@ public class FreePracticeManager : MonoBehaviour
             eventDescriptionText.text = selectedEvent.failureText[resultEvent];
         }
 
-        // Update UI
-
+        rollResultText.text = "d20: " + rollResult;
         rollDiceBtn.interactable = false;
         decision1Btn.interactable = false;
         decision2Btn.interactable = false;
@@ -205,10 +232,10 @@ public class FreePracticeManager : MonoBehaviour
                 Debug.LogWarning("Índice inválido selecionado no dropdown.");
                 break;
         }
-        Debug.Log("Nova habilidade: " + SaveSession.CurrentGameData.profile.weekendBonus.topSpeed);
+
         SaveUtility.UpdateProfile();
-        /* FPPanel.SetActive(true);
-        RaceMenuPanel.SetActive(false); */
+        FPPanel.SetActive(false);
+        RaceMenuPanel.SetActive(true);
     }
     private int GetSkillValue(PlayerProfile profile, string skillKey)
     {
@@ -235,7 +262,7 @@ public class FreePracticeManager : MonoBehaviour
         abilityList = JsonUtility.FromJson<AbilityList>(abilityJson.text);
     }
 
-    void PopulateDropdowns()
+    async void PopulateDropdowns()
     {
         // Tires
         tireDropdown.ClearOptions();
@@ -244,21 +271,29 @@ public class FreePracticeManager : MonoBehaviour
         // In Race Skills
         inRaceSkillsDropdown.ClearOptions();
         List<string> texts = new List<string>();
-        int remaining = localizedInRaceSkills.Count;
 
         foreach (var locStr in localizedInRaceSkills)
         {
-            var handle = locStr.GetLocalizedStringAsync();
-            handle.Completed += op =>
+            var tableEntry = LocalizationSettings.StringDatabase.GetTableEntry(locStr.TableReference, locStr.TableEntryReference);
+            var key = tableEntry.Entry.SharedEntry.Key;
+            var field = SaveSession.CurrentGameData.profile.weekendBonus.GetType().GetField(key);
+            if (field == null)
             {
-                texts.Add(op.Result);
-                remaining--;
+                Debug.LogWarning($"Campo {key} não encontrado.");
+                continue;
+            }
 
-                if (remaining == 0)
-                {
-                    inRaceSkillsDropdown.AddOptions(texts);
-                }
-            };
+            int value = (int)field.GetValue(SaveSession.CurrentGameData.profile.weekendBonus);
+            if (value > 0)
+            {
+                continue;
+            }
+
+            var localizedString = await locStr.GetLocalizedStringAsync().Task;
+            texts.Add(localizedString);
         }
+
+        inRaceSkillsDropdown.ClearOptions();
+        inRaceSkillsDropdown.AddOptions(texts);
     }
 }

@@ -22,6 +22,14 @@ MonoBehaviour:
     m_Localized: Next
     m_Metadata:
       m_Items: []
+  - m_Id: 995413316161536
+    m_Localized: "\rDifficulty"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1033644703305728
+    m_Localized: Breaking News
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

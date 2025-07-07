@@ -19,6 +19,14 @@ MonoBehaviour:
     m_Key: nextText
     m_Metadata:
       m_Items: []
+  - m_Id: 995413316161536
+    m_Key: difficultyText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1033644703305728
+    m_Key: newsTitle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

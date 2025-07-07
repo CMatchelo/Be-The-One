@@ -105,7 +105,8 @@ public class ContractManager : MonoBehaviour
         int yearsDif = Mathf.Abs(years - yearsOffered);
         difficulty += 2 * yearsDif;
 
-        string result = CalculateThrow.CalculateD20(difficulty, "charisma", 12);
+        int rollResult;
+        string result = CalculateThrow.CalculateD20(difficulty, "charisma", out rollResult, 12);
         ContractDialogueManager dialogueManager = FindFirstObjectByType<ContractDialogueManager>();
 
         listDifficulty[selectedTeamIndex] += 2;
