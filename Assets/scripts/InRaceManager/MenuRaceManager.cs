@@ -21,33 +21,60 @@ public class MenuRaceManager : MonoBehaviour
 
     [Header("UI Texts")]
     public TMP_Text titleNews;
+    public List<TMP_Text> fpTiresText = new List<TMP_Text>();
+    public List<TMP_Text> fpTimesText = new List<TMP_Text>();
 
-    public static MenuRaceManager Instance;
-    public int currentWeekendStep = 1;
-    public List<string> practicedSkill = new List<string>();
+    public TeamsList teamsList;
+    public Track selectedTrack;
 
-    private GameObject currentFreePractice;
+    private List<string> fpTiresList = new List<string>();
+    private List<float> fpTimesList = new List<float>();
+
+
+
 
 
     void Awake()
     {
         LoadUtility.LoadGame("Cicero_g15866"); // Fix id load
-        if (Instance != null && Instance != this)
-        {
-            Destroy(gameObject);
-            return;
-        }
-
-        Instance = this;
-        DontDestroyOnLoad(gameObject);
+        LoadDatabases();
+        Debug.Log("Zerou");
+        SaveSession.CurrentGameData.profile.weekendBonus.highSpeedCorners = 0;
+        SaveSession.CurrentGameData.profile.weekendBonus.lowSpeedCorners = 0;
+        SaveSession.CurrentGameData.profile.weekendBonus.acceleration = 0;
+        SaveSession.CurrentGameData.profile.weekendBonus.topSpeed = 0;
     }
 
     void Start()
     {
+        ChampionshipManager.Initialize();
+        selectedTrack = ChampionshipManager.GetNextRace();
         for (int i = 0; i < GoToEventBtn.Count; i++)
         {
             int capturedIndex = i + 1;
             GoToEventBtn[i].onClick.AddListener(() => GoToEvent(capturedIndex));
+        }
+        for (int i = 0; i < 3; i++)
+        {
+            fpTiresText[i].text = "FP não feito";
+
+            fpTimesText[i].text = "FP não feito";
+        }
+    }
+
+    public void UpdateFPTexts(string tire, float time)
+    {
+        fpTiresList.Add(tire);
+        fpTimesList.Add(time);
+        for (int i = 0; i < 3; i++)
+        {
+            fpTiresText[i].text = (fpTiresList != null && i < fpTiresList.Count)
+                ? fpTiresList[i]
+                : "FP não feito";
+
+            fpTimesText[i].text = (fpTimesList != null && i < fpTimesList.Count)
+                ? fpTimesList[i].ToString("F2")
+                : "FP não feito";
         }
     }
 
@@ -72,5 +99,11 @@ public class MenuRaceManager : MonoBehaviour
         {
             GoToEventBtn[i].interactable = false;
         }
+    }
+
+    void LoadDatabases()
+    {
+        TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
+        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
     }
 }

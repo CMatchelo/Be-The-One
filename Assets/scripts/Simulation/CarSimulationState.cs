@@ -7,6 +7,7 @@ public class CarSimulationState
     public string team;
     public float carFactor;
     public float totalTime;
+    public float previousTotalTime = 0f;
     public float totalWear;
     public int totalLapTyre;
     public int lapsCompleted;

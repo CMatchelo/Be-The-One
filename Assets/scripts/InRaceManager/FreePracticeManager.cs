@@ -13,6 +13,7 @@ public class FreePracticeManager : MonoBehaviour
     [Header("UI Canvas")]
     public GameObject FPPanel;
     public GameObject RaceMenuPanel;
+    public MenuRaceManager menuRaceManager;
 
     [Header("UI Btns and Dropdowns")]
     public Button startSessionBtn;
@@ -36,12 +37,15 @@ public class FreePracticeManager : MonoBehaviour
     private AbilityList abilityList;
     private int totalSkillBonus = 0;
     private List<int> eventsDone = new List<int>();
-    private int difficulty = 15;
+    private int difficultyBase = 15;
+    private int currentDifficulty = 15;
     private int tireSelected;
     private int skillSelected;
     private string decisionReferenceSkill = null;
     private int abilityId = -1;
     private int selectedEventIndex = -1;
+    private float bestLapTime = 0f;
+    private List<string> skillIDs = new List<string>();
 
     void Awake()
     {
@@ -82,7 +86,8 @@ public class FreePracticeManager : MonoBehaviour
         abilityTestText.text = "";
         eventDescriptionText.text = "";
 
-        difficulty = 15;
+        difficultyBase = 15;
+        currentDifficulty = difficultyBase;
         totalSkillBonus = 0;
 
         eventsDone.Clear();
@@ -90,14 +95,12 @@ public class FreePracticeManager : MonoBehaviour
 
     void StartSession()
     {
-        Debug.Log("Dficuldade: " + difficulty);
         startSessionBtn.interactable = false;
         tireDropdown.interactable = false;
         inRaceSkillsDropdown.interactable = false;
-        difficulty -= tireDropdown.value * 2;
+        difficultyBase -= tireDropdown.value * 2;
         tireSelected = tireDropdown.value;
         skillSelected = inRaceSkillsDropdown.value;
-        Debug.Log("Dficuldade: " + difficulty);
         PickNextEvent();
     }
 
@@ -122,7 +125,9 @@ public class FreePracticeManager : MonoBehaviour
 
         // Update UI Buttons
 
-        difficultyValueText.text = "" + difficulty;
+        int numbVar = RandomNumberGenerator.GetRandomBetween(-1, 1);
+        currentDifficulty = difficultyBase + numbVar;
+        difficultyValueText.text = "" + currentDifficulty;
         eventDescriptionText.text = selectedDescription;
         TMP_Text decision1Text = decision1Btn.GetComponentInChildren<TMP_Text>();
         TMP_Text decision2Text = decision2Btn.GetComponentInChildren<TMP_Text>();
@@ -180,7 +185,7 @@ public class FreePracticeManager : MonoBehaviour
         FreePracticeEvent selectedEvent = eventList.events[selectedEventIndex];
         int resultEvent = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
         int rollResult;
-        string result = CalculateThrow.CalculateD20(difficulty, decisionReferenceSkill, out rollResult, abilityId);
+        string result = CalculateThrow.CalculateD20(currentDifficulty, decisionReferenceSkill, out rollResult, abilityId);
 
         // Update UI
         if (result == "suc" | result == "critSuc")
@@ -210,32 +215,60 @@ public class FreePracticeManager : MonoBehaviour
     void EndSession()
     {
         int selectedIndex = inRaceSkillsDropdown.value;
+
+        if (selectedIndex < 0 || selectedIndex >= skillIDs.Count)
+        {
+            Debug.LogWarning("Índice selecionado inválido.");
+            return;
+        }
+
+        string selectedSkillID = skillIDs[selectedIndex]; // Ex: "acceleration", etc.
+
         if (SaveSession.CurrentGameData.profile.weekendBonus == null)
         {
             SaveSession.CurrentGameData.profile.weekendBonus = new WeekendBonus();
         }
-        switch (selectedIndex)
+
+        totalSkillBonus *= 3 - tireDropdown.value;
+
+        switch (selectedSkillID)
         {
-            case 0:
+            case "highSpeedCorners":
                 SaveSession.CurrentGameData.profile.weekendBonus.highSpeedCorners = totalSkillBonus;
                 break;
-            case 1:
+            case "lowSpeedCorners":
                 SaveSession.CurrentGameData.profile.weekendBonus.lowSpeedCorners = totalSkillBonus;
                 break;
-            case 2:
+            case "acceleration":
                 SaveSession.CurrentGameData.profile.weekendBonus.acceleration = totalSkillBonus;
                 break;
-            case 3:
+            case "topSpeed":
                 SaveSession.CurrentGameData.profile.weekendBonus.topSpeed = totalSkillBonus;
                 break;
             default:
-                Debug.LogWarning("Índice inválido selecionado no dropdown.");
+                Debug.LogWarning("Skill não reconhecida: " + selectedSkillID);
                 break;
         }
 
+        UpdateMenuTexts();
         SaveUtility.UpdateProfile();
         FPPanel.SetActive(false);
         RaceMenuPanel.SetActive(true);
+    }
+
+    void UpdateMenuTexts()
+    {
+        Driver driver = SaveSession.CurrentGameData.profile.driver;
+        MenuRaceManager manager = FindFirstObjectByType<MenuRaceManager>();
+        Team team = manager.teamsList.teams.Find(t => t.id == driver.teamId);
+        Track selectedTrack = manager.selectedTrack;
+        float carFactor = PerformanceCalculator.CalculateCarFactor(driver, team, selectedTrack);
+        CarSimulationState carro = new CarSimulationState(tireDropdown.options[tireDropdown.value].text, carFactor, driver.firstName, team.teamName);
+        float trackFactor = RaceSimulatorUtility.CalculateTrackFactor(selectedTrack.circuitLength);
+        bestLapTime = RaceSimulatorUtility.CalculateLapTime(carro, trackFactor, selectedTrack.circuitLength);
+        Debug.Log($"Volta simulada: {bestLapTime:F2}s");
+        string tireSelected = tireDropdown.options[tireDropdown.value].text;
+        menuRaceManager.UpdateFPTexts(tireSelected, bestLapTime);
     }
     private int GetSkillValue(PlayerProfile profile, string skillKey)
     {
@@ -270,12 +303,15 @@ public class FreePracticeManager : MonoBehaviour
 
         // In Race Skills
         inRaceSkillsDropdown.ClearOptions();
+        skillIDs.Clear(); // Limpa a lista antes de repopular
+
         List<string> texts = new List<string>();
 
         foreach (var locStr in localizedInRaceSkills)
         {
             var tableEntry = LocalizationSettings.StringDatabase.GetTableEntry(locStr.TableReference, locStr.TableEntryReference);
-            var key = tableEntry.Entry.SharedEntry.Key;
+            var key = tableEntry.Entry.SharedEntry.Key; // Ex: "highSpeedCorners"
+
             var field = SaveSession.CurrentGameData.profile.weekendBonus.GetType().GetField(key);
             if (field == null)
             {
@@ -288,12 +324,11 @@ public class FreePracticeManager : MonoBehaviour
             {
                 continue;
             }
-
-            var localizedString = await locStr.GetLocalizedStringAsync().Task;
+            string localizedString = await locStr.GetLocalizedStringAsync().Task;
+            skillIDs.Add(key);
             texts.Add(localizedString);
         }
 
-        inRaceSkillsDropdown.ClearOptions();
         inRaceSkillsDropdown.AddOptions(texts);
     }
 }

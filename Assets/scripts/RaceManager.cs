@@ -7,7 +7,7 @@ using System.Collections;
 using TMPro;
 using System.Linq;
 
-public class MenuManager : MonoBehaviour
+public class RaceManager : MonoBehaviour
 {
     // UI Elements
     public TMP_InputField lapsInput;
@@ -59,16 +59,15 @@ public class MenuManager : MonoBehaviour
         isSimulating = true;
         outputText.text = "";
 
-        float trackFactor = CalculateTrackFactor(circuitLength);
-        List<CarSimulationState> cars = new List<CarSimulationState>();
-        for (int i = 0; i < 20; i++)
-        {
-            Driver driver = driversList.drivers[i];
-            Team team = teamsList.teams.Find(t => t.id == driver.teamId);
-            Debug.Log($"Driver: {driver.firstName} {driver.lastName}, Team: {team.teamName}");
-            float carFactor = PerformanceCalculator.CalculateCarFactor(driver, team, selectedTrack);
-            cars.Add(new CarSimulationState(startingTire, carFactor, driver.lastName, team.teamName));
-        }
+        float trackFactor = RaceSimulatorUtility.CalculateTrackFactor(circuitLength);
+
+        // Cria o grid com 20 carros
+        var cars = RaceSimulatorUtility.CreateInitialGrid(
+            driversList.drivers,
+            teamsList.teams,
+            startingTire,
+            selectedTrack
+        );
 
         AddLogMessage("=== RACE STARTED ===");
 
@@ -76,91 +75,69 @@ public class MenuManager : MonoBehaviour
 
         while (raceOngoing)
         {
-
             raceOngoing = false;
             List<(int carIndex, string driver, float lapTime, float totalTime)> lapResults = new();
             logMessages.Clear();
+
             for (int i = 0; i < cars.Count; i++)
             {
+                var car = cars[i];
 
-                CarSimulationState car = cars[i];
-                if (car.lapsCompleted >= totalLaps)
-                    continue;
+                // Simula a volta usando a nova função
+                bool completedLap = RaceSimulatorUtility.SimulateLap(
+                    car,
+                    trackFactor,
+                    circuitLength,
+                    totalLaps,
+                    i,
+                    AddPitMessage // função de log para pit stop
+                );
 
-                raceOngoing = true;
-
-                float lapWear = TireDatabase.TireParameters[car.currentTire]["WearMod"] *
-                                (1 + Mathf.Pow(circuitLength / 5300f, 4)) *
-                                Mathf.Pow(car.totalLapTyre + 1, TireDatabase.TireParameters[car.currentTire]["WearProg"]);
-                car.totalWear += lapWear;
-
-                float tireFactor = ((car.totalLapTyre + 1) * TireDatabase.TireParameters[car.currentTire]["BaseWear"]) +
-                                 TireDatabase.TireParameters[car.currentTire]["WearCoef"] * trackFactor * car.totalLapTyre * (car.totalLapTyre + 1) /
-                                 TireDatabase.TireParameters[car.currentTire]["TireCoef"] +
-                                 TireDatabase.TireParameters[car.currentTire]["StartDelta"];
-
-                float lapTime = car.carFactor + tireFactor + UnityEngine.Random.Range(-0.5f, 0.5f);
-                car.totalTime += lapTime;
-
-                if (car.totalWear >= 100f && car.lapsCompleted < totalLaps - 1)
+                if (completedLap)
                 {
-                    /* yield return new WaitForSeconds(0.1f); */ // delay dram�tico
-                    AddPitMessage($"Car {i + 1} ({car.driver}) is pitting for tire change at lap {car.lapsCompleted + 1}!");
-                    // Ajsutar estrategias
-                    if (car.currentTire == "Soft") car.currentTire = "Medium";
-                    else if (car.currentTire == "Medium") car.currentTire = "Soft";
-                    else car.currentTire = "Soft";
+                    raceOngoing = true;
+                    float lapTime = car.totalTime - car.previousTotalTime;
+                    car.previousTotalTime = car.totalTime;
 
-                    car.totalWear = 0f;
-                    car.totalLapTyre = -1;
-                    car.totalTime += 30f; // tempo de pit stop
+                    lapResults.Add((i, car.driver, lapTime, car.totalTime));
                 }
-
-                car.totalLapTyre++;
-                car.lapsCompleted++;
-                lapResults.Add((carIndex: i, driver: car.driver, lapTime: lapTime, totalTime: car.totalTime));
             }
+
+            // Ordena e exibe resultados da volta
             var orderedLapResults = lapResults.OrderBy(r => r.totalTime).ToList();
             AddLogMessage($"=== LAP {cars[0].lapsCompleted} RESULTS ===");
+
             foreach (var result in orderedLapResults)
             {
-                string driverName = $"Car {result.carIndex + 1}";
                 AddLogMessage($"{result.driver} -> Lap Time: {result.lapTime:F2}s | Total: {result.totalTime:F2}s");
             }
-            yield return new WaitForSeconds(0.25f); // tempo entre voltas de todos os carros
+
+            yield return new WaitForSeconds(0.25f);
         }
+
         isSimulating = false;
 
+        // Monta resultado final
         RaceResult raceResult = new RaceResult
         {
             trackName = selectedTrack.circuitName,
             date = "2025",
-            results = new List<DriverResult>()
+            results = cars.OrderBy(c => c.totalTime)
+                          .Select(c => new DriverResult
+                          {
+                              driverName = c.driver,
+                              teamName = c.team,
+                              totalTime = c.totalTime
+                          }).ToList()
         };
-        foreach (var car in cars.OrderBy(c => c.totalTime))
-        {
 
-            raceResult.results.Add(new DriverResult
-            {
-                driverName = car.driver,
-                teamName = car.team,
-                totalTime = car.totalTime
-            });
-        }
         string temp = JsonUtility.ToJson(raceResult, true);
-        Debug.Log($"Reesultado: {temp}");
+        Debug.Log($"Resultado: {temp}");
 
         RaceSaveSystem.SaveRace(raceResult);
 
-        // Atualiza o campeonato (ordene os pilotos pela posição de chegada)
-        var orderedResults = raceResult.results.OrderBy(r => r.totalTime).ToList();
-        RaceSaveSystem.UpdateChampionship(orderedResults);
-    }
-
-
-    private float CalculateTrackFactor(float circuitLength)
-    {
-        return (1 + (circuitLength / 5300f)) / 10f;
+        // Atualiza o campeonato com os resultados ordenados
+        RaceSaveSystem.UpdateChampionship(raceResult.results);
     }
 
     private void AddLogMessage(string message)
