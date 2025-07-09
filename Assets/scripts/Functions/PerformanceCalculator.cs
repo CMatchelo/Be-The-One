@@ -18,7 +18,7 @@ public static class PerformanceCalculator
 
         float timeBase = Mathf.Pow(1 - totalFactor, selectedTrack.statsFactor) * selectedTrack.lapLenghtFactor;
 
-        Debug.Log($"{driver.firstName} | {inpiration} |  {highSpeedFactor} | {lowSpeedFactor} | {accelerationFactor} | {topSpeedFactor}");
+        /* Debug.Log($"{driver.firstName} | {inpiration} |  {highSpeedFactor} | {lowSpeedFactor} | {accelerationFactor} | {topSpeedFactor}"); */
 
         return timeBase; // placeholder
     }

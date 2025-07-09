@@ -7,13 +7,16 @@ using System.Collections;
 using UnityEngine.Localization;
 using UnityEngine.Localization.Settings;
 using System.Linq;
+using System.IO;
 
 public class MenuRaceManager : MonoBehaviour
 {
     [Header("UI Canvas")]
     public GameObject FPPanel;
+    public GameObject QualifyPanel;
     public GameObject RaceMenuPanel;
     public FreePracticeManager freePracticeManager;
+    public QualifyManager qualifyManager;
 
     [Header("UI Btns and Dropdowns")]
     public List<Button> GoToEventBtn;
@@ -29,6 +32,13 @@ public class MenuRaceManager : MonoBehaviour
 
     private List<string> fpTiresList = new List<string>();
     private List<float> fpTimesList = new List<float>();
+    public List<Driver> qualifyingGrid = new List<Driver>();
+    public int qualifyingPhase = 0;
+    private DriversList driversList;
+    public List<Driver> GetLoadedDrivers()
+    {
+        return driversList?.drivers;
+    }
 
 
 
@@ -86,7 +96,9 @@ public class MenuRaceManager : MonoBehaviour
         }
         else if (eventNumber == 4)
         {
-            Debug.Log("Go To Quali");
+            RaceMenuPanel.SetActive(false);
+            QualifyPanel.SetActive(true);
+            qualifyManager.InitializePractice();
         }
         else
         {
@@ -105,5 +117,24 @@ public class MenuRaceManager : MonoBehaviour
     {
         TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
         teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
+
+        LoadDrivers();
+    }
+
+    void LoadDrivers()
+    {
+        string path = Path.Combine(Application.persistentDataPath, "saves", "Cicero_g15866", "activeDriversList1.json"); // fix status
+        if (File.Exists(path))
+        {
+            string json = File.ReadAllText(path);
+            driversList = JsonUtility.FromJson<DriversList>(json);
+            driversList.drivers = driversList.drivers
+                .Where(driver => driver.role == 0 || driver.role == 1)
+                .ToList();
+        }
+        else
+        {
+            Debug.LogWarning($"Arquivo não encontrado em: {path}");
+        }
     }
 }

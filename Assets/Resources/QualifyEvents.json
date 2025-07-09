@@ -1,0 +1,120 @@
+{
+  "events": [
+    {
+      "id": "qualifying_event_01",
+      "descriptions": [
+        "Você sai dos boxes com os pneus ainda frios. Está prestes a iniciar a volta rápida, mas sente que ainda não há aderência ideal.",
+        "Seus pneus ainda estão fora da janela ideal de temperatura. Você precisa decidir como abordará a volta logo de início."
+      ],
+      "decisions": [
+        {
+          "decision": "Aquece os pneus com curvas fortes e freadas antes de abrir a volta",
+          "referenceSkill": "technique",
+          "ability": 8,
+          "hasAbility": true
+        },
+        {
+          "decision": "Confia no instinto e acelera logo para aproveitar a pista livre",
+          "referenceSkill": "bravery",
+          "ability": 14,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Os pneus aquecem no tempo certo e você começa a volta com ótima aderência.",
+        "Mesmo com os pneus frios, sua coragem se paga: você acerta cada curva como se estivesse em casa."
+      ],
+      "failureText": [
+        "Pneus frios, falta de aderência e tempo perdido nas primeiras curvas.",
+        "Você escorrega na primeira curva por falta de aquecimento — já começa a volta em desvantagem."
+      ]
+    },
+    {
+      "id": "qualifying_event_02",
+      "descriptions": [
+        "No setor final da sua volta rápida, você encontra tráfego. Um carro à frente está lento, talvez terminando sua própria tentativa.",
+        "Faltando poucas curvas, um carro mais lento aparece no radar. Ultrapassá-lo pode comprometer sua linha ideal."
+      ],
+      "decisions": [
+        {
+          "decision": "Tenta ultrapassar no grito, mesmo que isso force uma linha diferente",
+          "referenceSkill": "bravery",
+          "ability": 4,
+          "hasAbility": true
+        },
+        {
+          "decision": "Mantém a distância para não comprometer a volta, mesmo perdendo décimos",
+          "referenceSkill": "strategy",
+          "ability": 11,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você encontra espaço e ultrapassa sem perder tempo. Que manobra!",
+        "Sua leitura de pista foi certeira. Perdeu pouco tempo e salvou a volta."
+      ],
+      "failureText": [
+        "Você se precipita, sai do traçado e perde tração.",
+        "A hesitação custa caro: você cruza a linha mais lento do que poderia."
+      ]
+    },
+    {
+      "id": "qualifying_event_03",
+      "descriptions": [
+        "Durante a volta rápida, uma curva crítica ainda está úmida da chuva anterior.",
+        "O setor 2 está quase seco, mas uma curva de alta ainda tem poças. Você decide como abordar."
+      ],
+      "decisions": [
+        {
+          "decision": "Tenta contornar por fora, onde parece mais seco",
+          "referenceSkill": "strategy",
+          "ability": 15,
+          "hasAbility": true
+        },
+        {
+          "decision": "Confia na técnica e passa por dentro mesmo com o risco",
+          "referenceSkill": "technique",
+          "ability": 2,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você acerta o traçado e mantém a velocidade mesmo na parte úmida.",
+        "A decisão foi arriscada, mas perfeita. Seu tempo melhora no setor!"
+      ],
+      "failureText": [
+        "Você escorrega, quase perde o controle e o tempo vai embora.",
+        "A curva molhada te força a tirar o pé — adiós, volta boa."
+      ]
+    },
+    {
+      "id": "qualifying_event_04",
+      "descriptions": [
+        "Na reta mais longa do circuito, seu DRS falha intermitentemente. Pode não abrir na hora certa.",
+        "Você se prepara para ativar o DRS, mas o rádio avisa: possível falha no sistema. Você tem que decidir rápido."
+      ],
+      "decisions": [
+        {
+          "decision": "Confia que vai funcionar e mantém o pé embaixo",
+          "referenceSkill": "bravery",
+          "ability": 19,
+          "hasAbility": true
+        },
+        {
+          "decision": "Tira o pé e faz a reta sem contar com o DRS",
+          "referenceSkill": "strategy",
+          "ability": 6,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "O DRS funciona no último segundo e você ganha uma boa vantagem.",
+        "Mesmo sem o DRS, sua decisão segura mantém a volta viva."
+      ],
+      "failureText": [
+        "O DRS não abre e você perde velocidade preciosa.",
+        "Confiança demais, DRS falha e a reta se arrasta eternamente."
+      ]
+    }
+  ]
+}
