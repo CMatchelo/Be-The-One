@@ -33,14 +33,12 @@ public class FreePracticeManager : MonoBehaviour
 	public TMP_Text abilityTestText;
 	public List<LocalizedString> localizedInRaceSkills;
 
-	private FreePracticeEventList eventList;
-	private AbilityList abilityList;
+	/* private FreePracticeEventList eventList; */
+	
 	private int totalSkillBonus = 0;
 	private List<int> eventsDone = new List<int>();
 	private int difficultyBase = 15;
 	private int currentDifficulty = 15;
-	private int tireSelected;
-	private int skillSelected;
 	private string decisionReferenceSkill = null;
 	private int abilityId = -1;
 	private int selectedEventIndex = -1;
@@ -59,9 +57,8 @@ public class FreePracticeManager : MonoBehaviour
 
 	public void InitializePractice()
 	{
-		LoadDatabases();
 		PopulateDropdowns();
-
+		
 		startSessionBtn.onClick.RemoveAllListeners();
 		rollDiceBtn.onClick.RemoveAllListeners();
 		endSessionBtn.onClick.RemoveAllListeners();
@@ -99,8 +96,6 @@ public class FreePracticeManager : MonoBehaviour
 		tireDropdown.interactable = false;
 		inRaceSkillsDropdown.interactable = false;
 		difficultyBase -= tireDropdown.value * 2;
-		tireSelected = tireDropdown.value;
-		skillSelected = inRaceSkillsDropdown.value;
 		PickNextEvent();
 	}
 
@@ -117,7 +112,9 @@ public class FreePracticeManager : MonoBehaviour
 		} while (eventsDone.Contains(selectedEventIndex));
 
 		eventsDone.Add(selectedEventIndex);
-		FreePracticeEvent selectedEvent = eventList.events[selectedEventIndex];
+		MenuRaceManager manager = FindFirstObjectByType<MenuRaceManager>();
+		List<FreePracticeEvent> eventList = manager.GetFPEvents();
+		FreePracticeEvent selectedEvent = eventList[selectedEventIndex];
 
 		// Select event description
 		int selectedEventDescription = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
@@ -143,12 +140,14 @@ public class FreePracticeManager : MonoBehaviour
 	async void SelectDecision(Decision decision)
 	{
 		// Get ability if exists
+		MenuRaceManager manager = FindFirstObjectByType<MenuRaceManager>();
+		List<Ability> abilityList = manager.GetAbilities();
 		Ability decisionAbility = null;
 		abilityId = -1;
 		string abilityToTest = "";
 		if (decision.hasAbility)
 		{
-			decisionAbility = abilityList.abilities.FirstOrDefault(a => a.id == decision.ability);
+			decisionAbility = abilityList.FirstOrDefault(a => a.id == decision.ability);
 			if (decisionAbility != null)
 			{
 				abilityId = decisionAbility.id;
@@ -182,7 +181,9 @@ public class FreePracticeManager : MonoBehaviour
 	void RollDice()
 	{
 		// Get dice result
-		FreePracticeEvent selectedEvent = eventList.events[selectedEventIndex];
+		MenuRaceManager manager = FindFirstObjectByType<MenuRaceManager>();
+		List<FreePracticeEvent> eventList = manager.GetFPEvents();
+		FreePracticeEvent selectedEvent = eventList[selectedEventIndex];
 		int resultEvent = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
 		int rollResult;
 		string result = CalculateThrow.CalculateD20(currentDifficulty, decisionReferenceSkill, out rollResult, abilityId);
@@ -286,15 +287,6 @@ public class FreePracticeManager : MonoBehaviour
 				Debug.LogError($"Skill inválida: {skillKey}");
 				return 0;
 		}
-	}
-
-	void LoadDatabases()
-	{
-		TextAsset eventsJson = Resources.Load<TextAsset>("FreePracticeEvents");
-		eventList = JsonUtility.FromJson<FreePracticeEventList>(eventsJson.text);
-
-		TextAsset abilityJson = Resources.Load<TextAsset>("abilities");
-		abilityList = JsonUtility.FromJson<AbilityList>(abilityJson.text);
 	}
 
 	async void PopulateDropdowns()

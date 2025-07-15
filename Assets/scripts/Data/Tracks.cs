@@ -15,6 +15,7 @@ public class Track
     public float lapLenghtFactor;
     public int circuitLength;
     public int totalLaps;
+    public int difficulty;
 }
 
 [Serializable]

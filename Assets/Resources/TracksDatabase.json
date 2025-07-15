@@ -10,7 +10,8 @@
       "statsFactor": 10,
       "lapLenghtFactor": 84,
       "circuitLength": 3000,
-      "totalLaps": 78
+      "totalLaps": 78,
+      "difficulty": 12
     },
     {
       "circuitName": "Interlagos",
@@ -22,7 +23,8 @@
       "statsFactor": 10,
       "lapLenghtFactor": 91,
       "circuitLength": 4000,
-      "totalLaps": 72
+      "totalLaps": 72,
+      "difficulty": 12
     },
     {
       "circuitName": "Spa-Francorchamps",
@@ -34,7 +36,8 @@
       "statsFactor": 10,
       "lapLenghtFactor": 120,
       "circuitLength": 7004,
-      "totalLaps": 44
+      "totalLaps": 44,
+      "difficulty": 12
     }
   ]
 }

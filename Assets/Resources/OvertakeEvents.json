@@ -1,0 +1,149 @@
+{
+  "events": [
+    {
+      "id": "over_event_01",
+      "descriptions": [
+        "Você se aproxima de um carro mais lento na reta principal. O DRS está ativado, e a oportunidade de ultrapassagem é clara.",
+        "Com o DRS aberto e velocidade superior, você se aproxima perigosamente do piloto à frente. O momento exige precisão."
+      ],
+      "decisions": [
+        {
+          "decision": "Ultrapassar por dentro no limite da freada",
+          "referenceSkill": "technique",
+          "ability": 12,
+          "hasAbility": true
+        },
+        {
+          "decision": "Fingir a ultrapassagem por dentro e mergulhar por fora",
+          "referenceSkill": "bravery",
+          "ability": 7,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você executa a manobra com perfeição e assume a posição!",
+        "Com frieza e controle, completa a ultrapassagem e escapa logo à frente."
+      ],
+      "failureText": [
+        "Você freia tarde demais e passa reto na curva, perdendo tempo.",
+        "A manobra não funciona e você perde o momento ideal. O adversário fecha a porta com firmeza."
+      ]
+    },
+    {
+      "id": "over_event_02",
+      "descriptions": [
+        "A pista está molhada, mas você tem um ritmo melhor que o carro à frente. Ultrapassar exige coragem e domínio.",
+        "Com aderência reduzida, você tenta encontrar espaço para uma ultrapassagem sem escorregar na linha molhada."
+      ],
+      "decisions": [
+        {
+          "decision": "Tentar ultrapassagem pela linha externa, mais seca",
+          "referenceSkill": "awareness",
+          "ability": 15,
+          "hasAbility": true
+        },
+        {
+          "decision": "Forçar por dentro, mesmo na parte mais molhada",
+          "referenceSkill": "bravery",
+          "ability": 9,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você escolhe o traçado certo e passa com firmeza, mesmo sob chuva!",
+        "A manobra arriscada vale a pena e você ganha a posição mesmo com pouca aderência."
+      ],
+      "failureText": [
+        "Você perde tração e escorrega, tendo que recuar.",
+        "A ousadia em pista molhada te faz perder tempo e a chance da ultrapassagem."
+      ]
+    },
+    {
+      "id": "over_event_03",
+      "descriptions": [
+        "O piloto à frente faz movimentos defensivos. Você precisa ser decisivo para evitar contato e perder tempo.",
+        "O adversário balança o carro para dificultar sua ação. É hora de mostrar inteligência de corrida."
+      ],
+      "decisions": [
+        {
+          "decision": "Fazer fake por fora e mergulhar por dentro na próxima curva",
+          "referenceSkill": "technique",
+          "ability": 14,
+          "hasAbility": true
+        },
+        {
+          "decision": "Pressionar o rival e esperar ele errar",
+          "referenceSkill": "patience",
+          "ability": 6,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você engana o oponente e ganha a posição com uma manobra linda!",
+        "A pressão funciona! O piloto à frente erra e você aproveita."
+      ],
+      "failureText": [
+        "Você hesita demais e perde o ritmo.",
+        "O rival não cede e você fica preso por mais uma volta."
+      ]
+    },
+    {
+      "id": "over_event_04",
+      "descriptions": [
+        "Você tem melhor tração na saída da curva e abre a asa. O carro à frente parece vulnerável.",
+        "Saindo da curva, você percebe o oponente patinando levemente. Hora de atacar ou esperar?"
+      ],
+      "decisions": [
+        {
+          "decision": "Atacar imediatamente com aceleração máxima",
+          "referenceSkill": "reaction",
+          "ability": 11,
+          "hasAbility": true
+        },
+        {
+          "decision": "Esperar até a próxima curva para tentar algo mais seguro",
+          "referenceSkill": "patience",
+          "ability": 5,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você acelera na hora certa e passa como um foguete!",
+        "O ataque é cirúrgico e você assume a posição com facilidade."
+      ],
+      "failureText": [
+        "Você ataca cedo demais e perde tração, ficando atrás.",
+        "O momento passa e o adversário se defende melhor que o esperado."
+      ]
+    },
+    {
+      "id": "over_event_05",
+      "descriptions": [
+        "Você alcança um grupo de três carros disputando posição. É um caos tático à sua frente.",
+        "No meio de uma batalha tripla, você precisa decidir se entra na briga ou espera a poeira baixar."
+      ],
+      "decisions": [
+        {
+          "decision": "Aproveitar a confusão e mergulhar entre eles",
+          "referenceSkill": "bravery",
+          "ability": 18,
+          "hasAbility": true
+        },
+        {
+          "decision": "Manter distância e esperar por um erro",
+          "referenceSkill": "awareness",
+          "ability": 10,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você costura entre os carros como um mestre e ganha múltiplas posições!",
+        "Você lê o caos perfeitamente e emerge na frente deles."
+      ],
+      "failureText": [
+        "A tentativa foi ambiciosa demais e você perde tempo preso atrás.",
+        "Esperar demais te fez perder a chance e você continua preso no trânsito."
+      ]
+    }
+  ]
+}

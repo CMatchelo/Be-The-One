@@ -18,6 +18,7 @@ public class QualifyManager : MonoBehaviour
     [Header("UI Btns and Dropdowns")]
     public Button startSessionBtn;
     public Button endSessionBtn;
+    public Button NextSessionBtn;
     public Button decision1Btn;
     public Button decision2Btn;
     public Button rollDiceBtn;
@@ -30,20 +31,16 @@ public class QualifyManager : MonoBehaviour
     public TMP_Text difficultyValueText;
     public TMP_Text skillTestText;
     public TMP_Text abilityTestText;
-    public List<LocalizedString> localizedInRaceSkills;
+    public TMP_Text qualifyOrder;
 
-    private FreePracticeEventList eventList;
-    private AbilityList abilityList;
     private List<int> eventsDone = new List<int>();
-    private int difficultyBase = 15;
-    private int currentDifficulty = 15;
+    private int difficultyBase = 12;
+    private int currentDifficulty = 12;
     private int tireSelected;
-    private int skillSelected;
     private string decisionReferenceSkill = null;
     private int abilityId = -1;
     private int selectedEventIndex = -1;
-    private float bestLapTime = 0f;
-    private List<string> skillIDs = new List<string>();
+    private float diffTime = 0f;
     private int qualifyStep = 0;
 
     void Awake()
@@ -58,18 +55,19 @@ public class QualifyManager : MonoBehaviour
 
     public void InitializePractice()
     {
-        LoadDatabases();
         PopulateDropdowns();
 
         startSessionBtn.onClick.RemoveAllListeners();
         rollDiceBtn.onClick.RemoveAllListeners();
         endSessionBtn.onClick.RemoveAllListeners();
         nextEventBtn.onClick.RemoveAllListeners();
+        NextSessionBtn.onClick.RemoveAllListeners();
 
         startSessionBtn.onClick.AddListener(StartSession);
         rollDiceBtn.onClick.AddListener(RollDice);
         endSessionBtn.onClick.AddListener(EndSession);
         nextEventBtn.onClick.AddListener(PickNextEvent);
+        NextSessionBtn.onClick.AddListener(InitializePractice);
 
         decision1Btn.interactable = false;
         decision2Btn.interactable = false;
@@ -86,18 +84,18 @@ public class QualifyManager : MonoBehaviour
 
         difficultyBase = 12;
         currentDifficulty = difficultyBase;
+        diffTime = 0;
 
         eventsDone.Clear();
     }
 
     void StartSession()
     {
-        SimulateQualifying();
-        /* startSessionBtn.interactable = false;
+        /* SimulateQualifying(); */
+        startSessionBtn.interactable = false;
         tireDropdown.interactable = false;
-        difficultyBase -= tireDropdown.value;
         tireSelected = tireDropdown.value;
-        PickNextEvent(); */
+        PickNextEvent();
     }
 
     void PickNextEvent()
@@ -106,13 +104,18 @@ public class QualifyManager : MonoBehaviour
         skillTestText.text = "";
         abilityTestText.text = "";
         // Select event
+
+        MenuRaceManager manager = FindFirstObjectByType<MenuRaceManager>();
+        List<FreePracticeEvent> eventList = manager.GetQualifyEvents();
+
         do
         {
-            selectedEventIndex = RandomNumberGenerator.GetRandomBetween(0, eventList.events.Count() - 1);
+            selectedEventIndex = RandomNumberGenerator.GetRandomBetween(0, eventList.Count() - 1);
         } while (eventsDone.Contains(selectedEventIndex));
 
+
         eventsDone.Add(selectedEventIndex);
-        FreePracticeEvent selectedEvent = eventList.events[selectedEventIndex];
+        FreePracticeEvent selectedEvent = eventList[selectedEventIndex];
 
         // Select event description
         int selectedEventDescription = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
@@ -138,12 +141,14 @@ public class QualifyManager : MonoBehaviour
     async void SelectDecision(Decision decision)
     {
         // Get ability if exists
+        MenuRaceManager manager = FindFirstObjectByType<MenuRaceManager>();
+        List<Ability> abilityList = manager.GetAbilities();
         Ability decisionAbility = null;
         abilityId = -1;
         string abilityToTest = "";
         if (decision.hasAbility)
         {
-            decisionAbility = abilityList.abilities.FirstOrDefault(a => a.id == decision.ability);
+            decisionAbility = abilityList.FirstOrDefault(a => a.id == decision.ability);
             if (decisionAbility != null)
             {
                 abilityId = decisionAbility.id;
@@ -175,8 +180,10 @@ public class QualifyManager : MonoBehaviour
 
     void RollDice()
     {
+        MenuRaceManager manager = FindFirstObjectByType<MenuRaceManager>();
+        List<FreePracticeEvent> eventList = manager.GetQualifyEvents();
         // Get dice result
-        FreePracticeEvent selectedEvent = eventList.events[selectedEventIndex];
+        FreePracticeEvent selectedEvent = eventList[selectedEventIndex];
         int resultEvent = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
         int rollResult;
         string result = CalculateThrow.CalculateD20(currentDifficulty, decisionReferenceSkill, out rollResult, abilityId);
@@ -185,11 +192,15 @@ public class QualifyManager : MonoBehaviour
         if (result == "suc" | result == "critSuc")
         {
             eventDescriptionText.text = selectedEvent.successText[resultEvent];
+            diffTime += UnityEngine.Random.Range(-0.2f, -0.5f);
         }
         else
         {
             eventDescriptionText.text = selectedEvent.failureText[resultEvent];
+            diffTime += UnityEngine.Random.Range(0.2f, 0.5f);
         }
+
+        Debug.Log("Tempo de dirença parcial: " + diffTime);
 
         rollResultText.text = "d20: " + rollResult;
         rollDiceBtn.interactable = false;
@@ -199,6 +210,7 @@ public class QualifyManager : MonoBehaviour
         // If maximum events, end sessions
         if (eventsDone.Count >= 3)
         {
+            Debug.Log("Tempo de dirença: " + diffTime);
             SimulateQualifying();
             endSessionBtn.interactable = true;
             return;
@@ -226,6 +238,8 @@ public class QualifyManager : MonoBehaviour
         playerDriver.acceleration += bonus.acceleration;
         playerDriver.topSpeed += bonus.topSpeed;
 
+        Debug.Log("Top Speed: " + playerDriver.topSpeed);
+
         // Calculate factors to simulate lap
         Team playerTeam = manager.teamsList.teams.Find(t => t.id == playerDriver.teamId);
         Track selectedTrack = manager.selectedTrack;
@@ -239,12 +253,13 @@ public class QualifyManager : MonoBehaviour
         float carFactor = PerformanceCalculator.CalculateCarFactor(playerDriver, playerTeam, selectedTrack);
         CarSimulationState playerCar = new CarSimulationState(tireSelected, carFactor, playerDriver.firstName, playerTeam.teamName);
         float playerLapTime = RaceSimulatorUtility.CalculateLapTime(playerCar, trackFactor, selectedTrack.circuitLength);
-
+        manager.qualifyingTimes[playerDriver.id] = playerLapTime;
+        
         List<(Driver driver, float lapTime)> results = new List<(Driver, float)>
         {
             (playerDriver, playerLapTime)
         };
-
+        Debug.Log($"Jogador: {playerDriver.firstName} - Tempo: {playerLapTime:F3}s");
         // Simulate opponents laptime
         foreach (Driver opponent in loadedDrivers)
         {
@@ -254,34 +269,126 @@ public class QualifyManager : MonoBehaviour
             float opponentCarFactor = PerformanceCalculator.CalculateCarFactor(opponent, team, selectedTrack);
             CarSimulationState opponentCar = new CarSimulationState(tire, opponentCarFactor, opponent.firstName, team.teamName);
             float opponentLapTime = RaceSimulatorUtility.CalculateLapTime(opponentCar, trackFactor, selectedTrack.circuitLength);
-
+            manager.qualifyingTimes[opponent.id] = opponentLapTime;
+            Debug.Log($"Oponente: {opponent.firstName} - Tempo: {opponentLapTime:F3}s");
             results.Add((opponent, opponentLapTime));
         }
 
         // Order from slowest to fastest
         results = results.OrderByDescending(r => r.lapTime).ToList();
 
+        // Prepare text to display
+        string phaseLabel = manager.qualifyingPhase == 0 ? "Q1 - Eliminados:\n"
+                           : manager.qualifyingPhase == 1 ? "Q2 - Eliminados:\n"
+                           : "Q3 - Resultados Finais:\n";
+
+        string eliminatedText = "";
+
         // Add slowests to new list
         int countToTake = (manager.qualifyingPhase < 2) ? 5 : results.Count;
+        bool playerEliminated = false;
+
         for (int i = 0; i < countToTake; i++)
         {
-            Debug.Log($"{i + 1}º - {results[i].driver.firstName} - {results[i].lapTime:F3}s");
-            Driver eliminatedDriver = results[i].driver;
+            var eliminatedDriver = results[i].driver;
+            float eliminatedTime = results[i].lapTime;
+
             manager.qualifyingGrid.Add(eliminatedDriver);
             loadedDrivers.RemoveAll(d => d.id == eliminatedDriver.id);
-        }
-        manager.qualifyingPhase++;
 
-        if (manager.qualifyingPhase == 3)
-        {
-            manager.qualifyingGrid.Reverse();
-            Debug.Log("GRID FINAL:");
-            for (int i = 0; i < manager.qualifyingGrid.Count; i++)
+            eliminatedText += $"{i + 1}º - {eliminatedDriver.firstName} - {eliminatedTime:F3}s\n";
+
+            if (eliminatedDriver.id == SaveSession.CurrentGameData.profile.driver.id)
             {
-                Debug.Log($"{i + 1}º - {manager.qualifyingGrid[i].firstName}");
+                playerEliminated = true;
             }
         }
+
+        manager.qualifyingPhase++;
+        qualifyOrder.text = phaseLabel + eliminatedText;
+
+        if (playerEliminated)
+        {
+            // PLayer eliminated
+            SimulateRemainingQualifying(manager, loadedDrivers, trackFactor, qualifyOrder);
+        }
+        else if (manager.qualifyingPhase == 3)
+        {
+            // End Quali
+            manager.qualifyingGrid.Reverse();
+
+            string finalGridText = "GRID FINAL:\n";
+            for (int i = 0; i < manager.qualifyingGrid.Count; i++)
+            {
+                Driver driver = manager.qualifyingGrid[i];
+                float time = manager.qualifyingTimes.ContainsKey(driver.id) ? manager.qualifyingTimes[driver.id] : -1f;
+                finalGridText += $"{i + 1}º - {manager.qualifyingGrid[i].firstName} - {time:F3}s \n";
+            }
+
+            qualifyOrder.text = finalGridText;
+
+            endSessionBtn.interactable = true;
+            NextSessionBtn.interactable = false;
+        }
+        else
+        {
+            // Player in next session
+            NextSessionBtn.interactable = true;
+            endSessionBtn.interactable = false;
+        }
+
     }
+
+    void SimulateRemainingQualifying(MenuRaceManager manager, List<Driver> loadedDrivers, float trackFactor, TMP_Text qualifyOrder)
+    {
+        List<(Driver driver, float lapTime)> results = new List<(Driver, float)>();
+
+        while (manager.qualifyingPhase < 3)
+        {
+            results.Clear();
+
+            foreach (Driver driver in loadedDrivers)
+            {
+                Team team = manager.teamsList.teams.Find(t => t.id == driver.teamId);
+                string tire = tireDropdown.options[UnityEngine.Random.Range(0, tireDropdown.options.Count)].text;
+
+                float opponentCarFactor = PerformanceCalculator.CalculateCarFactor(driver, team, manager.selectedTrack);
+                CarSimulationState car = new CarSimulationState(tire, opponentCarFactor, driver.firstName, team.teamName);
+                float lapTime = RaceSimulatorUtility.CalculateLapTime(car, trackFactor, manager.selectedTrack.circuitLength);
+                manager.qualifyingTimes[driver.id] = lapTime;
+                results.Add((driver, lapTime));
+            }
+
+            results = results.OrderByDescending(r => r.lapTime).ToList();
+            int eliminations = (manager.qualifyingPhase < 2) ? 5 : results.Count;
+
+            for (int i = 0; i < eliminations; i++)
+            {
+                Driver eliminatedDriver = results[i].driver;
+                manager.qualifyingGrid.Add(eliminatedDriver);
+                loadedDrivers.RemoveAll(d => d.id == eliminatedDriver.id);
+            }
+
+            manager.qualifyingPhase++;
+        }
+
+        // Inverter e exibir grid final
+        manager.qualifyingGrid.Reverse();
+
+        string finalGridText = "GRID FINAL:\n";
+        for (int i = 0; i < manager.qualifyingGrid.Count; i++)
+        {
+            Driver driver = manager.qualifyingGrid[i];
+            float time = manager.qualifyingTimes.ContainsKey(driver.id) ? manager.qualifyingTimes[driver.id] : -1f;
+            finalGridText += $"{i + 1}º - {manager.qualifyingGrid[i].firstName} - {time:F3}s \n";
+        }
+
+        qualifyOrder.text = finalGridText;
+
+        endSessionBtn.interactable = true;
+        NextSessionBtn.interactable = false;
+    }
+
     private int GetSkillValue(PlayerProfile profile, string skillKey)
     {
         switch (skillKey)
@@ -296,15 +403,6 @@ public class QualifyManager : MonoBehaviour
                 Debug.LogError($"Skill inválida: {skillKey}");
                 return 0;
         }
-    }
-
-    void LoadDatabases()
-    {
-        TextAsset eventsJson = Resources.Load<TextAsset>("QualifyEvents");
-        eventList = JsonUtility.FromJson<FreePracticeEventList>(eventsJson.text);
-
-        TextAsset abilityJson = Resources.Load<TextAsset>("abilities");
-        abilityList = JsonUtility.FromJson<AbilityList>(abilityJson.text);
     }
 
     void PopulateDropdowns()

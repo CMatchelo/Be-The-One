@@ -44,8 +44,8 @@
         },
         {
           "decision": "Mantém a distância para não comprometer a volta, mesmo perdendo décimos",
-          "referenceSkill": "strategy",
-          "ability": 11,
+          "referenceSkill": "technique",
+          "ability": 2,
           "hasAbility": true
         }
       ],

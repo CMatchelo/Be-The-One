@@ -1,4 +1,4 @@
-using UnityEngine;
+/* using UnityEngine;
 using TMPro;
 
 using System.Collections.Generic;
@@ -66,4 +66,4 @@ public class RaceSimulator : MonoBehaviour
         logMessages.Add(message);
         nextRaceText.text = string.Join("\n", logMessages);
     }
-}
+} */

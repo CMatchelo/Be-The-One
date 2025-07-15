@@ -14,9 +14,11 @@ public class MenuRaceManager : MonoBehaviour
     [Header("UI Canvas")]
     public GameObject FPPanel;
     public GameObject QualifyPanel;
+    public GameObject RacePanel;
     public GameObject RaceMenuPanel;
     public FreePracticeManager freePracticeManager;
     public QualifyManager qualifyManager;
+    public RaceManager raceManager;
 
     [Header("UI Btns and Dropdowns")]
     public List<Button> GoToEventBtn;
@@ -33,16 +35,38 @@ public class MenuRaceManager : MonoBehaviour
     private List<string> fpTiresList = new List<string>();
     private List<float> fpTimesList = new List<float>();
     public List<Driver> qualifyingGrid = new List<Driver>();
+    public Dictionary<int, float> qualifyingTimes = new Dictionary<int, float>();
     public int qualifyingPhase = 0;
+
+    private FreePracticeEventList FPEventList;
+    public List<FreePracticeEvent> GetFPEvents()
+    {
+        return FPEventList?.events?.ToList();
+    }
+
+    private FreePracticeEventList QualifyEventList;
+    public List<FreePracticeEvent> GetQualifyEvents()
+    {
+        return QualifyEventList?.events?.ToList();
+    }
+
+    private FreePracticeEventList OvertakeEventList;
+    public List<FreePracticeEvent> GetOvertakeEvents()
+    {
+        return OvertakeEventList?.events?.ToList();
+    }
+
+    private AbilityList abilityList;
+    public List<Ability> GetAbilities()
+    {
+        return abilityList?.abilities?.ToList();
+    }
+
     private DriversList driversList;
     public List<Driver> GetLoadedDrivers()
     {
         return driversList?.drivers;
     }
-
-
-
-
 
     void Awake()
     {
@@ -92,7 +116,9 @@ public class MenuRaceManager : MonoBehaviour
     {
         if (eventNumber == 5)
         {
-            Debug.Log("Go To Race");
+            RaceMenuPanel.SetActive(false);
+            RacePanel.SetActive(true);
+            raceManager.InitializePractice();
         }
         else if (eventNumber == 4)
         {
@@ -117,6 +143,18 @@ public class MenuRaceManager : MonoBehaviour
     {
         TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
         teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
+
+        TextAsset FPEventsJson = Resources.Load<TextAsset>("FreePracticeEvents");
+        FPEventList = JsonUtility.FromJson<FreePracticeEventList>(FPEventsJson.text);
+
+        TextAsset QualifyEventsJson = Resources.Load<TextAsset>("QualifyEvents");
+        QualifyEventList = JsonUtility.FromJson<FreePracticeEventList>(QualifyEventsJson.text);
+
+        TextAsset OvertakeEventsJson = Resources.Load<TextAsset>("OvertakeEvents");
+        OvertakeEventList = JsonUtility.FromJson<FreePracticeEventList>(OvertakeEventsJson.text);
+
+        TextAsset abilityJson = Resources.Load<TextAsset>("abilities");
+        abilityList = JsonUtility.FromJson<AbilityList>(abilityJson.text);
 
         LoadDrivers();
     }
