@@ -50,10 +50,16 @@ public class MenuRaceManager : MonoBehaviour
         return QualifyEventList?.events?.ToList();
     }
 
-    private FreePracticeEventList OvertakeEventList;
-    public List<FreePracticeEvent> GetOvertakeEvents()
+    private FreePracticeEventList OvertakingEvents;
+    public List<FreePracticeEvent> GetOvertakingEvents()
     {
-        return OvertakeEventList?.events?.ToList();
+        return OvertakingEvents?.events?.ToList();
+    }
+
+    private FreePracticeEventList OvertakenEvents;
+    public List<FreePracticeEvent> GetOvertakenEvents()
+    {
+        return OvertakenEvents?.events?.ToList();
     }
 
     private AbilityList abilityList;
@@ -72,7 +78,6 @@ public class MenuRaceManager : MonoBehaviour
     {
         LoadUtility.LoadGame("Cicero_g15866"); // Fix id load
         LoadDatabases();
-        Debug.Log("Zerou");
         SaveSession.CurrentGameData.profile.weekendBonus.highSpeedCorners = 0;
         SaveSession.CurrentGameData.profile.weekendBonus.lowSpeedCorners = 0;
         SaveSession.CurrentGameData.profile.weekendBonus.acceleration = 0;
@@ -116,15 +121,16 @@ public class MenuRaceManager : MonoBehaviour
     {
         if (eventNumber == 5)
         {
+            /* GenerateTestQualifyingGrid(); */
             RaceMenuPanel.SetActive(false);
             RacePanel.SetActive(true);
-            raceManager.InitializePractice();
+            raceManager.InitializeRace();
         }
         else if (eventNumber == 4)
         {
             RaceMenuPanel.SetActive(false);
             QualifyPanel.SetActive(true);
-            qualifyManager.InitializePractice();
+            qualifyManager.InitializeQuali();
         }
         else
         {
@@ -150,8 +156,11 @@ public class MenuRaceManager : MonoBehaviour
         TextAsset QualifyEventsJson = Resources.Load<TextAsset>("QualifyEvents");
         QualifyEventList = JsonUtility.FromJson<FreePracticeEventList>(QualifyEventsJson.text);
 
-        TextAsset OvertakeEventsJson = Resources.Load<TextAsset>("OvertakeEvents");
-        OvertakeEventList = JsonUtility.FromJson<FreePracticeEventList>(OvertakeEventsJson.text);
+        TextAsset OvertakingEventsJson = Resources.Load<TextAsset>("OvertakingEvents");
+        OvertakingEvents = JsonUtility.FromJson<FreePracticeEventList>(OvertakingEventsJson.text);
+
+        TextAsset OvertakenEventsJson = Resources.Load<TextAsset>("OvertakenEvents");
+        OvertakenEvents = JsonUtility.FromJson<FreePracticeEventList>(OvertakenEventsJson.text);
 
         TextAsset abilityJson = Resources.Load<TextAsset>("abilities");
         abilityList = JsonUtility.FromJson<AbilityList>(abilityJson.text);
@@ -175,4 +184,28 @@ public class MenuRaceManager : MonoBehaviour
             Debug.LogWarning($"Arquivo não encontrado em: {path}");
         }
     }
+
+    //////////
+
+    public void GenerateTestQualifyingGrid()
+    {
+        // Garante que a lista está limpa
+        qualifyingGrid.Clear();
+
+        // Ordena os pilotos pela soma das habilidades principais (como um "valor geral")
+        List<Driver> orderedDrivers = driversList.drivers
+            .Where(d => d.active && (d.role == 0 || d.role == 1)) // Só pilotos ativos titulares e reservas
+            .OrderByDescending(d => d.highSpeedCorners + d.lowSpeedCorners + d.acceleration + d.topSpeed)
+            .ToList();
+
+        // Adiciona todos à lista de grid (do mais rápido pro mais lento)
+        qualifyingGrid.AddRange(orderedDrivers);
+
+        Debug.Log("Grid de largada gerado automaticamente para testes.");
+        for (int i = 0; i < qualifyingGrid.Count; i++)
+        {
+            Debug.Log($"{i + 1}º - {qualifyingGrid[i].firstName} {qualifyingGrid[i].lastName}");
+        }
+    }
+
 }

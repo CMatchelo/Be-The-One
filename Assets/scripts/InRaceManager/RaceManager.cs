@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
@@ -22,7 +23,9 @@ public class RaceManager : MonoBehaviour
 
 
     [Header("UI Texts")]
-    public TMP_Text outputText;
+    public TMP_Text currentLapText;
+    public TMP_Text previousLapText;
+    public TMP_Text lapEventsText;
     public TMP_Text eventDescriptionText;
     public TMP_Text rollResultText;
     public TMP_Text difficultyValueText;
@@ -31,9 +34,11 @@ public class RaceManager : MonoBehaviour
 
     private List<(Driver driver, float totalTime, float lastLap)> raceState = new();
     private List<string> logMessages = new();
+    private List<string> lapEventMessages = new();
     private List<int> eventsDone = new List<int>();
     private bool waitingForPlayer = false;
     private int selectedEventIndex = -1;
+    private FreePracticeEvent selectedEvent;
     private int currentDifficulty = 10;
     private int difficultyBase = 10;
     private string decisionReferenceSkill = null;
@@ -45,10 +50,14 @@ public class RaceManager : MonoBehaviour
 
     }
 
-    public void InitializePractice()
+    public void InitializeRace()
     {
         menuRaceManager = FindFirstObjectByType<MenuRaceManager>();
         startRaceButton.onClick.AddListener(StartRace);
+        rollDiceBtn.onClick.AddListener(RollDice);
+        continueRaceBtn.onClick.AddListener(ContinueRace);
+        decision1Btn.onClick.AddListener(() => SelectDecision(selectedEvent.decisions[0]));
+        decision2Btn.onClick.AddListener(() => SelectDecision(selectedEvent.decisions[1]));
     }
 
     private void StartRace()
@@ -66,24 +75,31 @@ public class RaceManager : MonoBehaviour
         raceState.Clear();
         foreach (var driver in grid)
         {
+            int playerId = SaveSession.CurrentGameData.profile.driver.id;
+            if (driver.id == playerId)
+            {
+                Debug.Log(driver.highSpeedCorners);
+            }
             float carFactor = PerformanceCalculator.CalculateCarFactor(driver,
                 menuRaceManager.teamsList.teams.Find(t => t.id == driver.teamId),
                 track);
 
             var car = new CarSimulationState("Soft", carFactor, driver.firstName, driver.teamId.ToString());
-            raceState.Add((driver, 0f, 0f)); // tempo total, última volta
+            raceState.Add((driver, 0f, 0f)); // total time, last lap
         }
 
         // Loop das voltas
         for (int lap = 1; lap <= track.totalLaps; lap++)
         {
+            previousLapText.text = "";
+            previousLapText.text = string.Join("\n", logMessages);
             logMessages.Clear();
-            outputText.text = "";
+            lapEventMessages.Clear();
             List<(Driver driver, float totalTime, float lastLap)> updatedState = new();
 
-            for (int i = 0; i < raceState.Count; i++)
+            for (int idx = 0; idx < raceState.Count; idx++)
             {
-                var entry = raceState[i];
+                var entry = raceState[idx];
                 var driver = entry.driver;
 
                 float carFactor = PerformanceCalculator.CalculateCarFactor(driver,
@@ -91,78 +107,26 @@ public class RaceManager : MonoBehaviour
                     track);
 
                 var car = new CarSimulationState("Soft", carFactor, driver.firstName, driver.teamId.ToString());
-
                 float lapTime = RaceSimulatorUtility.CalculateLapTime(car, trackFactor, track.circuitLength);
 
-                // Verificar ultrapassagem (exceto para o líder)
-                if (i > 0)
+                float baseTime = entry.totalTime;
+
+                yield return StartCoroutine(TryOvertake(driver, baseTime, lapTime, updatedState, track, trackFactor, result =>
                 {
-                    float frontTotal = updatedState[i - 1].totalTime;
-                    float behindTotal = entry.totalTime + lapTime;
-
-                    // Se o piloto de trás ficaria na frente do da frente
-                    if (behindTotal < frontTotal)
-                    {
-                        Driver overtaker = driver;
-                        Driver overtaken = updatedState[i - 1].driver;
-                        int playerId = SaveSession.CurrentGameData.profile.driver.id;
-                        if (overtaker.id == playerId || overtaken.id == playerId)
-                        {
-                            AddLogMessage($"Jogador envolvido em ultrapassagem: {overtaker.firstName} → {overtaken.firstName}");
-                            waitingForPlayer = true;
-                            RaceMenuPanel.SetActive(false);
-                            RaceDecisionPanel.SetActive(true);
-                            PickNextEvent();
-                            yield return new WaitUntil(() => waitingForPlayer == false);
-
-                        }
-                        else
-                        {
-                            rollResult = RandomNumberGenerator.GetRandomBetween(1, 20);
-                        }
-                        // Aplicar erro grave se roll == 1
-                        if (rollResult == 1)
-                        {
-                            float penalty = UnityEngine.Random.Range(9f, 11f);
-                            lapTime += penalty;
-                            AddLogMessage($"{driver.firstName} cometeu um erro grave! Perdeu {penalty:F1}s.");
-                        }
-                        if (rollResult < track.difficulty && rollResult != 1)
-                        {
-                            // Não ultrapassa: tempo ajustado para ficar atrás do piloto da frente
-                            float penalty = UnityEngine.Random.Range(0.1f, 0.5f);
-                            behindTotal = frontTotal - penalty;
-                            lapTime = behindTotal - entry.totalTime;
-
-                            AddLogMessage($"{driver.firstName} ficou preso atrás de {updatedState[i - 1].driver.firstName} (Roll: {rollResult} ≤ {track.difficulty})");
-                        }
-                        else
-                        {
-                            AddLogMessage($"{driver.firstName} ultrapassou {updatedState[i - 1].driver.firstName} (Roll: {rollResult} > {track.difficulty})");
-                        }
-                    }
-
-                    updatedState.Add((driver, behindTotal, lapTime));
-                }
-
-                else
-                {
-                    // Líder, simula normal
-                    updatedState.Add((driver, entry.totalTime + lapTime, lapTime));
-                }
+                    updatedState.Insert(result.insertIndex, (result.driver, result.totalTime, result.lastLap));
+                }));
             }
 
-            // Atualizar a raceState e ordenar
             raceState = updatedState.OrderBy(t => t.totalTime).ToList();
+            currentLapText.text = "";
 
-            // Construir log
             AddLogMessage($"--- Volta {lap}/{track.totalLaps} ---");
             for (int i = 0; i < raceState.Count; i++)
             {
                 var entry = raceState[i];
                 AddLogMessage($"{i + 1}º - {entry.driver.firstName} - {entry.lastLap:F3}s - Total: {entry.totalTime:F3}s");
             }
-            yield return new WaitForSeconds(0.5f);
+            yield return new WaitForSeconds(2f);
         }
 
         AddLogMessage("--- Corrida Finalizada! ---");
@@ -173,14 +137,103 @@ public class RaceManager : MonoBehaviour
         }
     }
 
-    void PickNextEvent()
+    private IEnumerator TryOvertake(
+    Driver driver,
+    float baseTime,
+    float lapTime,
+    List<(Driver driver, float totalTime, float lastLap)> updatedState,
+    Track track,
+    float trackFactor,
+    Action<(Driver driver, float totalTime, float lastLap, int insertIndex)> onFinished)
+    {
+        float newTotal = baseTime + lapTime;
+        int insertIndex = updatedState.Count;
+
+        for (int i = updatedState.Count - 1; i >= 0; i--)
+        {
+            var frontDriver = updatedState[i];
+
+            if (newTotal < frontDriver.totalTime)
+            {
+                int roll = 0;
+                //int playerId = SaveSession.CurrentGameData.profile.driver.id;
+                int playerId = 1111;
+
+                if (driver.id == playerId || frontDriver.driver.id == playerId)
+                {
+                    AddEventMessage($"Jogador envolvido em ultrapassagem: {driver.firstName} → {frontDriver.driver.firstName}");
+                    waitingForPlayer = true;
+                    RaceDecisionPanel.SetActive(true);
+                    RacePanel.SetActive(false);
+
+                    if (driver.id == playerId) PickNextEvent("overtaking");
+                    else PickNextEvent("overtaken");
+
+                    yield return new WaitUntil(() => waitingForPlayer == false);
+
+                    if (driver.id == playerId) roll = rollResult;
+                    else roll = roll = 20 - rollResult;
+                }
+                else
+                {
+                    roll = RandomNumberGenerator.GetRandomBetween(1, 20);
+                }
+
+                roll = RandomNumberGenerator.GetRandomBetween(1, 20);
+
+                if (roll == 1)
+                {
+                    float penalty = UnityEngine.Random.Range(9f, 11f);
+                    newTotal = frontDriver.totalTime + penalty;
+                    lapTime = newTotal - baseTime;
+                    AddEventMessage($"{driver.firstName} cometeu um erro grave! Perdeu {penalty:F1}s.");
+                    break;
+                }
+
+                if (roll < track.difficulty)
+                {
+                    float penalty = UnityEngine.Random.Range(0.1f, 0.5f);
+
+                    float attemptedTime = frontDriver.totalTime + penalty;
+
+                    if (i < updatedState.Count - 1)
+                    {
+                        var behindDriver = updatedState[i + 1];
+                        attemptedTime = Mathf.Min(attemptedTime, behindDriver.totalTime - 0.001f);
+                    }
+
+                    newTotal = attemptedTime;
+                    lapTime = newTotal - baseTime;
+
+                    AddEventMessage(
+                        $"{driver.firstName} ficou preso atrás de {frontDriver.driver.firstName} (Roll: {roll} ≤ {track.difficulty})"
+                    );
+                    break;
+                }
+                else
+                {
+                    AddEventMessage($"{driver.firstName} ultrapassou {frontDriver.driver.firstName} (Roll: {roll} > {track.difficulty})");
+                    insertIndex = i;
+                }
+            }
+            else
+            {
+                break;
+            }
+        }
+
+        onFinished((driver, newTotal, lapTime, insertIndex));
+    }
+
+    void PickNextEvent(string eventType)
     {
         rollResultText.text = "";
         skillTestText.text = "";
         abilityTestText.text = "";
+        List<FreePracticeEvent> eventList;
         // Select event
-
-        List<FreePracticeEvent> eventList = menuRaceManager.GetOvertakeEvents();
+        if (eventType == "overtaking") eventList = menuRaceManager.GetOvertakingEvents();
+        else eventList = menuRaceManager.GetOvertakenEvents();
 
         do
         {
@@ -189,7 +242,7 @@ public class RaceManager : MonoBehaviour
 
 
         eventsDone.Add(selectedEventIndex);
-        FreePracticeEvent selectedEvent = eventList[selectedEventIndex];
+        selectedEvent = eventList[selectedEventIndex];
 
         // Select event description
         int selectedEventDescription = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
@@ -205,8 +258,7 @@ public class RaceManager : MonoBehaviour
         TMP_Text decision2Text = decision2Btn.GetComponentInChildren<TMP_Text>();
         decision1Text.text = selectedEvent.decisions[0].decision;
         decision2Text.text = selectedEvent.decisions[1].decision;
-        decision1Btn.onClick.AddListener(() => SelectDecision(selectedEvent.decisions[0]));
-        decision2Btn.onClick.AddListener(() => SelectDecision(selectedEvent.decisions[1]));
+
         decision1Btn.interactable = true;
         decision2Btn.interactable = true;
         continueRaceBtn.interactable = false;
@@ -252,6 +304,25 @@ public class RaceManager : MonoBehaviour
         skillTestText.text = $"{skillText}: {skillToTest} (+{skillValue})";
     }
 
+    void RollDice()
+    {
+        string result = CalculateThrow.CalculateD20(currentDifficulty, decisionReferenceSkill, out rollResult, abilityId);
+        rollResultText.text = "d20: " + rollResult;
+        int resultEvent = RandomNumberGenerator.GetRandomBetween(0, selectedEvent.descriptions.Length - 1);
+        if (result == "suc" | result == "critSuc")
+        {
+            eventDescriptionText.text = selectedEvent.successText[resultEvent];
+        }
+        else
+        {
+            eventDescriptionText.text = selectedEvent.failureText[resultEvent];
+        }
+        rollDiceBtn.interactable = false;
+        decision1Btn.interactable = false;
+        decision2Btn.interactable = false;
+        continueRaceBtn.interactable = true;
+    }
+
     private int GetSkillValue(PlayerProfile profile, string skillKey)
     {
         switch (skillKey)
@@ -270,14 +341,21 @@ public class RaceManager : MonoBehaviour
 
     public void ContinueRace()
     {
-        RaceMenuPanel.SetActive(true);
+        RacePanel.SetActive(true);
         RaceDecisionPanel.SetActive(false);
+        RacePanel.SetActive(true);
         waitingForPlayer = false;
     }
 
     private void AddLogMessage(string message)
     {
         logMessages.Add(message);
-        outputText.text = string.Join("\n", logMessages);
+        currentLapText.text = string.Join("\n", logMessages);
+    }
+
+    private void AddEventMessage(string message)
+    {
+        lapEventMessages.Add(message);
+        lapEventsText.text = string.Join("\n", lapEventMessages);
     }
 }

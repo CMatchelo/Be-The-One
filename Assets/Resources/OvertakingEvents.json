@@ -73,7 +73,7 @@
         },
         {
           "decision": "Pressionar o rival e esperar ele errar",
-          "referenceSkill": "patience",
+          "referenceSkill": "technique",
           "ability": 6,
           "hasAbility": true
         }
@@ -96,13 +96,13 @@
       "decisions": [
         {
           "decision": "Atacar imediatamente com aceleração máxima",
-          "referenceSkill": "reaction",
+          "referenceSkill": "technique",
           "ability": 11,
           "hasAbility": true
         },
         {
           "decision": "Esperar até a próxima curva para tentar algo mais seguro",
-          "referenceSkill": "patience",
+          "referenceSkill": "technique",
           "ability": 5,
           "hasAbility": true
         }

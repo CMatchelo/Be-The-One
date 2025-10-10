@@ -42,6 +42,7 @@ public class QualifyManager : MonoBehaviour
     private int selectedEventIndex = -1;
     private float diffTime = 0f;
     private int qualifyStep = 0;
+    private bool playerBonusApplied = false;
 
     void Awake()
     {
@@ -53,7 +54,7 @@ public class QualifyManager : MonoBehaviour
 
     }
 
-    public void InitializePractice()
+    public void InitializeQuali()
     {
         PopulateDropdowns();
 
@@ -67,7 +68,7 @@ public class QualifyManager : MonoBehaviour
         rollDiceBtn.onClick.AddListener(RollDice);
         endSessionBtn.onClick.AddListener(EndSession);
         nextEventBtn.onClick.AddListener(PickNextEvent);
-        NextSessionBtn.onClick.AddListener(InitializePractice);
+        NextSessionBtn.onClick.AddListener(InitializeQuali);
 
         decision1Btn.interactable = false;
         decision2Btn.interactable = false;
@@ -220,7 +221,7 @@ public class QualifyManager : MonoBehaviour
 
     void EndSession()
     {
-        SaveUtility.UpdateProfile();
+        /* SaveUtility.UpdateProfile(); */
         QualifyPanel.SetActive(false);
         RaceMenuPanel.SetActive(true);
     }
@@ -233,12 +234,15 @@ public class QualifyManager : MonoBehaviour
         Driver playerDriver = SaveSession.CurrentGameData.profile.driver;
         WeekendBonus bonus = SaveSession.CurrentGameData.profile.weekendBonus;
 
-        playerDriver.highSpeedCorners += bonus.highSpeedCorners;
-        playerDriver.lowSpeedCorners += bonus.lowSpeedCorners;
-        playerDriver.acceleration += bonus.acceleration;
-        playerDriver.topSpeed += bonus.topSpeed;
+        if (!playerBonusApplied)
+        {
+            playerDriver.highSpeedCorners += bonus.highSpeedCorners;
+            playerDriver.lowSpeedCorners += bonus.lowSpeedCorners;
+            playerDriver.acceleration += bonus.acceleration;
+            playerDriver.topSpeed += bonus.topSpeed;
 
-        Debug.Log("Top Speed: " + playerDriver.topSpeed);
+            playerBonusApplied = true;
+        }
 
         // Calculate factors to simulate lap
         Team playerTeam = manager.teamsList.teams.Find(t => t.id == playerDriver.teamId);
@@ -254,12 +258,11 @@ public class QualifyManager : MonoBehaviour
         CarSimulationState playerCar = new CarSimulationState(tireSelected, carFactor, playerDriver.firstName, playerTeam.teamName);
         float playerLapTime = RaceSimulatorUtility.CalculateLapTime(playerCar, trackFactor, selectedTrack.circuitLength);
         manager.qualifyingTimes[playerDriver.id] = playerLapTime;
-        
+
         List<(Driver driver, float lapTime)> results = new List<(Driver, float)>
         {
             (playerDriver, playerLapTime)
         };
-        Debug.Log($"Jogador: {playerDriver.firstName} - Tempo: {playerLapTime:F3}s");
         // Simulate opponents laptime
         foreach (Driver opponent in loadedDrivers)
         {
@@ -270,7 +273,6 @@ public class QualifyManager : MonoBehaviour
             CarSimulationState opponentCar = new CarSimulationState(tire, opponentCarFactor, opponent.firstName, team.teamName);
             float opponentLapTime = RaceSimulatorUtility.CalculateLapTime(opponentCar, trackFactor, selectedTrack.circuitLength);
             manager.qualifyingTimes[opponent.id] = opponentLapTime;
-            Debug.Log($"Oponente: {opponent.firstName} - Tempo: {opponentLapTime:F3}s");
             results.Add((opponent, opponentLapTime));
         }
 

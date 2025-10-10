@@ -67,7 +67,7 @@
       "decisions": [
         {
           "decision": "Tenta contornar por fora, onde parece mais seco",
-          "referenceSkill": "strategy",
+          "referenceSkill": "bravery",
           "ability": 15,
           "hasAbility": true
         },

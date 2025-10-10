@@ -31,6 +31,8 @@ public class FreePracticeManager : MonoBehaviour
 	public TMP_Text difficultyValueText;
 	public TMP_Text skillTestText;
 	public TMP_Text abilityTestText;
+	public List<TMP_Text> fpTiresText = new List<TMP_Text>();
+    public List<TMP_Text> fpTimesText = new List<TMP_Text>();
 	public List<LocalizedString> localizedInRaceSkills;
 
 	/* private FreePracticeEventList eventList; */

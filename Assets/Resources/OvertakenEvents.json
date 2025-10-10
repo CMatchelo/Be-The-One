@@ -1,0 +1,149 @@
+{
+  "events": [
+    {
+      "id": "defend_event_01",
+      "descriptions": [
+        "Um carro se aproxima com velocidade superior na reta. Ele abre a asa e ataca pela direita.",
+        "Você vê o carro rival vindo com tudo. Sua posição está ameaçada na freada da curva."
+      ],
+      "decisions": [
+        {
+          "decision": "Fechar a porta e defender agressivamente por dentro",
+          "referenceSkill": "bravery",
+          "ability": 12,
+          "hasAbility": true
+        },
+        {
+          "decision": "Manter o traçado ideal e confiar no posicionamento",
+          "referenceSkill": "technique",
+          "ability": 8,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você se posiciona com firmeza e impede a ultrapassagem!",
+        "Com técnica e coragem, mantém a posição mesmo sob pressão."
+      ],
+      "failureText": [
+        "Você tenta defender, mas freia tarde e espalha na curva.",
+        "O rival passa com facilidade enquanto você tenta reagir."
+      ]
+    },
+    {
+      "id": "defend_event_02",
+      "descriptions": [
+        "Na saída da curva, um carro colado atrás se prepara para o bote.",
+        "Você saiu da curva com menos tração e o adversário ameaça a ultrapassagem."
+      ],
+      "decisions": [
+        {
+          "decision": "Ziguezaguear sutilmente para dificultar a linha de ataque",
+          "referenceSkill": "awareness",
+          "ability": 10,
+          "hasAbility": true
+        },
+        {
+          "decision": "Focar na tração e acelerar o máximo possível",
+          "referenceSkill": "technique",
+          "ability": 9,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você consegue abrir ligeira vantagem e evita o ataque!",
+        "A defesa foi inteligente e o rival adia a tentativa."
+      ],
+      "failureText": [
+        "Você se distrai e o carro rival mergulha por dentro.",
+        "Seu erro de aceleração permite a ultrapassagem facilmente."
+      ]
+    },
+    {
+      "id": "defend_event_03",
+      "descriptions": [
+        "O piloto atrás força a barra e coloca o carro lado a lado antes da chicane.",
+        "Você se vê emparelhado com outro carro na aproximação de uma curva apertada."
+      ],
+      "decisions": [
+        {
+          "decision": "Segurar por fora e tentar ficar lado a lado na saída",
+          "referenceSkill": "bravery",
+          "ability": 11,
+          "hasAbility": true
+        },
+        {
+          "decision": "Recuar temporariamente e tentar dar o troco depois",
+          "referenceSkill": "technique",
+          "ability": 6,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você se mantém firme e não cede a posição!",
+        "Uma defesa espetacular mantém você à frente na curva."
+      ],
+      "failureText": [
+        "Você é forçado a espalhar e perde a posição.",
+        "Ao tentar segurar por fora, você perde aderência e é ultrapassado."
+      ]
+    },
+    {
+      "id": "defend_event_04",
+      "descriptions": [
+        "Você percebe que o rival está tentando forçar erro com aproximações constantes.",
+        "O carro atrás pressiona volta após volta. Sua concentração será testada."
+      ],
+      "decisions": [
+        {
+          "decision": "Manter ritmo constante e evitar olhar nos retrovisores",
+          "referenceSkill": "focus",
+          "ability": 9,
+          "hasAbility": true
+        },
+        {
+          "decision": "Usar o botão 'defend' e mudar ajuste de freios para ajudar na defesa",
+          "referenceSkill": "awareness",
+          "ability": 8,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você mantém a calma e não cede ao jogo psicológico.",
+        "O rival não encontra brechas e desiste da pressão momentaneamente."
+      ],
+      "failureText": [
+        "Você erra o ponto de frenagem e perde tração.",
+        "A pressão funciona, e o adversário encontra espaço para passar."
+      ]
+    },
+    {
+      "id": "defend_event_05",
+      "descriptions": [
+        "Na curva de alta velocidade, um piloto tenta ultrapassar por fora. A disputa é intensa.",
+        "Com alta velocidade e pouca margem, o rival tenta passar por fora da curva longa."
+      ],
+      "decisions": [
+        {
+          "decision": "Manter o pé cravado e defender a linha por dentro",
+          "referenceSkill": "bravery",
+          "ability": 14,
+          "hasAbility": true
+        },
+        {
+          "decision": "Aliviar levemente e tentar retomar na próxima curva",
+          "referenceSkill": "technique",
+          "ability": 7,
+          "hasAbility": true
+        }
+      ],
+      "successText": [
+        "Você sustenta a posição mesmo no limite da aderência!",
+        "Com coragem, segura o carro e não deixa o adversário completar a ultrapassagem."
+      ],
+      "failureText": [
+        "Você é forçado a sair da pista e perde posições.",
+        "Ao hesitar, permite que o adversário assuma a frente com segurança."
+      ]
+    }
+  ]
+}
