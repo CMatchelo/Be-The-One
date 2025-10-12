@@ -10,7 +10,7 @@ public class RaceResult
 }
 [System.Serializable]
 public class DriverResult {
-    public string driverName;
-    public string teamName;
+    public Driver driver;
     public float totalTime;
+    public float lastLap;
 }

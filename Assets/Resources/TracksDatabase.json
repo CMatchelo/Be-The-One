@@ -9,7 +9,7 @@
       "topSpeed": 0.1,
       "statsFactor": 10,
       "lapLenghtFactor": 84,
-      "circuitLength": 3000,
+      "circuitLength": 3337,
       "totalLaps": 78,
       "difficulty": 12
     },
@@ -22,7 +22,7 @@
       "topSpeed": 0.4,
       "statsFactor": 10,
       "lapLenghtFactor": 91,
-      "circuitLength": 4000,
+      "circuitLength": 4309,
       "totalLaps": 72,
       "difficulty": 12
     },

@@ -32,7 +32,7 @@ public class RaceManager : MonoBehaviour
     public TMP_Text skillTestText;
     public TMP_Text abilityTestText;
 
-    private List<(Driver driver, float totalTime, float lastLap)> raceState = new();
+    private List<DriverResult> raceState = new();
     private List<string> logMessages = new();
     private List<string> lapEventMessages = new();
     private List<int> eventsDone = new List<int>();
@@ -126,7 +126,7 @@ public class RaceManager : MonoBehaviour
                 var entry = raceState[i];
                 AddLogMessage($"{i + 1}º - {entry.driver.firstName} - {entry.lastLap:F3}s - Total: {entry.totalTime:F3}s");
             }
-            yield return new WaitForSeconds(2f);
+            yield return new WaitForSeconds(0.1f);
         }
 
         AddLogMessage("--- Corrida Finalizada! ---");
@@ -135,6 +135,8 @@ public class RaceManager : MonoBehaviour
         {
             AddLogMessage($"{i + 1}º - {raceState[i].driver.firstName} - Total: {raceState[i].totalTime:F3}s");
         }
+        ChampionshipManager.CompleteCurrentRace();
+        RaceSaveSystem.UpdateChampionship(raceState);
     }
 
     private IEnumerator TryOvertake(
@@ -152,7 +154,12 @@ public class RaceManager : MonoBehaviour
         for (int i = updatedState.Count - 1; i >= 0; i--)
         {
             var frontDriver = updatedState[i];
-
+            if (frontDriver.totalTime - newTotal >= 1.5f)
+            {
+                AddEventMessage($"{driver.firstName} ultrapassou facilmente {frontDriver.driver.firstName}");
+                insertIndex = i;
+                continue;
+            }
             if (newTotal < frontDriver.totalTime)
             {
                 int roll = 0;
@@ -171,6 +178,9 @@ public class RaceManager : MonoBehaviour
 
                     yield return new WaitUntil(() => waitingForPlayer == false);
 
+                    RaceDecisionPanel.SetActive(false);
+                    RacePanel.SetActive(true);
+
                     if (driver.id == playerId) roll = rollResult;
                     else roll = roll = 20 - rollResult;
                 }
@@ -178,8 +188,6 @@ public class RaceManager : MonoBehaviour
                 {
                     roll = RandomNumberGenerator.GetRandomBetween(1, 20);
                 }
-
-                roll = RandomNumberGenerator.GetRandomBetween(1, 20);
 
                 if (roll == 1)
                 {
@@ -214,10 +222,12 @@ public class RaceManager : MonoBehaviour
                 {
                     AddEventMessage($"{driver.firstName} ultrapassou {frontDriver.driver.firstName} (Roll: {roll} > {track.difficulty})");
                     insertIndex = i;
+                    continue;
                 }
             }
             else
             {
+                // Adicionar aqui informaçoes sobre a posiçao mantidas
                 break;
             }
         }

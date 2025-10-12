@@ -56,14 +56,14 @@ public static class RaceSaveSystem
     public static void UpdateChampionship(List<DriverResult> raceResults)
     {
         // Sistema de pontuação (exemplo: 25-18-15-12-10-8-6-4-2-1)
-        int[] pointsSystem = { 25, 18, 15, 12, 10, 8, 6, 4, 2, 1 };
+        int[] pointsSystem = { 25, 18, 15, 12, 10, 8, 6, 4, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
         var championship = LoadChampionship();
 
         for (int i = 0; i < Math.Min(raceResults.Count, pointsSystem.Length); i++)
         {
-            var driver = raceResults[i];
-            championship.AddPoints(driver.driverName, driver.teamName, pointsSystem[i]);
+            var driver = raceResults[i].driver;
+            championship.AddPoints(driver.id, driver.teamId, pointsSystem[i]);
         }
 
         SaveChampionship(championship);

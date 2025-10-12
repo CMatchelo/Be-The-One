@@ -7,12 +7,12 @@ public class ChampionshipStatus
     public List<DriverStanding> driverStandings = new List<DriverStanding>();
     
     // Método para atualizar pontos
-    public void AddPoints(string driverName, string teamName, int points)
+    public void AddPoints(int driverId, int teamId, int points)
     {
-        var driver = driverStandings.Find(d => d.driverName == driverName);
+        var driver = driverStandings.Find(d => d.driverId == driverId);
         if (driver == null)
         {
-            driver = new DriverStanding(driverName, teamName, points);
+            driver = new DriverStanding(driverId, teamId, points);
             driverStandings.Add(driver);
         }
         else
@@ -25,14 +25,14 @@ public class ChampionshipStatus
 [System.Serializable]
 public class DriverStanding
 {
-    public string driverName;
-    public string teamName;
+    public int driverId;
+    public int teamId;
     public int points;
 
-    public DriverStanding(string name, string team, int initialPoints)
+    public DriverStanding(int name, int team, int initialPoints)
     {
-        driverName = name;
-        teamName = team;
+        driverId = name;
+        teamId = team;
         points = initialPoints;
     }
 }
