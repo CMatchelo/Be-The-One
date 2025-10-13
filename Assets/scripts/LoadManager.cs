@@ -71,7 +71,6 @@ public class LoadManager : MonoBehaviour
     public void LoadSaveGame(string saveId)
     {
         LoadUtility.LoadGame(saveId);
-        // Carrega a cena do jogo
         SceneManager.LoadScene("MenuScene");
     }
 

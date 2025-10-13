@@ -1,4 +1,4 @@
-/* using UnityEngine;
+using UnityEngine;
 using TMPro;
 
 using System.Collections.Generic;
@@ -22,7 +22,7 @@ public class RaceSimulator : MonoBehaviour
 
     private void Awake()
     {
-        LoadUtility.LoadGame("Cicero_g15866"); // Fix id load
+        //LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
         if (SaveSession.CurrentGameData.profile.driver.yearsOfContract <= 0)
         {
             ContractNegotiationPanel.SetActive(true);
@@ -66,4 +66,4 @@ public class RaceSimulator : MonoBehaviour
         logMessages.Add(message);
         nextRaceText.text = string.Join("\n", logMessages);
     }
-} */
+}

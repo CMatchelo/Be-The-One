@@ -5,6 +5,7 @@ using UnityEngine;
 using TMPro;
 using System.Linq;
 using UnityEngine.UI;
+using System.Text.RegularExpressions;
 
 public class RaceManager : MonoBehaviour
 {
@@ -78,14 +79,14 @@ public class RaceManager : MonoBehaviour
             int playerId = SaveSession.CurrentGameData.profile.driver.id;
             if (driver.id == playerId)
             {
-                Debug.Log(driver.highSpeedCorners);
+                Debug.Log(driver.highSpeedCorners + " " + driver.lowSpeedCorners + " " + driver.acceleration + " " + driver.topSpeed );
             }
             float carFactor = PerformanceCalculator.CalculateCarFactor(driver,
                 menuRaceManager.teamsList.teams.Find(t => t.id == driver.teamId),
                 track);
 
             var car = new CarSimulationState("Soft", carFactor, driver.firstName, driver.teamId.ToString());
-            raceState.Add((driver, 0f, 0f)); // total time, last lap
+            raceState.Add(new DriverResult(driver, 0, 0f, 0f));
         }
 
         // Loop das voltas
@@ -95,7 +96,7 @@ public class RaceManager : MonoBehaviour
             previousLapText.text = string.Join("\n", logMessages);
             logMessages.Clear();
             lapEventMessages.Clear();
-            List<(Driver driver, float totalTime, float lastLap)> updatedState = new();
+            List<DriverResult> updatedState = new();
 
             for (int idx = 0; idx < raceState.Count; idx++)
             {
@@ -113,7 +114,7 @@ public class RaceManager : MonoBehaviour
 
                 yield return StartCoroutine(TryOvertake(driver, baseTime, lapTime, updatedState, track, trackFactor, result =>
                 {
-                    updatedState.Insert(result.insertIndex, (result.driver, result.totalTime, result.lastLap));
+                    updatedState.Insert(result.insertIndex, new DriverResult(result.driver, idx + 1, result.totalTime, result.lastLap));
                 }));
             }
 
@@ -135,6 +136,19 @@ public class RaceManager : MonoBehaviour
         {
             AddLogMessage($"{i + 1}º - {raceState[i].driver.firstName} - Total: {raceState[i].totalTime:F3}s");
         }
+        var playerResult = raceState.Find(r => r.driver.id == SaveSession.CurrentGameData.profile.driver.id);
+        var teammateResult = raceState.Find(r => r.driver.id == SaveSession.CurrentGameData.profile.teammateId);
+        foreach (string goal in SaveSession.CurrentGameData.profile.sponsorMaster.goals)
+        {
+            bool achieved = CheckGoal(goal, playerResult, teammateResult);
+            if (achieved == true)
+            {
+                SaveSession.CurrentGameData.profile.money += SaveSession.CurrentGameData.profile.sponsorMaster.valuePerGoal;
+            }
+            Debug.Log($"{goal}: {(achieved ? "✅ Cumprido" : "❌ Falhou")}");
+        }
+        SaveSession.CurrentGameData.profile.money += SaveSession.CurrentGameData.profile.sponsorMaster.valuePerRace;
+        SaveUtility.UpdateProfile();
         ChampionshipManager.CompleteCurrentRace();
         RaceSaveSystem.UpdateChampionship(raceState);
     }
@@ -143,7 +157,7 @@ public class RaceManager : MonoBehaviour
     Driver driver,
     float baseTime,
     float lapTime,
-    List<(Driver driver, float totalTime, float lastLap)> updatedState,
+    List<DriverResult> updatedState,
     Track track,
     float trackFactor,
     Action<(Driver driver, float totalTime, float lastLap, int insertIndex)> onFinished)
@@ -355,6 +369,43 @@ public class RaceManager : MonoBehaviour
         RaceDecisionPanel.SetActive(false);
         RacePanel.SetActive(true);
         waitingForPlayer = false;
+    }
+
+    public static bool CheckGoal(string goal, DriverResult playerResult, DriverResult teammateResult)
+    {
+        goal = goal.ToLower();
+        Debug.Log("Goal: " + goal);
+        if (goal.Contains("beat teammate") || goal.Contains("superar o companheiro"))
+        {
+            Debug.Log("jogador: " + playerResult.position + " // teammate: " + teammateResult.position);
+            return playerResult.position < teammateResult.position;
+        }
+
+        if (goal.Contains("win race") || goal.Contains("vencer a corrida"))
+        {
+            return playerResult.position == 1;
+        }
+
+        if (goal.Contains("finish on podium") || goal.Contains("terminar no pódio"))
+        {
+            return playerResult.position <= 3;
+        }
+
+        if ((goal.Contains("finish") && goal.Contains("above")) ||
+            (goal.Contains("terminar") && goal.Contains("acima"))
+        )
+        {
+            // Exemplo: "Finish 13th or above"
+            // Extraímos o número
+            Match match = Regex.Match(goal, @"\d+");
+            if (match.Success)
+            {
+                int number = int.Parse(match.Value);
+                return playerResult.position <= number;
+            }
+        }
+
+        return false;
     }
 
     private void AddLogMessage(string message)

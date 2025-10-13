@@ -11,6 +11,14 @@ public class RaceResult
 [System.Serializable]
 public class DriverResult {
     public Driver driver;
+    public int position;
     public float totalTime;
     public float lastLap;
+    public DriverResult(Driver driver, int position, float totalTime, float lastLap)
+    {
+        this.driver = driver;
+        this.position = position;
+        this.totalTime = totalTime;
+        this.lastLap = lastLap;
+    }
 }

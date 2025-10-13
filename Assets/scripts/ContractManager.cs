@@ -12,7 +12,7 @@ public class NegotiationLimit
 {
     public float maxSalary = float.MaxValue;
     public int maxYears = int.MaxValue;
-    public int maxStatus = int.MinValue; // 0 = melhor status (primeiro piloto)
+    public int maxStatus = int.MinValue;
     public bool negotiating = true;
     public bool dealClosed = false;
 }

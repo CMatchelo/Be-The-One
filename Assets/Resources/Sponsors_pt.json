@@ -3,7 +3,7 @@
     {
       "realName": "Red Bull",
       "name": "Blue Ox",
-      "presentation": "A Blue Ox é uma marca de energia de alta octanagem conhecida por ultrapassar limites e dominar esportes radicais. Prosperamos com talento bruto e ambição ousada. Nosso parceiro ideal é um piloto destemido e ambicioso que vive pelo pódio e nunca recua diante de um desafio.",
+      "presentation": "A Blue Ox é uma marca de energéticos conhecida por ultrapassar limites e dominar esportes radicais. Prosperamos com talento bruto e ambição ousada. Nosso parceiro ideal é um piloto destemido e ambicioso que vive pelo pódio e nunca recua diante de um desafio.",
       "valuePerGoal": 500000,
       "valuePerRace": 100000,
       "preferredProfile": "ambitious",
@@ -42,7 +42,7 @@
     {
       "realName": "Monster Energy",
       "name": "Savage Boost",
-      "presentation": "A Savage Boost é o rosto da cultura da adrenalina. Seja no automobilismo, skate ou snowboard, buscamos velocidade e ousadia. Nos alinhamos melhor com pilotos ambiciosos que assumem riscos e mantêm o público à beira do assento.",
+      "presentation": "A Savage Boost é o rosto da cultura da adrenalina fornecendo energéticos. Seja no automobilismo, skate ou snowboard, buscamos velocidade e ousadia. Nos alinhamos melhor com pilotos ambiciosos que assumem riscos e mantêm o público à beira do assento.",
       "valuePerGoal": 300000,
       "valuePerRace": 75000,
       "preferredProfile": "ambitious",

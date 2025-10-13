@@ -76,7 +76,7 @@ public class MenuRaceManager : MonoBehaviour
 
     void Awake()
     {
-        LoadUtility.LoadGame("Cicero_g15866"); // Fix id load
+        //LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
         LoadDatabases();
         SaveSession.CurrentGameData.profile.weekendBonus.highSpeedCorners = 0;
         SaveSession.CurrentGameData.profile.weekendBonus.lowSpeedCorners = 0;
@@ -170,7 +170,7 @@ public class MenuRaceManager : MonoBehaviour
 
     void LoadDrivers()
     {
-        string path = Path.Combine(Application.persistentDataPath, "saves", "Cicero_g15866", "activeDriversList1.json"); // fix status
+        string path = Path.Combine(Application.persistentDataPath, "saves", "Cicero_g15866", "activeDriversList.json"); // fix status
         if (File.Exists(path))
         {
             string json = File.ReadAllText(path);

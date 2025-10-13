@@ -33,6 +33,7 @@ public class PlayerProfile
     public int charismatic = 5;
     public int neutral = 0;
     public int lastResults = 49;
+    public int teammateId = -1;
     public Sponsor sponsorMaster;
     public Sponsor sponsorSecondary;
     public string status;
@@ -42,6 +43,7 @@ public class PlayerProfile
     public int charisma;
     public int focus;
     public int awareness;
+    public int money = 0;
     public List<Ability> abilities = new List<Ability>();
 }
 
