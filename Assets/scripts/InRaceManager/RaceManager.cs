@@ -21,6 +21,7 @@ public class RaceManager : MonoBehaviour
     public Button decision1Btn;
     public Button decision2Btn;
     public Button rollDiceBtn;
+    public Button endRaceBtn;
 
 
     [Header("UI Texts")]
@@ -53,6 +54,8 @@ public class RaceManager : MonoBehaviour
 
     public void InitializeRace()
     {
+        endRaceBtn.interactable = false;
+        endRaceBtn.onClick.AddListener(GoToMenu);
         menuRaceManager = FindFirstObjectByType<MenuRaceManager>();
         startRaceButton.onClick.AddListener(StartRace);
         rollDiceBtn.onClick.AddListener(RollDice);
@@ -79,7 +82,7 @@ public class RaceManager : MonoBehaviour
             int playerId = SaveSession.CurrentGameData.profile.driver.id;
             if (driver.id == playerId)
             {
-                Debug.Log(driver.highSpeedCorners + " " + driver.lowSpeedCorners + " " + driver.acceleration + " " + driver.topSpeed );
+                Debug.Log(driver.highSpeedCorners + " " + driver.lowSpeedCorners + " " + driver.acceleration + " " + driver.topSpeed);
             }
             float carFactor = PerformanceCalculator.CalculateCarFactor(driver,
                 menuRaceManager.teamsList.teams.Find(t => t.id == driver.teamId),
@@ -151,6 +154,8 @@ public class RaceManager : MonoBehaviour
         SaveUtility.UpdateProfile();
         ChampionshipManager.CompleteCurrentRace();
         RaceSaveSystem.UpdateChampionship(raceState);
+        menuRaceManager.endWeekend.interactable = true;
+        endRaceBtn.interactable = true;
     }
 
     private IEnumerator TryOvertake(
@@ -406,6 +411,12 @@ public class RaceManager : MonoBehaviour
         }
 
         return false;
+    }
+
+    private void GoToMenu()
+    {
+        RaceMenuPanel.SetActive(true);
+        RacePanel.SetActive(false);
     }
 
     private void AddLogMessage(string message)

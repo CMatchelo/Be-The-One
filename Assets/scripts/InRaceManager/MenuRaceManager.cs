@@ -22,6 +22,7 @@ public class MenuRaceManager : MonoBehaviour
 
     [Header("UI Btns and Dropdowns")]
     public List<Button> GoToEventBtn;
+    public Button endWeekend;
 
 
     [Header("UI Texts")]
@@ -82,6 +83,7 @@ public class MenuRaceManager : MonoBehaviour
         SaveSession.CurrentGameData.profile.weekendBonus.lowSpeedCorners = 0;
         SaveSession.CurrentGameData.profile.weekendBonus.acceleration = 0;
         SaveSession.CurrentGameData.profile.weekendBonus.topSpeed = 0;
+        
     }
 
     void Start()
@@ -99,6 +101,8 @@ public class MenuRaceManager : MonoBehaviour
 
             fpTimesText[i].text = "FP não feito";
         }
+        endWeekend.interactable = false;
+        endWeekend.onClick.AddListener(GoToMenu);
     }
 
     public void UpdateFPTexts(string tire, float time)
@@ -143,6 +147,11 @@ public class MenuRaceManager : MonoBehaviour
         {
             GoToEventBtn[i].interactable = false;
         }
+    }
+
+    void GoToMenu()
+    {
+        SceneManager.LoadScene("MenuScene");
     }
 
     void LoadDatabases()

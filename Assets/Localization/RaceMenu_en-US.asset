@@ -38,6 +38,14 @@ MonoBehaviour:
     m_Localized: Free Practice 3
     m_Metadata:
       m_Items: []
+  - m_Id: 742796382208
+    m_Localized: End Weekend
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38467866673893376
+    m_Localized: End Race
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

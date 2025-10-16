@@ -38,6 +38,14 @@ MonoBehaviour:
     m_Localized: Treino Livre 3
     m_Metadata:
       m_Items: []
+  - m_Id: 742796382208
+    m_Localized: Terminar Fim de semana
+    m_Metadata:
+      m_Items: []
+  - m_Id: 38467866673893376
+    m_Localized: Terminar corrida
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
