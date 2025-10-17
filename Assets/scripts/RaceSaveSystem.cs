@@ -51,23 +51,34 @@ public static class RaceSaveSystem
         return JsonUtility.FromJson<RaceDataWrapper>(json);
     }
 
-    private static string ChampionshipPath => Path.Combine(Application.persistentDataPath, "championship.json");
+    private static string ChampionshipPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "championship_driversStandings.json");
 
     public static void UpdateChampionship(List<DriverResult> raceResults)
     {
-        // Sistema de pontuação (exemplo: 25-18-15-12-10-8-6-4-2-1)
         int[] pointsSystem = { 25, 18, 15, 12, 10, 8, 6, 4, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        var championship = LoadChampionship();
+        ChampionshipStatus championship = LoadChampionship();
 
         for (int i = 0; i < Math.Min(raceResults.Count, pointsSystem.Length); i++)
         {
             var driver = raceResults[i].driver;
-            championship.AddPoints(driver.id, driver.teamId, pointsSystem[i]);
+            int points = pointsSystem[i];
+
+            // Verifica se já existe o piloto na lista
+            var existing = championship.driverStandings.Find(s => s.driverId == driver.id);
+            if (existing != null)
+            {
+                existing.points += points;
+            }
+            else
+            {
+                championship.driverStandings.Add(new DriverStanding(driver.id, driver.teamId, points));
+            }
         }
 
         SaveChampionship(championship);
     }
+
 
     public static ChampionshipStatus LoadChampionship()
     {

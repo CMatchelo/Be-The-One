@@ -29,10 +29,10 @@ public class DriverStanding
     public int teamId;
     public int points;
 
-    public DriverStanding(int name, int team, int initialPoints)
+    public DriverStanding(int driverId, int teamId, int points)
     {
-        driverId = name;
-        teamId = team;
-        points = initialPoints;
+        this.driverId = driverId;
+        this.teamId = teamId;
+        this.points = points;
     }
 }
