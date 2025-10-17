@@ -9,20 +9,27 @@ using System.IO;
 
 public class RaceSimulator : MonoBehaviour
 {
-    // UI Elements
+    [Header("UI Canvas")]
+    public GameObject MenuPanel;
+    public GameObject StandingsPanel;
+    public GameObject CalendarPanel;
+    public GameObject PracticePanel;
+    public GameObject PersonalLifePanel;
+    public GameObject ContractNegotiationPanel;
+
+
+    [Header("UI Btns and Dropdowns")]
+    public List<Button> GoToPageBtn;
     public Button startRaceButton;
     public TMP_Text nextRaceText;
     public TMP_Text driversStandings;
-
-    [Header("UI Panels")]
-    public GameObject ContractNegotiationPanel;
-    public GameObject MenuPanel;
+    
 
     private List<string> logMessages = new List<string>();
 
     private void Awake()
     {
-        //LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
+        LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
         if (SaveSession.CurrentGameData.profile.driver.yearsOfContract <= 0)
         {
             ContractNegotiationPanel.SetActive(true);
@@ -33,6 +40,11 @@ public class RaceSimulator : MonoBehaviour
     {
         ChampionshipManager.Initialize();
         UpdateNextRaceInfo();
+        for (int i = 0; i < GoToPageBtn.Count; i++)
+        {
+            int capturedIndex = i + 1;
+            GoToPageBtn[i].onClick.AddListener(() => GoToPage(capturedIndex));
+        }
     }
     void StartSimulation()
     {
@@ -42,7 +54,7 @@ public class RaceSimulator : MonoBehaviour
     private void UpdateNextRaceInfo()
     {
         var nextRace = ChampionshipManager.GetNextRace();
-        
+
         if (nextRace != null)
         {
             AddLogMessage($"PRÓXIMA CORRIDA: {nextRace.circuitName.ToUpper()} - {nextRace.totalLaps} VOLTAS");
@@ -59,6 +71,30 @@ public class RaceSimulator : MonoBehaviour
     {
         Debug.Log("Iniciando corrida...");
         SceneManager.LoadScene("RaceScene");
+    }
+
+    void GoToPage(int eventNumber)
+    {
+        if (eventNumber == 0)
+        {
+            MenuPanel.SetActive(false);
+            StandingsPanel.SetActive(true);
+        }
+        else if (eventNumber == 1)
+        {
+            MenuPanel.SetActive(false);
+            CalendarPanel.SetActive(true);
+        }
+        else if (eventNumber == 2)
+        {
+            MenuPanel.SetActive(false);
+            PracticePanel.SetActive(true);
+        }
+        else if (eventNumber == 3)
+        {
+            MenuPanel.SetActive(false);
+            PersonalLifePanel.SetActive(true);
+        }
     }
 
     private void AddLogMessage(string message)

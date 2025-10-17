@@ -10,35 +10,35 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
-  m_Name: GeneralTexts Shared Data
+  m_Name: Main Menu Shared Data
   m_EditorClassIdentifier: 
-  m_TableCollectionName: GeneralTexts
-  m_TableCollectionNameGuidString: 7c4b1008092f5734e960628f57f611ea
+  m_TableCollectionName: Main Menu
+  m_TableCollectionNameGuidString: 3ba77574997a21543871dbc0d4a91614
   m_Entries:
-  - m_Id: 5672620032
-    m_Key: nextText
+  - m_Id: 5622288384
+    m_Key: standingsBtn
     m_Metadata:
       m_Items: []
-  - m_Id: 995413316161536
-    m_Key: difficultyText
+  - m_Id: 64636145664
+    m_Key: practiceBtn
     m_Metadata:
       m_Items: []
-  - m_Id: 1033644703305728
-    m_Key: newsTitle
+  - m_Id: 178633134080
+    m_Key: personalLifeBtn
     m_Metadata:
       m_Items: []
-  - m_Id: 38011143341297664
-    m_Key: backText
+  - m_Id: 351446847488
+    m_Key: calendarBtn
     m_Metadata:
       m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:
-    rid: 4943754010649428096
+    rid: 7316934706482118844
   references:
     version: 2
     RefIds:
-    - rid: 4943754010649428096
+    - rid: 7316934706482118844
       type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
       data:
-        m_CustomEpoch: 1751600230206
+        m_CustomEpoch: 1760659670505

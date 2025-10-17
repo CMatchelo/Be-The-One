@@ -10,28 +10,28 @@ MonoBehaviour:
   m_Enabled: 1
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
-  m_Name: GeneralTexts_en-US
+  m_Name: Main Menu_en-US
   m_EditorClassIdentifier: 
   m_LocaleId:
     m_Code: en-US
-  m_SharedData: {fileID: 11400000, guid: 7c4b1008092f5734e960628f57f611ea, type: 2}
+  m_SharedData: {fileID: 11400000, guid: 3ba77574997a21543871dbc0d4a91614, type: 2}
   m_Metadata:
     m_Items: []
   m_TableData:
-  - m_Id: 5672620032
-    m_Localized: Next
+  - m_Id: 5622288384
+    m_Localized: Standings
     m_Metadata:
       m_Items: []
-  - m_Id: 995413316161536
-    m_Localized: "\rDifficulty"
+  - m_Id: 64636145664
+    m_Localized: Practice
     m_Metadata:
       m_Items: []
-  - m_Id: 1033644703305728
-    m_Localized: Breaking News
+  - m_Id: 178633134080
+    m_Localized: Personal Life
     m_Metadata:
       m_Items: []
-  - m_Id: 38011143341297664
-    m_Localized: Back
+  - m_Id: 351446847488
+    m_Localized: Calendar
     m_Metadata:
       m_Items: []
   references:

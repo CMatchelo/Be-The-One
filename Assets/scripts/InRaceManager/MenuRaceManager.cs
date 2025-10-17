@@ -77,7 +77,7 @@ public class MenuRaceManager : MonoBehaviour
 
     void Awake()
     {
-        //LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
+        LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
         LoadDatabases();
         SaveSession.CurrentGameData.profile.weekendBonus.highSpeedCorners = 0;
         SaveSession.CurrentGameData.profile.weekendBonus.lowSpeedCorners = 0;

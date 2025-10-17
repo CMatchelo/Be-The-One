@@ -57,6 +57,12 @@ MonoBehaviour:
     m_SerializedLabels:
     - Locale-en-US
     FlaggedDuringContentUpdateRestriction: 0
+  - m_GUID: d2121830122af8f489e1c92170f4a0f9
+    m_Address: Main Menu_en-US
+    m_ReadOnly: 1
+    m_SerializedLabels:
+    - Locale-en-US
+    FlaggedDuringContentUpdateRestriction: 0
   - m_GUID: e2c5fbf42c875984da45acc644d535c8
     m_Address: FreePractice_en-US
     m_ReadOnly: 1

@@ -30,6 +30,10 @@ MonoBehaviour:
     m_Localized: "\xDAltimas Not\xEDcias"
     m_Metadata:
       m_Items: []
+  - m_Id: 38011143341297664
+    m_Localized: Voltar
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
