@@ -28,8 +28,7 @@ public class RaceSimulator : MonoBehaviour
     public TMP_Text nextRaceText;
 
     [Header("UI Texts")]
-    public TMP_Text driversStandingsTable;
-    public TMP_Text teamsStandingsTable;
+
 
 
     private Dictionary<string, GameObject> panels;
@@ -56,7 +55,6 @@ public class RaceSimulator : MonoBehaviour
     {
         ChampionshipManager.Initialize();
         UpdateNextRaceInfo();
-        PopulateStandings();
         GoToPageBtn[0].onClick.AddListener(() => GoToPage("StandingsPanel"));
         GoToPageBtn[1].onClick.AddListener(() => GoToPage("CalendarPanel"));
         GoToPageBtn[2].onClick.AddListener(() => GoToPage("PracticePanel"));
@@ -117,39 +115,6 @@ public class RaceSimulator : MonoBehaviour
         {
             Debug.LogWarning($"Painel '{panel}' não encontrado!");
         }
-    }
-
-    private void PopulateStandings()
-    {
-        /* string path = Path.Combine(
-            Application.persistentDataPath,
-            "saves",
-            SaveSession.CurrentSaveId,
-            "championship_driversStandings.json"
-        );
-
-        if (!File.Exists(path))
-        {
-            Debug.LogWarning($"Arquivo não encontrado: {path}");
-            driversStandingsTable.text = "Nenhum dado encontrado.";
-            return;
-        }
-        string json = File.ReadAllText(path);
-
-        TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
-        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
-
-        // Caso o JSON seja uma lista pura (ex: [ { driverId: 1, ... }, { ... } ])
-        List<DriverStanding> standings = JsonUtilityWrapper.FromJsonList<DriverStanding>(json);
-        // Montar o texto
-        System.Text.StringBuilder sb = new System.Text.StringBuilder();
-        for (int i = 0; i < standings.Count; i++)
-        {
-            var s = standings[i];
-            Debug.Log(s.driverId);
-            sb.AppendLine($"{i + 1} - {s.driverId} - {s.teamId} - {s.points}");
-        }
-        driversStandingsTable.text = sb.ToString(); */
     }
 
     private void AddLogMessage(string message)

@@ -1,7 +1,7 @@
 using System.Collections.Generic;
 using System.IO;
 using UnityEngine;
-using System; 
+using System;
 
 public static class RaceSaveSystem
 {
@@ -51,13 +51,15 @@ public static class RaceSaveSystem
         return JsonUtility.FromJson<RaceDataWrapper>(json);
     }
 
-    private static string ChampionshipPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "championship_driversStandings.json");
+    private static string ChampionshipDriversPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "championship_driversStandings.json");
+    private static string ChampionshipTeamsPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "championship_teamsStandings.json");
 
     public static void UpdateChampionship(List<DriverResult> raceResults)
     {
         int[] pointsSystem = { 25, 18, 15, 12, 10, 8, 6, 4, 2, 1, 0, 0, 0, 0, 0, 0, 0, 0, 0, 0 };
 
-        ChampionshipStatus championship = LoadChampionship();
+        DriversChampionshipStatus driversChampionship = LoadDriversChampionship();
+        TeamsChampionshipStatus teamsChampionship = LoadTeamsChampionship();
 
         for (int i = 0; i < Math.Min(raceResults.Count, pointsSystem.Length); i++)
         {
@@ -65,31 +67,56 @@ public static class RaceSaveSystem
             int points = pointsSystem[i];
 
             // Verifica se já existe o piloto na lista
-            var existing = championship.driverStandings.Find(s => s.driverId == driver.id);
-            if (existing != null)
+            var existingDriver = driversChampionship.driverStandings.Find(s => s.driverId == driver.id);
+            if (existingDriver != null)
             {
-                existing.points += points;
+                existingDriver.points += points;
             }
             else
             {
-                championship.driverStandings.Add(new DriverStanding(driver.id, driver.teamId, points));
+                driversChampionship.driverStandings.Add(new DriverStanding(driver.id, driver.teamId, points));
             }
+            var existingTeam = teamsChampionship.teamStandings.Find(t => t.teamId == driver.teamId);
+            Debug.Log("1");
+            if (existingTeam != null)
+            {
+                Debug.Log("2");
+                existingTeam.points += points;
+            }
+            else
+            {
+                Debug.Log("3");
+                teamsChampionship.teamStandings.Add(new TeamStanding(driver.teamId, points));
+            }
+            Debug.Log("4");
         }
-
-        SaveChampionship(championship);
+        for (int i = 0; i < teamsChampionship.teamStandings.Count; i++)
+        {
+            Debug.Log(teamsChampionship.teamStandings[i].teamId + " // " + teamsChampionship.teamStandings[i].points);
+        }
+        SaveChampionship(driversChampionship, teamsChampionship);
     }
 
-
-    public static ChampionshipStatus LoadChampionship()
+    public static TeamsChampionshipStatus LoadTeamsChampionship()
     {
-        if (!File.Exists(ChampionshipPath)) return new ChampionshipStatus();
-        string json = File.ReadAllText(ChampionshipPath);
-        return JsonUtility.FromJson<ChampionshipStatus>(json);
+        if (!File.Exists(ChampionshipTeamsPath)) return new TeamsChampionshipStatus();
+        string json = File.ReadAllText(ChampionshipTeamsPath);
+        return JsonUtility.FromJson<TeamsChampionshipStatus>(json);
     }
 
-    private static void SaveChampionship(ChampionshipStatus status)
+    public static DriversChampionshipStatus LoadDriversChampionship()
     {
-        string json = JsonUtility.ToJson(status, true);
-        File.WriteAllText(ChampionshipPath, json);
+        if (!File.Exists(ChampionshipDriversPath)) return new DriversChampionshipStatus();
+        string json = File.ReadAllText(ChampionshipDriversPath);
+        return JsonUtility.FromJson<DriversChampionshipStatus>(json);
+    }
+
+    private static void SaveChampionship(DriversChampionshipStatus driversChampionship, TeamsChampionshipStatus teamsChampionship)
+    {
+        string jsonDrivers = JsonUtility.ToJson(driversChampionship, true);
+        File.WriteAllText(ChampionshipDriversPath, jsonDrivers);
+
+        string jsonTeams = JsonUtility.ToJson(teamsChampionship, true);
+        File.WriteAllText(ChampionshipTeamsPath, jsonTeams);
     }
 }
