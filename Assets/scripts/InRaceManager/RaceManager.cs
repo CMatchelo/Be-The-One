@@ -77,7 +77,7 @@ public class RaceManager : MonoBehaviour
 
         // Inicializar o estado da corrida
         raceState.Clear();
-        foreach (var driver in grid)
+        /* foreach (var driver in grid)
         {
             int playerId = SaveSession.CurrentGameData.profile.driver.id;
             if (driver.id == playerId)
@@ -90,7 +90,8 @@ public class RaceManager : MonoBehaviour
 
             var car = new CarSimulationState("Soft", carFactor, driver.firstName, driver.teamId.ToString());
             raceState.Add(new DriverResult(driver, 0, 0f, 0f));
-        }
+        } */
+        raceState = grid.Select(driver => new DriverResult(driver, 0, 0f, 0f, float.MaxValue)).ToList();
 
         // Loop das voltas
         for (int lap = 1; lap <= track.totalLaps; lap++)
@@ -117,7 +118,9 @@ public class RaceManager : MonoBehaviour
 
                 yield return StartCoroutine(TryOvertake(driver, baseTime, lapTime, updatedState, track, trackFactor, result =>
                 {
-                    updatedState.Insert(result.insertIndex, new DriverResult(result.driver, idx + 1, result.totalTime, result.lastLap));
+                    var previous = raceState.Find(r => r.driver.id == result.driver.id);
+                    float bestLap = previous != null ? Mathf.Min(previous.bestLap, result.lastLap) : result.lastLap;
+                    updatedState.Insert(result.insertIndex, new DriverResult(result.driver, idx + 1, result.totalTime, result.lastLap, bestLap));
                 }));
             }
 
@@ -150,9 +153,17 @@ public class RaceManager : MonoBehaviour
             }
             Debug.Log($"{goal}: {(achieved ? "✅ Cumprido" : "❌ Falhou")}");
         }
+        var raceResult = new RaceResult("Pista", raceState);
         SaveSession.CurrentGameData.profile.money += SaveSession.CurrentGameData.profile.sponsorMaster.valuePerRace;
+        WeekendBonus bonus = SaveSession.CurrentGameData.profile.weekendBonus;
+        Driver playerDriver = SaveSession.CurrentGameData.profile.driver;
+        playerDriver.highSpeedCorners -= bonus.highSpeedCorners;
+        playerDriver.lowSpeedCorners -= bonus.lowSpeedCorners;
+        playerDriver.acceleration -= bonus.acceleration;
+        playerDriver.topSpeed -= bonus.topSpeed;
         SaveUtility.UpdateProfile();
         ChampionshipManager.CompleteCurrentRace();
+        RaceSaveSystem.SaveRace(raceResult);
         RaceSaveSystem.UpdateChampionship(raceState);
         menuRaceManager.endWeekend.interactable = true;
         endRaceBtn.interactable = true;

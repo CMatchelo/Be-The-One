@@ -5,6 +5,7 @@ using System.Collections.Generic;
 using UnityEngine.UI;
 using UnityEngine.SceneManagement;
 using System.IO;
+using System.Linq;
 
 
 public class StandingManager
@@ -21,9 +22,12 @@ public class StandingManager
     public TMP_Text driversStandingsName;
     public TMP_Text driversStandingsTeam;
     public TMP_Text driversStandingsPts;
-    public TMP_Text teamsStandingsTable;
+    public TMP_Text teamsStandingsPos;
+    public TMP_Text teamsStandingsTeam;
+    public TMP_Text teamsStandingsPts;
 
     public DriversChampionshipStatus driversChampionshipStatus;
+    public TeamsChampionshipStatus teamsChampionshipStatus;
     public TeamsList teamsList;
     public DriversList driversList;
 
@@ -55,46 +59,89 @@ public class StandingManager
 
     private void PopulateStandings()
     {
-        string path = Path.Combine(
+        string pathDrivers = Path.Combine(
             Application.persistentDataPath,
             "saves",
             SaveSession.CurrentSaveId,
             "championship_driversStandings.json"
         );
+        string pathTeams = Path.Combine(
+            Application.persistentDataPath,
+            "saves",
+            SaveSession.CurrentSaveId,
+            "championship_teamsStandings.json"
+        );
 
-        if (!File.Exists(path))
+        if (!File.Exists(pathDrivers))
         {
-            Debug.LogWarning($"Arquivo não encontrado: {path}");
+            Debug.LogWarning($"Arquivo não encontrado: {pathDrivers}");
             //driversStandingsPos.text = "Nenhum dado encontrado.";
             return;
         }
-        string json = File.ReadAllText(path);
+        if (!File.Exists(pathTeams))
+        {
+            Debug.LogWarning($"Arquivo não encontrado: {pathTeams}");
+            //driversStandingsPos.text = "Nenhum dado encontrado.";
+            return;
+        }
 
-        driversChampionshipStatus = JsonUtility.FromJson<DriversChampionshipStatus>(json);
+        string jsonDrivers = File.ReadAllText(pathDrivers);
+        string jsonTeams = File.ReadAllText(pathTeams);
+
+        driversChampionshipStatus = JsonUtility.FromJson<DriversChampionshipStatus>(jsonDrivers);
+        teamsChampionshipStatus = JsonUtility.FromJson<TeamsChampionshipStatus>(jsonTeams);
 
         if (driversChampionshipStatus == null || driversChampionshipStatus.driverStandings == null || driversChampionshipStatus.driverStandings.Count == 0)
         {
-            driversStandingsPos.text = "Tabela vazia.";
+            driversStandingsName.text = "Tabela vazia.";
             return;
         }
-        System.Text.StringBuilder position = new System.Text.StringBuilder();
-        System.Text.StringBuilder driverName = new System.Text.StringBuilder();
-        System.Text.StringBuilder teamName = new System.Text.StringBuilder();
-        System.Text.StringBuilder points = new System.Text.StringBuilder();
-        for (int i = 0; i < driversChampionshipStatus.driverStandings.Count; i++)
+        if (teamsChampionshipStatus == null || teamsChampionshipStatus.teamStandings == null || teamsChampionshipStatus.teamStandings.Count == 0)
         {
-            var standing = driversChampionshipStatus.driverStandings[i];
-            string currentTeam = GetTeamName(standing.teamId);
-            string currentDriver = GetDriverName(standing.driverId);
-            position.AppendLine($"{i + 1}");
-            driverName.AppendLine($"{currentDriver}");
-            teamName.AppendLine($"{currentTeam}");
-            points.AppendLine($"{standing.points} pts");
+            teamsStandingsTeam.text = "Tabela vazia.";
+            return;
         }
-        driversStandingsPos.text = position.ToString();
-        driversStandingsName.text = driverName.ToString();
-        driversStandingsTeam.text = teamName.ToString();
-        driversStandingsPts.text = points.ToString();
+
+        var posDriver = new System.Text.StringBuilder();
+        var nameDriver = new System.Text.StringBuilder();
+        var teamDriver = new System.Text.StringBuilder();
+        var ptsDriver = new System.Text.StringBuilder();
+
+        driversChampionshipStatus.driverStandings.Sort(
+            (a, b) => b.points.CompareTo(a.points)
+        );
+        teamsChampionshipStatus.teamStandings.Sort(
+            (a, b) => b.points.CompareTo(a.points)
+        );
+
+        foreach (var (standing, i) in driversChampionshipStatus.driverStandings.Select((s, i) => (s, i)))
+        {
+            posDriver.AppendLine($"{i + 1}");
+            nameDriver.AppendLine(GetDriverName(standing.driverId));
+            teamDriver.AppendLine(GetTeamName(standing.teamId));
+            ptsDriver.AppendLine($"{standing.points} pts");
+        }
+
+        var posTeam = new System.Text.StringBuilder();
+        var team = new System.Text.StringBuilder();
+        var ptsTeam = new System.Text.StringBuilder();
+
+        foreach (var (standing, i) in teamsChampionshipStatus.teamStandings.Select((s, i) => (s, i)))
+        {
+            posTeam.AppendLine($"{i + 1}");
+            team.AppendLine(GetTeamName(standing.teamId));
+            ptsTeam.AppendLine($"{standing.points} pts");
+        }
+
+        driversStandingsPos.text = posDriver.ToString();
+        driversStandingsName.text = nameDriver.ToString();
+        driversStandingsTeam.text = teamDriver.ToString();
+        driversStandingsPts.text = ptsDriver.ToString();
+
+        teamsStandingsPos.text = posTeam.ToString();
+        teamsStandingsTeam.text = team.ToString();
+        teamsStandingsPts.text = ptsTeam.ToString();
+
     }
 
     string GetTeamName(int teamId)
