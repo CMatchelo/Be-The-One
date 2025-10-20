@@ -37,7 +37,8 @@ public class RaceSimulator : MonoBehaviour
 
     private void Awake()
     {
-        LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
+        //LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
+        LoadUtility.LoadGame("Cicero_g15866");
         panels = new Dictionary<string, GameObject>
         {
             { "StandingsPanel", StandingsPanel },

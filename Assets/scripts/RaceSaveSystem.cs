@@ -5,7 +5,12 @@ using System;
 
 public static class RaceSaveSystem
 {
-    private static string FilePath => Path.Combine(Application.persistentDataPath, "races.json");
+    private static string FilePath => Path.Combine(
+        Application.persistentDataPath,
+        "saves",
+        SaveSession.CurrentSaveId,
+        "races.json"
+    );
 
     [System.Serializable]
     public class RaceDataWrapper
@@ -16,32 +21,48 @@ public static class RaceSaveSystem
     public static void SaveRace(RaceResult newResult)
     {
         string temp = JsonUtility.ToJson(newResult, true);
-        Debug.Log($"Resultado1: {temp}");
-        Debug.Log("Salvando corrida...");
 
         // Carrega os dados existentes
         RaceDataWrapper wrapper = LoadAll();
-
-        Debug.Log($"Dados carregados: {wrapper.races?.Count} corridas existentes");
 
         // Se a lista de corridas for nula, inicializa
         if (wrapper.races == null)
         {
             wrapper.races = new List<RaceResult>();
-            Debug.Log("Lista de corridas inicializada (era nula)");
         }
 
         // Adiciona o novo resultado
         wrapper.races.Add(newResult);
-        Debug.Log($"Nova corrida adicionada. Total agora: {wrapper.races.Count}");
-
         // Converte para JSON
         string json = JsonUtility.ToJson(wrapper, true);
-        Debug.Log($"JSON gerado: {json}");
-
         // Salva no arquivo
         File.WriteAllText(FilePath, json);
-        Debug.Log("Corrida salva com sucesso!");
+
+        string activeDriversPath = Path.Combine(
+            Application.persistentDataPath,
+            "saves",
+            SaveSession.CurrentSaveId,
+            "activeDriversList.json"
+        );
+
+        string activeDriversJson = File.ReadAllText(activeDriversPath);
+        DriversList activeDriversList = JsonUtility.FromJson<DriversList>(activeDriversJson);
+
+        foreach (DriverResult driverResult in newResult.driverResults)
+        {
+            var existingDriver = activeDriversList.drivers.Find(s => s.id == driverResult.driver.id);
+            if (existingDriver != null)
+            {
+                Result localResult = new Result(1, newResult.trackName, driverResult.position, driverResult.bestLap, driverResult.totalTime);
+                if (existingDriver.results == null)
+                {
+                    existingDriver.results = new List<Result>();
+                }
+                existingDriver.results.Add(localResult);
+            }
+        }
+        File.WriteAllText(activeDriversPath, JsonUtility.ToJson(activeDriversList, true));
+
     }
 
     public static RaceDataWrapper LoadAll()

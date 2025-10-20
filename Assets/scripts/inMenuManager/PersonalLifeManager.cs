@@ -24,9 +24,6 @@ public class CalendarManager
     public GameObject raceRowPrefab;
     public GameObject standingLinePrefab;
 
-    public TeamsList teamsList;
-    public DriversList driversList;
-    public RaceResultList raceResultList;
 
 
     private void Awake()

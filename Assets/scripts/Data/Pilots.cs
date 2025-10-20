@@ -21,6 +21,7 @@ public class Driver
     public int id;
     public bool active;
     public int role;
+    public List<Result> results = new List<Result>();
     public float Average
     {
         get { return (highSpeedCorners + lowSpeedCorners + acceleration + topSpeed) / 4f; }
@@ -31,4 +32,23 @@ public class Driver
 public class DriversList
 {
     public List<Driver> drivers;
+}
+
+[Serializable]
+public class Result
+{
+    public int season;
+    public string track;
+    public int position;
+    public float bestLap;
+    public float totalTime;
+
+    public Result(int season, string track, int position, float bestLap, float totalTime)
+    {
+        this.season = season;
+        this.track = track;
+        this.position = position;
+        this.bestLap = bestLap;
+        this.totalTime = totalTime;
+    }
 }

@@ -1,15 +1,22 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+
+[System.Serializable]
+public class RaceResultList
+{
+    public List<RaceResult> races;
+}
+
 [System.Serializable]
 public class RaceResult
 {
     public string trackName;
-    public List<DriverResult> results = new List<DriverResult>();
-    public RaceResult(string trackName, List<DriverResult> results)
+    public List<DriverResult> driverResults = new List<DriverResult>();
+    public RaceResult(string trackName, List<DriverResult> driverResults)
     {
         this.trackName = trackName;
-        this.results = results;
+        this.driverResults = driverResults;
     }
 }
 [System.Serializable]
