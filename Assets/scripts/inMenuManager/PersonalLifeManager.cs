@@ -8,7 +8,7 @@ using System.IO;
 using System.Linq;
 
 
-public class CalendarManager
+public class PersonalLifeManager
  : MonoBehaviour
 {
     [Header("UI Canvas")]
