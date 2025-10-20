@@ -11,6 +11,7 @@ public class CarSimulationState
     public float totalWear;
     public int totalLapTyre;
     public int lapsCompleted;
+    public int bestLap;
 
     public CarSimulationState(string startingTire, float carFactor, string driver, string team)
     {
@@ -20,6 +21,7 @@ public class CarSimulationState
         totalWear = 0f;
         totalLapTyre = 0;
         lapsCompleted = 0;
+        bestLap = 1000;
         this.driver = driver;
         this.team = team;
     }

@@ -1,4 +1,4 @@
-using System.Collections.Generic;
+/* using System.Collections.Generic;
 using UnityEngine;
 
 public class CarSimulationResult
@@ -12,4 +12,4 @@ public class DriverResult2 {
     public string driverName;
     public string teamName;
     public float totalTime;
-}
+} */

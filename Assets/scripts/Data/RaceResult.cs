@@ -1,12 +1,23 @@
 using System.Collections.Generic;
 using System.Diagnostics;
 using UnityEngine;
+
+[System.Serializable]
+public class RaceResultList
+{
+    public List<RaceResult> races;
+}
+
 [System.Serializable]
 public class RaceResult
 {
     public string trackName;
-    public string date;
-    public List<DriverResult> results = new List<DriverResult>();
+    public List<DriverResult> driverResults = new List<DriverResult>();
+    public RaceResult(string trackName, List<DriverResult> driverResults)
+    {
+        this.trackName = trackName;
+        this.driverResults = driverResults;
+    }
 }
 [System.Serializable]
 public class DriverResult {
@@ -14,11 +25,13 @@ public class DriverResult {
     public int position;
     public float totalTime;
     public float lastLap;
-    public DriverResult(Driver driver, int position, float totalTime, float lastLap)
+    public float bestLap;
+    public DriverResult(Driver driver, int position, float totalTime, float lastLap, float bestLap)
     {
         this.driver = driver;
         this.position = position;
         this.totalTime = totalTime;
         this.lastLap = lastLap;
+        this.bestLap = bestLap;
     }
 }

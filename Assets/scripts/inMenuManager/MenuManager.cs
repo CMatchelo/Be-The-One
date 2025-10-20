@@ -20,16 +20,32 @@ public class RaceSimulator : MonoBehaviour
 
     [Header("UI Btns and Dropdowns")]
     public List<Button> GoToPageBtn;
+    public Button backStandingsBtn;
+    public Button backCalendarBtn;
+    public Button backPracticeBtn;
+    public Button backPersonalLifeBtn;
     public Button startRaceButton;
     public TMP_Text nextRaceText;
-    public TMP_Text driversStandings;
-    
+
+    [Header("UI Texts")]
+
+
+
+    private Dictionary<string, GameObject> panels;
 
     private List<string> logMessages = new List<string>();
 
     private void Awake()
     {
-        LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
+        //LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
+        LoadUtility.LoadGame("Cicero_g15866");
+        panels = new Dictionary<string, GameObject>
+        {
+            { "StandingsPanel", StandingsPanel },
+            { "CalendarPanel", CalendarPanel },
+            { "PracticePanel", PracticePanel },
+            { "PersonalLifePanel", PersonalLifePanel }
+        };
         if (SaveSession.CurrentGameData.profile.driver.yearsOfContract <= 0)
         {
             ContractNegotiationPanel.SetActive(true);
@@ -40,11 +56,14 @@ public class RaceSimulator : MonoBehaviour
     {
         ChampionshipManager.Initialize();
         UpdateNextRaceInfo();
-        for (int i = 0; i < GoToPageBtn.Count; i++)
-        {
-            int capturedIndex = i + 1;
-            GoToPageBtn[i].onClick.AddListener(() => GoToPage(capturedIndex));
-        }
+        GoToPageBtn[0].onClick.AddListener(() => GoToPage("StandingsPanel"));
+        GoToPageBtn[1].onClick.AddListener(() => GoToPage("CalendarPanel"));
+        GoToPageBtn[2].onClick.AddListener(() => GoToPage("PracticePanel"));
+        GoToPageBtn[3].onClick.AddListener(() => GoToPage("PersonalLifePanel"));
+        backStandingsBtn.onClick.AddListener(() => BackToMenu("StandingsPanel"));
+        backCalendarBtn.onClick.AddListener(() => BackToMenu("CalendarPanel"));
+        backPracticeBtn.onClick.AddListener(() => BackToMenu("PracticePanel"));
+        backPersonalLifeBtn.onClick.AddListener(() => BackToMenu("PersonalLifePanel"));
     }
     void StartSimulation()
     {
@@ -73,27 +92,29 @@ public class RaceSimulator : MonoBehaviour
         SceneManager.LoadScene("RaceScene");
     }
 
-    void GoToPage(int eventNumber)
+    void GoToPage(string panel)
     {
-        if (eventNumber == 0)
+        if (panels.ContainsKey(panel))
         {
             MenuPanel.SetActive(false);
-            StandingsPanel.SetActive(true);
+            panels[panel].SetActive(true);
         }
-        else if (eventNumber == 1)
+        else
         {
-            MenuPanel.SetActive(false);
-            CalendarPanel.SetActive(true);
+            Debug.LogWarning($"Painel '{panel}' não encontrado!");
         }
-        else if (eventNumber == 2)
+    }
+
+    void BackToMenu(string panel)
+    {
+        if (panels.ContainsKey(panel))
         {
-            MenuPanel.SetActive(false);
-            PracticePanel.SetActive(true);
+            MenuPanel.SetActive(true);
+            panels[panel].SetActive(false);
         }
-        else if (eventNumber == 3)
+        else
         {
-            MenuPanel.SetActive(false);
-            PersonalLifePanel.SetActive(true);
+            Debug.LogWarning($"Painel '{panel}' não encontrado!");
         }
     }
 
