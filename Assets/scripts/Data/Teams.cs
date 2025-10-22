@@ -11,6 +11,7 @@ public class Team
     public int acceleration;
     public int topSpeed;
     public int id;
+    public int minDriverResults;
     public float Average
     {
         get { return (highSpeedCorners + lowSpeedCorners + acceleration + topSpeed) / 4f; }

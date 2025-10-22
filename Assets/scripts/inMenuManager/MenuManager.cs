@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 
 
-public class RaceSimulator : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     [Header("UI Canvas")]
     public GameObject MenuPanel;
@@ -16,6 +16,8 @@ public class RaceSimulator : MonoBehaviour
     public GameObject PracticePanel;
     public GameObject PersonalLifePanel;
     public GameObject ContractNegotiationPanel;
+    public GameObject SponsorNegotiationPanel;
+    public SponsorshipManager sponsorshipManager;
 
 
     [Header("UI Btns and Dropdowns")]
@@ -37,8 +39,8 @@ public class RaceSimulator : MonoBehaviour
 
     private void Awake()
     {
-        //LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
-        LoadUtility.LoadGame("Cicero_g15866");
+        LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
+        //LoadUtility.LoadGame("Chays_c4wIYT");
         panels = new Dictionary<string, GameObject>
         {
             { "StandingsPanel", StandingsPanel },
@@ -46,11 +48,7 @@ public class RaceSimulator : MonoBehaviour
             { "PracticePanel", PracticePanel },
             { "PersonalLifePanel", PersonalLifePanel }
         };
-        if (SaveSession.CurrentGameData.profile.driver.yearsOfContract <= 0)
-        {
-            ContractNegotiationPanel.SetActive(true);
-            MenuPanel.SetActive(false);
-        }
+        CheckNegotiations();
     }
     private void Start()
     {
@@ -115,6 +113,21 @@ public class RaceSimulator : MonoBehaviour
         else
         {
             Debug.LogWarning($"Painel '{panel}' não encontrado!");
+        }
+    }
+
+    public void CheckNegotiations()
+    {
+        if (SaveSession.CurrentGameData.profile.driver.yearsOfContract <= 0)
+        {
+            ContractNegotiationPanel.SetActive(true);
+            MenuPanel.SetActive(false);
+        }
+        else if (SaveSession.CurrentGameData.profile.sponsorMaster.remainingRaces <= 0)
+        {
+            sponsorshipManager.LoadDatabase();
+            SponsorNegotiationPanel.SetActive(true);
+            MenuPanel.SetActive(false);
         }
     }
 

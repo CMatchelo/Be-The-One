@@ -59,6 +59,16 @@ public class CalendarManager
             SaveSession.CurrentSaveId,
             "races.json"
         );
+        if (!File.Exists(pathRaces))
+        {
+            RaceResultList emptyList = new RaceResultList
+            {
+                races = new List<RaceResult>()
+            };
+
+            string json = JsonUtility.ToJson(emptyList, true);
+            File.WriteAllText(pathRaces, json);
+        }
         string racesLocal = File.ReadAllText(pathRaces);
         raceResultList = JsonUtility.FromJson<RaceResultList>(racesLocal);
     }
@@ -77,8 +87,6 @@ public class CalendarManager
             //string team = race.driverResults[0].driver.team;
             string team = teamsList.teams.Find(team => team.id == race.driverResults[0].driver.teamId)?.teamName;
             string driver = race.driverResults[0].driver.firstName;
-
-            Debug.Log(race.driverResults[0].driver.firstName);
 
             texts[0].text = race.trackName;
             texts[1].text = winner;
@@ -103,7 +111,6 @@ public class CalendarManager
             texts[2].text = teamsList.teams.Find(team => team.id == driverResult.driver.teamId)?.teamName;
             texts[3].text = driverResult.bestLap.ToString();
             texts[4].text = driverResult.totalTime.ToString();
-            Debug.Log($"Função executada! Corrida: {race.trackName}");
         }
         calendarTable.gameObject.SetActive(false);
         raceTable.gameObject.SetActive(true);

@@ -44,6 +44,7 @@ public class PlayerProfile
     public int focus;
     public int awareness;
     public int money = 0;
+    public PersonalItemsList personalItemsList = new PersonalItemsList();
     public List<Ability> abilities = new List<Ability>();
 }
 

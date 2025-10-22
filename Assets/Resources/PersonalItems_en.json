@@ -1,5 +1,5 @@
 {
-  "personalItemsList": [
+  "personalItems": [
     { "id": 1, "name": "Small Apartment in São Paulo", "value": 1500000 },
     { "id": 2, "name": "Modern Apartment in Belo Horizonte", "value": 2500000 },
     { "id": 3, "name": "Simple Country House", "value": 3000000 },

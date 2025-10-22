@@ -33,6 +33,7 @@ public class ContractManager : MonoBehaviour
     public Button plusSalaryBtn;
     public Button minusYearsBtn;
     public Button plusYearsBtn;
+    public MenuManager menuManager;
 
 
     [Header("Settings")]
@@ -77,14 +78,15 @@ public class ContractManager : MonoBehaviour
     void SignContract()
     {
         SaveSession.CurrentGameData.profile.driver.role = statusOfferedDropdown.value;
-        SaveSession.CurrentGameData.profile.driver.teamId = sortedTeams[selectedTeamIndex].id;
+        SaveSession.CurrentGameData.profile.driver.teamId = teamsList.teams[selectedTeamIndex].id;
         SaveSession.CurrentGameData.profile.driver.yearsOfContract = yearsOffered;
         SaveSession.CurrentGameData.profile.driver.active = true;
         SaveUtility.UpdateDrivers(SaveSession.CurrentGameData.profile.driver);
         ContractNegotiationPanel.SetActive(false);
         MenuPanel.SetActive(true);
         SaveUtility.UpdateProfile();
-        StartCoroutine(DisableContractManagerNextFrame());
+        menuManager.CheckNegotiations();
+        /* StartCoroutine(DisableContractManagerNextFrame()); */
     }
 
     void NegotiateContract()
@@ -154,7 +156,6 @@ public class ContractManager : MonoBehaviour
             if (years >= limit.maxYears)
             {
                 years -= qty;
-                Debug.Log("Esse número de anos já foi negado por esse time.");
                 plusYearsBtn.interactable = false;
                 return;
             }
@@ -326,29 +327,19 @@ public class ContractManager : MonoBehaviour
 
     void PopulateTeamDropdown()
     {
-        string path = Path.Combine(Application.persistentDataPath, "saves", "Cicero_g15866", "teamsList.json"); // Fix id load
-
-        if (!File.Exists(path))
-        {
-            Debug.LogError("Save file não encontrado: " + path);
-            return;
-        }
-
-        string jsonContent = File.ReadAllText(path); // Lê o JSON do arquivo físico
-        teamsList = JsonUtility.FromJson<TeamsList>(jsonContent); // Desserializa
-
+        TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
+        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
         if (teamsList?.teams == null) // Verifica se teamsList e teams existem
         {
             Debug.LogError("Falha ao carregar ou lista de times vazia!");
             return;
         }
 
-        sortedTeams = teamsList.teams.OrderByDescending(team => team.Average).ToList();
-
         teamDropdown.ClearOptions();
         List<string> teamNames = new List<string>();
-        foreach (Team team in sortedTeams)
+        foreach (Team team in teamsList.teams)
         {
+            if (team.minDriverResults > SaveSession.CurrentGameData.profile.lastResults) continue;
             teamNames.Add(team.teamName);
         }
         teamDropdown.AddOptions(teamNames);

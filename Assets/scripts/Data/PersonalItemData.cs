@@ -3,15 +3,29 @@ using System.Collections.Generic;
 using UnityEngine;
 
 [Serializable]
-public class PersonalItems
+public class PersonalItem
 {
+    public int id;
     public string name;
     public int value;
-
+    public PersonalItem(int id, string name, int value)
+    {
+        this.id = id;
+        this.name = name;
+        this.value = value;
+    }
 }
 
 [Serializable]
 public class PersonalItemsList
 {
-    public List<PersonalItems> personalItemsList;
+    public List<PersonalItem> personalItems;
+    public PersonalItemsList(List<PersonalItem> personalItems)
+    {
+        this.personalItems = personalItems;
+    }
+    public PersonalItemsList()
+    {
+        personalItems = new List<PersonalItem>();
+    }
 }

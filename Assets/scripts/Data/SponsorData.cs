@@ -11,6 +11,7 @@ public class Sponsor
     public int valuePerGoal;
     public string preferredProfile;
     public int minimumDriverAverage;
+    public int remainingRaces = 0;
     public List<string> goals;
 }
 
