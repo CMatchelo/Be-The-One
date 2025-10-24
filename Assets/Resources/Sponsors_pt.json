@@ -1,6 +1,7 @@
 {
   "sponsors": [
     {
+      "id": 1,
       "realName": "Red Bull",
       "name": "Blue Ox",
       "presentation": "A Blue Ox é uma marca de energéticos conhecida por ultrapassar limites e dominar esportes radicais. Prosperamos com talento bruto e ambição ousada. Nosso parceiro ideal é um piloto destemido e ambicioso que vive pelo pódio e nunca recua diante de um desafio.",
@@ -15,6 +16,7 @@
       ]
     },
     {
+      "id": 2,
       "realName": "Petronas",
       "name": "Petrosys",
       "presentation": "A Petrosys é líder em inovação e sustentabilidade energética global. Com um legado de eficiência e confiabilidade, valorizamos pilotos comprometidos em cada volta. Apoiamos atletas leais que representam trabalho em equipe e visão de longo prazo.",
@@ -29,6 +31,7 @@
       ]
     },
     {
+      "id": 3,
       "realName": "Shell",
       "name": "Shield Oil",
       "presentation": "A Shield Oil alimenta motores no mundo todo há mais de um século. Abastecemos campeões que não só vencem, mas também inspiram. Nossos pilotos preferidos são figuras carismáticas que brilham dentro e fora da pista.",
@@ -43,6 +46,7 @@
       ]
     },
     {
+      "id": 4,
       "realName": "Monster Energy",
       "name": "Savage Boost",
       "presentation": "A Savage Boost é o rosto da cultura da adrenalina fornecendo energéticos. Seja no automobilismo, skate ou snowboard, buscamos velocidade e ousadia. Nos alinhamos melhor com pilotos ambiciosos que assumem riscos e mantêm o público à beira do assento.",
@@ -57,6 +61,7 @@
       ]
     },
     {
+      "id": 5,
       "realName": "Pirelli",
       "name": "Tirelli",
       "presentation": "A Tirelli é sinônimo de aderência, durabilidade e precisão no automobilismo. Acreditamos que resistência e consistência vencem campeonatos. Por isso, confiamos em pilotos leais que mantêm o foco, a disciplina e não cedem sob pressão.",
@@ -71,6 +76,7 @@
       ]
     },
     {
+      "id": 6,
       "realName": "Emirates",
       "name": "SkyLink Air",
       "presentation": "A SkyLink Air é uma companhia aérea de luxo que redefine as viagens em alto nível. Acreditamos que o automobilismo é tanto sobre elegância quanto sobre velocidade. Buscamos pilotos carismáticos que representem sofisticação, classe e apelo global.",
@@ -85,6 +91,7 @@
       ]
     },
     {
+      "id": 7,
       "realName": "Rolex",
       "name": "Rolux",
       "presentation": "A Rolux representa excelência atemporal e precisão absoluta. Assim como nossos relógios, admiramos pilotos movidos pela perfeição. Favorecemos talentos ambiciosos que não se contentam com o segundo lugar.",
@@ -99,6 +106,7 @@
       ]
     },
     {
+      "id": 8,
       "realName": "DHL",
       "name": "DHS",
       "presentation": "A DHS é uma potência global em logística, entregando resultados com velocidade e confiabilidade. Apoiamos pilotos leais que trazem desempenho consistente, dedicação e compromisso com resultados sólidos em cada corrida.",
@@ -113,6 +121,7 @@
       ]
     },
     {
+      "id": 9,
       "realName": "Amazon Web Services",
       "name": "Jungle Cloud",
       "presentation": "A Jungle Cloud capacita o mundo digital com soluções de ponta em nuvem. Acreditamos em pilotos inteligentes e conectados, que se adaptam rapidamente. Nossos parceiros ideais são pilotos carismáticos que representam o futuro do esporte.",
@@ -127,6 +136,7 @@
       ]
     },
     {
+      "id": 10,
       "realName": "Lenovo",
       "name": "Lanova",
       "presentation": "A Lanova oferece tecnologia poderosa para quem exige desempenho. Seja na pista ou em uma placa de circuito, valorizamos pensadores e realizadores ousados. Buscamos pilotos ambiciosos que inovam ao volante.",
@@ -141,6 +151,7 @@
       ]
     },
     {
+      "id": 11,
       "realName": "Aramco",
       "name": "Aromco",
       "presentation": "A Aromco abastece indústrias globais com energia limpa e eficiente. Nossos valores são estabilidade, excelência e progresso. Admiramos pilotos leais que respeitam a arte da competição e entregam resultados consistentes.",
@@ -155,6 +166,7 @@
       ]
     },
     {
+      "id": 12,
       "realName": "Heineken",
       "name": "Heinbrew",
       "presentation": "A Heinbrew é onde a celebração encontra a competição. Patrocinamos pilotos que trazem carisma e estilo a cada final de semana de corrida. Nossos parceiros ideais são pilotos carismáticos que conectam com fãs e a mídia.",
@@ -169,6 +181,7 @@
       ]
     },
     {
+      "id": 13,
       "realName": "Castrol",
       "name": "Gastrol",
       "presentation": "A Gastrol é a força vital de motores de alta performance. Apoiamos pilotos que lutam para subir no grid. Preferimos pilotos ambiciosos que nunca param de empurrar os limites.",
@@ -183,6 +196,7 @@
       ]
     },
     {
+      "id": 14,
       "realName": "AMD",
       "name": "CMD",
       "presentation": "A CMD constrói os processadores que alimentam a inovação. Parceriamos com atletas de mente afiada, precisos e confiáveis. Nossa confiança está em pilotos leais que constroem confiança volta após volta.",
@@ -197,6 +211,7 @@
       ]
     },
     {
+      "id": 15,
       "realName": "Kaspersky",
       "name": "Kaspersafe",
       "presentation": "A Kaspersafe protege o mundo digital com cibersegurança de alto nível. Na pista, buscamos pilotos magnéticos e com habilidade midiática. Somos atraídos por personalidades carismáticas que viram manchetes pelos motivos certos.",

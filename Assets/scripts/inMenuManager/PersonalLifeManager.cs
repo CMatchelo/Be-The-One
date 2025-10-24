@@ -17,6 +17,11 @@ public class PersonalLifeManager
     public Transform sellView;
     public GameObject luxuryItemPrefab;
 
+    [Header("Buttons")]
+    public Button relationshipChief;
+    public Button relationshipSponsor;
+    public Button relationshipEngineer;
+
     public PersonalItemsList personalItemsList;
 
 
@@ -31,13 +36,21 @@ public class PersonalLifeManager
 
     private void LoadDatabases()
     {
-        string languageCode = LocalizationSettings.SelectedLocale.Identifier.Code;
-        TextAsset itemsLocal = null;
-        if (languageCode == "en-US") itemsLocal = Resources.Load<TextAsset>("PersonalItems_en");
-        if (languageCode == "pt-BR") itemsLocal = Resources.Load<TextAsset>("PersonalItems_pt");
+        TextAsset itemsLocal = Resources.Load<TextAsset>("PersonalItems");
         personalItemsList = JsonUtility.FromJson<PersonalItemsList>(itemsLocal.text);
         PopulateBuyList();
         PopulateSellList();
+    }
+
+    public string GetLocalizedName(PersonalItem item)
+    {
+        string languageCode = LocalizationSettings.SelectedLocale.Identifier.Code;
+        return languageCode switch
+        {
+            "pt-BR" => item.name.pt,
+            "en-US" => item.name.en,
+            _ => item.name.en
+        };
     }
 
     private void PopulateBuyList()
@@ -56,7 +69,8 @@ public class PersonalLifeManager
             var buttonText = buyButton.GetComponentInChildren<TextMeshProUGUI>();
             buttonText.text = "Buy";
             buyButton.onClick.AddListener(() => BuyItem(item));
-            itemName[0].text = item.name;
+            itemName[0].text = GetLocalizedName(item);
+            //itemName[0].text = item.name;
             if (SaveSession.CurrentGameData.profile.money < item.value) buyButton.interactable = false;
         }
 
@@ -74,7 +88,7 @@ public class PersonalLifeManager
             var buttonText = sellButton.GetComponentInChildren<TextMeshProUGUI>();
             buttonText.text = "Sell";
             sellButton.onClick.AddListener(() => SellItem(item));
-            itemName[0].text = item.name;
+            itemName[0].text = GetLocalizedName(item);
         }
     }
 
@@ -82,15 +96,33 @@ public class PersonalLifeManager
     {
         SaveSession.CurrentGameData.profile.money -= newItem.value;
         newItem.value = newItem.value - ((newItem.value * 15) / 100);
+        newItem.propertyId = RandomStringGenerator.GenerateRandomString();
         SaveSession.CurrentGameData.profile.personalItemsList.personalItems.Add(newItem);
         SaveUtility.UpdateProfile();
-        PopulateBuyList(); 
+        PopulateBuyList();
         PopulateSellList();
     }
 
     private void SellItem(PersonalItem soldItem)
     {
-        Debug.Log("Vendendo " + soldItem.name);
+        SaveSession.CurrentGameData.profile.money += soldItem.value;
+        SaveSession.CurrentGameData.profile.personalItemsList.personalItems.RemoveAll(item => item.propertyId == soldItem.propertyId);
+        SaveUtility.UpdateProfile();
+        PopulateBuyList();
+        PopulateSellList();
     }
 
+    public void ProfessionalRelationship(int relType)
+    {
+        if (relType == 0) SaveSession.CurrentGameData.profile.chiefRelationship += 2;
+        if (relType == 1) SaveSession.CurrentGameData.profile.sponsorRelationship += 2;
+        if (relType == 2) SaveSession.CurrentGameData.profile.engineerRelationship += 2;
+        if (SaveSession.CurrentGameData.profile.chiefRelationship > 10) SaveSession.CurrentGameData.profile.chiefRelationship = 10;
+        if (SaveSession.CurrentGameData.profile.sponsorRelationship > 10) SaveSession.CurrentGameData.profile.sponsorRelationship = 10;
+        if (SaveSession.CurrentGameData.profile.engineerRelationship > 10) SaveSession.CurrentGameData.profile.engineerRelationship = 10;
+        relationshipChief.interactable = false;
+        relationshipSponsor.interactable = false;
+        relationshipEngineer.interactable = false;
+        SaveUtility.UpdateProfile();
+    }
 }

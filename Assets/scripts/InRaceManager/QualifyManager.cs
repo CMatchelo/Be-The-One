@@ -236,10 +236,10 @@ public class QualifyManager : MonoBehaviour
 
         if (!playerBonusApplied)
         {
-            playerDriver.highSpeedCorners += bonus.highSpeedCorners;
-            playerDriver.lowSpeedCorners += bonus.lowSpeedCorners;
-            playerDriver.acceleration += bonus.acceleration;
-            playerDriver.topSpeed += bonus.topSpeed;
+            playerDriver.highSpeedCorners += bonus.highSpeedCorners + SaveSession.CurrentGameData.profile.engineerRelationship;
+            playerDriver.lowSpeedCorners += bonus.lowSpeedCorners + SaveSession.CurrentGameData.profile.engineerRelationship;
+            playerDriver.acceleration += bonus.acceleration + SaveSession.CurrentGameData.profile.engineerRelationship;
+            playerDriver.topSpeed += bonus.topSpeed + SaveSession.CurrentGameData.profile.engineerRelationship;
 
             playerBonusApplied = true;
         }

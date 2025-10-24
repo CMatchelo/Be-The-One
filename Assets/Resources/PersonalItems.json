@@ -1,0 +1,481 @@
+{
+  "personalItems": [
+    {
+      "id": 1,
+      "propertyId": "",
+      "name": {
+        "pt": "Apartamento pequeno em São Paulo",
+        "en": "Small apartment in São Paulo"
+      },
+      "value": 1500000
+    },
+    {
+      "id": 2,
+      "propertyId": "",
+      "name": {
+        "pt": "Apartamento moderno em Belo Horizonte",
+        "en": "Modern apartment in Belo Horizonte"
+      },
+      "value": 2500000
+    },
+    {
+      "id": 3,
+      "propertyId": "",
+      "name": {
+        "pt": "Casa de campo simples",
+        "en": "Simple countryside house"
+      },
+      "value": 3000000
+    },
+    {
+      "id": 4,
+      "propertyId": "",
+      "name": {
+        "pt": "Apartamento em Curitiba",
+        "en": "Apartment in Curitiba"
+      },
+      "value": 4000000
+    },
+    {
+      "id": 5,
+      "propertyId": "",
+      "name": {
+        "pt": "Casa de praia em Florianópolis",
+        "en": "Beach house in Florianópolis"
+      },
+      "value": 7000000
+    },
+    {
+      "id": 6,
+      "propertyId": "",
+      "name": {
+        "pt": "Cobertura em Miami",
+        "en": "Penthouse in Miami"
+      },
+      "value": 15000000
+    },
+    {
+      "id": 7,
+      "propertyId": "",
+      "name": {
+        "pt": "Cobertura em Nova York",
+        "en": "Penthouse in New York"
+      },
+      "value": 25000000
+    },
+    {
+      "id": 8,
+      "propertyId": "",
+      "name": {
+        "pt": "Mansão em Los Angeles",
+        "en": "Mansion in Los Angeles"
+      },
+      "value": 45000000
+    },
+    {
+      "id": 9,
+      "propertyId": "",
+      "name": {
+        "pt": "Chalé nos Alpes Suíços",
+        "en": "Chalet in the Swiss Alps"
+      },
+      "value": 50000000
+    },
+    {
+      "id": 10,
+      "propertyId": "",
+      "name": {
+        "pt": "Ilha particular nas Maldivas",
+        "en": "Private island in the Maldives"
+      },
+      "value": 120000000
+    },
+    {
+      "id": 11,
+      "propertyId": "",
+      "name": {
+        "pt": "Toyota Corolla",
+        "en": "Toyota Corolla"
+      },
+      "value": 90000
+    },
+    {
+      "id": 12,
+      "propertyId": "",
+      "name": {
+        "pt": "Honda Civic",
+        "en": "Honda Civic"
+      },
+      "value": 120000
+    },
+    {
+      "id": 13,
+      "propertyId": "",
+      "name": {
+        "pt": "Jeep Compass",
+        "en": "Jeep Compass"
+      },
+      "value": 150000
+    },
+    {
+      "id": 14,
+      "propertyId": "",
+      "name": {
+        "pt": "BMW M3",
+        "en": "BMW M3"
+      },
+      "value": 400000
+    },
+    {
+      "id": 15,
+      "propertyId": "",
+      "name": {
+        "pt": "Audi RS5",
+        "en": "Audi RS5"
+      },
+      "value": 600000
+    },
+    {
+      "id": 16,
+      "propertyId": "",
+      "name": {
+        "pt": "Tesla Model S Plaid",
+        "en": "Tesla Model S Plaid"
+      },
+      "value": 800000
+    },
+    {
+      "id": 17,
+      "propertyId": "",
+      "name": {
+        "pt": "Ferrari F8 Tributo",
+        "en": "Ferrari F8 Tributo"
+      },
+      "value": 2500000
+    },
+    {
+      "id": 18,
+      "propertyId": "",
+      "name": {
+        "pt": "Lamborghini Aventador",
+        "en": "Lamborghini Aventador"
+      },
+      "value": 3500000
+    },
+    {
+      "id": 19,
+      "propertyId": "",
+      "name": {
+        "pt": "Rolls-Royce Phantom",
+        "en": "Rolls-Royce Phantom"
+      },
+      "value": 5500000
+    },
+    {
+      "id": 20,
+      "propertyId": "",
+      "name": {
+        "pt": "Bugatti Chiron",
+        "en": "Bugatti Chiron"
+      },
+      "value": 12000000
+    },
+    {
+      "id": 21,
+      "propertyId": "",
+      "name": {
+        "pt": "Relógio Casio simples",
+        "en": "Simple Casio watch"
+      },
+      "value": 500
+    },
+    {
+      "id": 22,
+      "propertyId": "",
+      "name": {
+        "pt": "Colar de prata",
+        "en": "Silver necklace"
+      },
+      "value": 3000
+    },
+    {
+      "id": 23,
+      "propertyId": "",
+      "name": {
+        "pt": "Brincos de ouro",
+        "en": "Gold earrings"
+      },
+      "value": 10000
+    },
+    {
+      "id": 24,
+      "propertyId": "",
+      "name": {
+        "pt": "Relógio Rolex Submariner",
+        "en": "Rolex Submariner watch"
+      },
+      "value": 70000
+    },
+    {
+      "id": 25,
+      "propertyId": "",
+      "name": {
+        "pt": "Anel de rubi raro",
+        "en": "Rare ruby ring"
+      },
+      "value": 180000
+    },
+    {
+      "id": 26,
+      "propertyId": "",
+      "name": {
+        "pt": "Colar de diamantes Tiffany",
+        "en": "Tiffany diamond necklace"
+      },
+      "value": 250000
+    },
+    {
+      "id": 27,
+      "propertyId": "",
+      "name": {
+        "pt": "Relógio Patek Philippe Grand Complications",
+        "en": "Patek Philippe Grand Complications watch"
+      },
+      "value": 1200000
+    },
+    {
+      "id": 28,
+      "propertyId": "",
+      "name": {
+        "pt": "Tiara de diamantes",
+        "en": "Diamond tiara"
+      },
+      "value": 3500000
+    },
+    {
+      "id": 29,
+      "propertyId": "",
+      "name": {
+        "pt": "Pintura contemporânea local",
+        "en": "Local contemporary painting"
+      },
+      "value": 35000
+    },
+    {
+      "id": 30,
+      "propertyId": "",
+      "name": {
+        "pt": "Escultura em bronze de artista renomado",
+        "en": "Bronze sculpture by renowned artist"
+      },
+      "value": 120000
+    },
+    {
+      "id": 31,
+      "propertyId": "",
+      "name": {
+        "pt": "Quadro impressionista francês",
+        "en": "French impressionist painting"
+      },
+      "value": 750000
+    },
+    {
+      "id": 32,
+      "propertyId": "",
+      "name": {
+        "pt": "Obra original de Picasso",
+        "en": "Original Picasso artwork"
+      },
+      "value": 25000000
+    },
+    {
+      "id": 33,
+      "propertyId": "",
+      "name": {
+        "pt": "Coleção de gravuras raras",
+        "en": "Collection of rare prints"
+      },
+      "value": 400000
+    },
+    {
+      "id": 34,
+      "propertyId": "",
+      "name": {
+        "pt": "Escultura moderna de Andy Warhol",
+        "en": "Modern Andy Warhol sculpture"
+      },
+      "value": 1000000
+    },
+    {
+      "id": 35,
+      "propertyId": "",
+      "name": {
+        "pt": "Bolsa Louis Vuitton edição limitada",
+        "en": "Louis Vuitton limited edition bag"
+      },
+      "value": 25000
+    },
+    {
+      "id": 36,
+      "propertyId": "",
+      "name": {
+        "pt": "Coleção de vinhos raros",
+        "en": "Collection of rare wines"
+      },
+      "value": 300000
+    },
+    {
+      "id": 37,
+      "propertyId": "",
+      "name": {
+        "pt": "Guitarra autografada por Jimi Hendrix",
+        "en": "Guitar signed by Jimi Hendrix"
+      },
+      "value": 500000
+    },
+    {
+      "id": 38,
+      "propertyId": "",
+      "name": {
+        "pt": "Coleção de carros clássicos",
+        "en": "Collection of classic cars"
+      },
+      "value": 7000000
+    },
+    {
+      "id": 39,
+      "propertyId": "",
+      "name": {
+        "pt": "Relíquia romana antiga",
+        "en": "Ancient Roman relic"
+      },
+      "value": 950000
+    },
+    {
+      "id": 40,
+      "propertyId": "",
+      "name": {
+        "pt": "Estátua de ouro de artista contemporâneo",
+        "en": "Golden statue by contemporary artist"
+      },
+      "value": 1200000
+    },
+    {
+      "id": 41,
+      "propertyId": "",
+      "name": {
+        "pt": "Coleção de moedas históricas",
+        "en": "Collection of historical coins"
+      },
+      "value": 150000
+    },
+    {
+      "id": 42,
+      "propertyId": "",
+      "name": {
+        "pt": "Bicicleta de corrida",
+        "en": "Racing bicycle"
+      },
+      "value": 5000
+    },
+    {
+      "id": 43,
+      "propertyId": "",
+      "name": {
+        "pt": "Jet ski",
+        "en": "Jet ski"
+      },
+      "value": 45000
+    },
+    {
+      "id": 44,
+      "propertyId": "",
+      "name": {
+        "pt": "Moto Harley-Davidson",
+        "en": "Harley-Davidson motorcycle"
+      },
+      "value": 120000
+    },
+    {
+      "id": 45,
+      "propertyId": "",
+      "name": {
+        "pt": "Iate médio de luxo",
+        "en": "Medium luxury yacht"
+      },
+      "value": 6000000
+    },
+    {
+      "id": 46,
+      "propertyId": "",
+      "name": {
+        "pt": "Helicóptero executivo",
+        "en": "Executive helicopter"
+      },
+      "value": 3500000
+    },
+    {
+      "id": 47,
+      "propertyId": "",
+      "name": {
+        "pt": "Jato particular pequeno",
+        "en": "Small private jet"
+      },
+      "value": 8500000
+    },
+    {
+      "id": 48,
+      "propertyId": "",
+      "name": {
+        "pt": "Cachorro de raça rara",
+        "en": "Rare breed dog"
+      },
+      "value": 15000
+    },
+    {
+      "id": 49,
+      "propertyId": "",
+      "name": {
+        "pt": "Cavalo puro-sangue de corrida",
+        "en": "Thoroughbred racehorse"
+      },
+      "value": 1200000
+    },
+    {
+      "id": 50,
+      "propertyId": "",
+      "name": {
+        "pt": "Obra NFT de artista digital famoso",
+        "en": "NFT artwork by famous digital artist"
+      },
+      "value": 300000
+    },
+    {
+      "id": 51,
+      "propertyId": "",
+      "name": {
+        "pt": "Coleção de sneakers raros",
+        "en": "Collection of rare sneakers"
+      },
+      "value": 150000
+    },
+    {
+      "id": 52,
+      "propertyId": "",
+      "name": {
+        "pt": "Drone profissional de filmagem",
+        "en": "Professional filming drone"
+      },
+      "value": 80000
+    },
+    {
+      "id": 53,
+      "propertyId": "",
+      "name": {
+        "pt": "Simulador de corrida profissional",
+        "en": "Professional racing simulator"
+      },
+      "value": 250000
+    }
+  ]
+}

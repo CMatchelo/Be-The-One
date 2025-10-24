@@ -45,6 +45,9 @@ public class PlayerProfile
     public int awareness;
     public int money = 0;
     public PersonalItemsList personalItemsList = new PersonalItemsList();
+    public int engineerRelationship = 0;
+    public int chiefRelationship = 0;
+    public int sponsorRelationship = 0;
     public List<Ability> abilities = new List<Ability>();
 }
 

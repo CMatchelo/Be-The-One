@@ -20,6 +20,6 @@ public static class PerformanceCalculator
 
         /* Debug.Log($"{driver.firstName} | {inpiration} |  {highSpeedFactor} | {lowSpeedFactor} | {accelerationFactor} | {topSpeedFactor}"); */
 
-        return timeBase; // placeholder
+        return timeBase;
     }
 }

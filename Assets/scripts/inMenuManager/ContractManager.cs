@@ -48,8 +48,8 @@ public class ContractManager : MonoBehaviour
     private int years;
     private int difficulty = 11;
     List<int> listDifficulty = Enumerable.Repeat(11, 10).ToList();
-    private string yearOfferedLocate = ""; 
-    private string salaryOfferedLocate = ""; 
+    private string yearOfferedLocate = "";
+    private string salaryOfferedLocate = "";
 
     [Header("Dialogues")]
     private ContractNegotiationDialogue dialogueData;
@@ -94,6 +94,10 @@ public class ContractManager : MonoBehaviour
         //Calculate Status difficulty
         int distance = Mathf.Abs(statusOfferedDropdown.value - statusOffered);
         difficulty = listDifficulty[selectedTeamIndex] + 4 * distance;
+        if (SaveSession.CurrentGameData.profile.driver.teamId == teamsList.teams[selectedTeamIndex].id)
+        {
+            difficulty -= SaveSession.CurrentGameData.profile.chiefRelationship;
+        }
 
         //Calculate Salary difficulty
         if (salary == 0f) return;
@@ -112,7 +116,7 @@ public class ContractManager : MonoBehaviour
         ContractDialogueManager dialogueManager = FindFirstObjectByType<ContractDialogueManager>();
 
         listDifficulty[selectedTeamIndex] += 2;
-        if (result == "critFail" | (listDifficulty[selectedTeamIndex] == 17 && result == "fail"))
+        if (result == "critFail" | (listDifficulty[selectedTeamIndex] == 17 && result == "fail")) // Fail Crit or asking too much
         {
             teamDialogueBoxText.text = dialogueManager.GetRandomFailedPhrase("Rising star"); // Fix status
             if (!negotiationLimits.ContainsKey(selectedTeamIndex))
@@ -277,8 +281,8 @@ public class ContractManager : MonoBehaviour
         teamIndex = Mathf.Clamp(teamIndex, 0, 9);
 
         // Interpolar limites baseado na posição do time (0 = melhor, 9 = pior)
-        float firstMin = Mathf.Lerp(95, 80, teamIndex / 9f);
-        float secondMin = Mathf.Lerp(85, 75, teamIndex / 9f);
+        float firstMin = Mathf.Lerp(90, 78, teamIndex / 9f);
+        float secondMin = Mathf.Lerp(80, 68, teamIndex / 9f);
         if (SaveSession.CurrentGameData.profile.driver.Average >= firstMin)
         {
             statusOfferedDropdown.value = 0; // Define o índice selecionado
@@ -306,13 +310,14 @@ public class ContractManager : MonoBehaviour
 
         salary = offerType switch
         {
-            0 => Mathf.RoundToInt(Mathf.Lerp(30000000f, 5000000f, t)),// De 30M (melhor) a 5M (pior)
-            1 => Mathf.RoundToInt(Mathf.Lerp(13000000f, 1000000f, t)),// De 13M (melhor) a 1M (pior)
-            2 => Mathf.RoundToInt(Mathf.Lerp(1000000f, 150000f, t)),// De 1M (melhor) a 150k (pior)
+            0 => Mathf.RoundToInt(Mathf.Lerp(10000000f, 5000000f, t)),
+            1 => Mathf.RoundToInt(Mathf.Lerp(8000000f, 2500000f, t)),
+            2 => Mathf.RoundToInt(Mathf.Lerp(5000000f, 150000f, t)),
             _ => 0,// erro, tipo desconhecido
         };
         salary *= (SaveSession.CurrentGameData.profile.lastResults / 100f);
         salaryOffered = Mathf.Round(salary / 10000f) * 10000f;
+        //if (salaryOffered > 5000000) salaryOffered = 5000000;
         salary = salaryOffered;
         salaryOfferedText.text = salaryOfferedLocate + salary;
         CalculateYearsOffered();
@@ -321,6 +326,7 @@ public class ContractManager : MonoBehaviour
     void CalculateYearsOffered()
     {
         yearsOffered = (SaveSession.CurrentGameData.profile.lastResults - 1) / 25 + 1;
+        if (yearsOffered > 3) yearsOffered = 3;
         years = yearsOffered;
         yearsOfferedText.text = yearOfferedLocate + years;
     }

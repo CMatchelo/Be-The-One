@@ -33,10 +33,12 @@ public class SponsorshipManager : MonoBehaviour
     private List<Sponsor> availableSponsors = new List<Sponsor>();
     private Sponsor selectedSponsor;
 
+    private bool bonusApplied = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        
+
     }
 
     public void LoadDatabase()
@@ -53,14 +55,20 @@ public class SponsorshipManager : MonoBehaviour
 
     async void OnSelectSponsor(int index)
     {
-        Debug.Log("Selected spontos: " + index);
         string localizedString = await SearchTextLocation.GetLocalizedStringAsync("SponsorPanel", "eachRaceText");
         selectedSponsor = availableSponsors[index];
         sponsorNameText.text = selectedSponsor.name;
         sponsorPresentationText.text = selectedSponsor.presentation;
+        if (selectedSponsor.id == SaveSession.CurrentGameData.profile.sponsorMaster.id && bonusApplied == false)
+        {
+            bonusApplied = true;
+            selectedSponsor.valuePerGoal += selectedSponsor.valuePerGoal * SaveSession.CurrentGameData.profile.sponsorRelationship / 100;
+        }
+
         objective1Text.text = selectedSponsor.goals[0];
         objective2Text.text = selectedSponsor.goals[1];
-        objective1ValueText.text = localizedString + ": " + selectedSponsor.valuePerGoal;
+        
+        objective1ValueText.text = localizedString + ": " + selectedSponsor.valuePerGoal * 10 / 100;
         objective2ValueText.text = localizedString + ": " + selectedSponsor.valuePerGoal;
     }
 

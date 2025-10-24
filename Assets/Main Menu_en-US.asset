@@ -34,6 +34,26 @@ MonoBehaviour:
     m_Localized: Calendar
     m_Metadata:
       m_Items: []
+  - m_Id: 2477782548172800
+    m_Localized: Professional Relationships
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2477896134119424
+    m_Localized: Personal Relationships
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2487476721373184
+    m_Localized: Play golf with the Team Principal
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2487837792227328
+    m_Localized: Attend a sponsor event
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2487839469948928
+    m_Localized: Work on car setup with your Race Engineer
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

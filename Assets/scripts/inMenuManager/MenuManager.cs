@@ -39,8 +39,8 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
-        //LoadUtility.LoadGame("Chays_c4wIYT");
+        //LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
+        LoadUtility.LoadGame("Cicero_g15866");
         panels = new Dictionary<string, GameObject>
         {
             { "StandingsPanel", StandingsPanel },
@@ -48,6 +48,9 @@ public class MenuManager : MonoBehaviour
             { "PracticePanel", PracticePanel },
             { "PersonalLifePanel", PersonalLifePanel }
         };
+        if (SaveSession.CurrentGameData.profile.engineerRelationship > 0) SaveSession.CurrentGameData.profile.engineerRelationship -= 1;
+        if (SaveSession.CurrentGameData.profile.chiefRelationship > 0) SaveSession.CurrentGameData.profile.chiefRelationship -= 1;
+        if (SaveSession.CurrentGameData.profile.sponsorRelationship > 0) SaveSession.CurrentGameData.profile.sponsorRelationship -= 1;
         CheckNegotiations();
     }
     private void Start()
