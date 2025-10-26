@@ -15,6 +15,14 @@ public class PersonalItem
         this.name = name;
         this.value = value;
     }
+
+    public PersonalItem Clone()
+    {
+        return new PersonalItem(this.id, this.name, this.value)
+        {
+            propertyId = this.propertyId
+        };
+    }
 }
 
 [Serializable]

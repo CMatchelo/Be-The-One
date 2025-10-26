@@ -94,10 +94,11 @@ public class PersonalLifeManager
 
     private void BuyItem(PersonalItem newItem)
     {
-        SaveSession.CurrentGameData.profile.money -= newItem.value;
-        newItem.value = newItem.value - ((newItem.value * 15) / 100);
-        newItem.propertyId = RandomStringGenerator.GenerateRandomString();
-        SaveSession.CurrentGameData.profile.personalItemsList.personalItems.Add(newItem);
+        var itemOwned = newItem.Clone();
+        SaveSession.CurrentGameData.profile.money -= itemOwned.value;
+        itemOwned.value = itemOwned.value - ((itemOwned.value * 15) / 100);
+        itemOwned.propertyId = RandomStringGenerator.GenerateRandomString();
+        SaveSession.CurrentGameData.profile.personalItemsList.personalItems.Add(itemOwned);
         SaveUtility.UpdateProfile();
         PopulateBuyList();
         PopulateSellList();
