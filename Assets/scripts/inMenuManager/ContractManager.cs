@@ -81,7 +81,12 @@ public class ContractManager : MonoBehaviour
         SaveSession.CurrentGameData.profile.driver.teamId = teamsList.teams[selectedTeamIndex].id;
         SaveSession.CurrentGameData.profile.driver.yearsOfContract = yearsOffered;
         SaveSession.CurrentGameData.profile.driver.active = true;
+        var playerId = SaveSession.CurrentGameData.profile.driver.id;
+        var playerTeamId = SaveSession.CurrentGameData.profile.driver.teamId;
         SaveUtility.UpdateDrivers(SaveSession.CurrentGameData.profile.driver);
+        var teammate = menuManager.driversList.drivers
+            .Find(d => d.teamId == playerTeamId && d.id != playerId);
+        SaveSession.CurrentGameData.profile.teammateId = teammate.id;
         ContractNegotiationPanel.SetActive(false);
         MenuPanel.SetActive(true);
         SaveUtility.UpdateProfile();
@@ -248,7 +253,13 @@ public class ContractManager : MonoBehaviour
     {
         if (negotiationLimits.ContainsKey(teamIndex) && !negotiationLimits[teamIndex].negotiating && !negotiationLimits[teamIndex].dealClosed)
         {
-            teamDialogueBoxText.text = "Essa equipe recusou negociar com você.";
+            teamDialogueBoxText.text = "Essa equipe recusou continuar negociando com você.";
+            ChangeBtns(false);
+            return; // Não continua com a negociação
+        }
+        if (teamsList.teams[teamIndex].minDriverResults > SaveSession.CurrentGameData.profile.lastResults)
+        {
+            teamDialogueBoxText.text = "Essa equipe não tem interesse negociar com você.";
             ChangeBtns(false);
             return; // Não continua com a negociação
         }
@@ -310,8 +321,8 @@ public class ContractManager : MonoBehaviour
 
         salary = offerType switch
         {
-            0 => Mathf.RoundToInt(Mathf.Lerp(10000000f, 5000000f, t)),
-            1 => Mathf.RoundToInt(Mathf.Lerp(8000000f, 2500000f, t)),
+            0 => Mathf.RoundToInt(Mathf.Lerp(10000000f, 3000000f, t)),
+            1 => Mathf.RoundToInt(Mathf.Lerp(5000000f, 500000f, t)),
             2 => Mathf.RoundToInt(Mathf.Lerp(5000000f, 150000f, t)),
             _ => 0,// erro, tipo desconhecido
         };
@@ -343,9 +354,10 @@ public class ContractManager : MonoBehaviour
 
         teamDropdown.ClearOptions();
         List<string> teamNames = new List<string>();
+
         foreach (Team team in teamsList.teams)
         {
-            if (team.minDriverResults > SaveSession.CurrentGameData.profile.lastResults) continue;
+            //if (team.minDriverResults > SaveSession.CurrentGameData.profile.lastResults) continue;
             teamNames.Add(team.teamName);
         }
         teamDropdown.AddOptions(teamNames);

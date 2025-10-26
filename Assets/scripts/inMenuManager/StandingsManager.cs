@@ -12,7 +12,7 @@ public class StandingManager
  : MonoBehaviour
 {
     [Header("UI Canvas")]
-
+    public MenuManager menuManager;
 
 
     [Header("UI Btns and Dropdowns")]
@@ -28,8 +28,8 @@ public class StandingManager
 
     public DriversChampionshipStatus driversChampionshipStatus;
     public TeamsChampionshipStatus teamsChampionshipStatus;
-    public TeamsList teamsList;
-    public DriversList driversList;
+    //public TeamsList teamsList;
+    //public DriversList driversList;
 
 
     private void Awake()
@@ -38,23 +38,7 @@ public class StandingManager
     }
     private void Start()
     {
-        LoadDatabases();
         PopulateStandings();
-    }
-
-    private void LoadDatabases()
-    {
-        TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
-        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
-
-        string path = Path.Combine(
-            Application.persistentDataPath,
-            "saves",
-            SaveSession.CurrentSaveId,
-            "activeDriversList.json"
-        );
-        string driversLocal = File.ReadAllText(path);
-        driversList = JsonUtility.FromJson<DriversList>(driversLocal);
     }
 
     private void PopulateStandings()
@@ -146,16 +130,16 @@ public class StandingManager
 
     string GetTeamName(int teamId)
     {
-        if (teamsList == null || teamsList.teams == null) return $"Team {teamId}";
+        if (menuManager.teamsList == null || menuManager.teamsList.teams == null) return $"Team {teamId}";
 
-        var team = teamsList.teams.Find(t => t.id == teamId);
+        var team = menuManager.teamsList.teams.Find(t => t.id == teamId);
         return team != null ? team.teamName : $"Team {teamId}";
     }
 
     string GetDriverName(int driverId)
     {
-        if (driversList == null || driversList.drivers == null) return $"Driver {driverId}";
-        var driver = driversList.drivers.Find(d => d.id == driverId);
+        if (menuManager.driversList == null || menuManager.driversList.drivers == null) return $"Driver {driverId}";
+        var driver = menuManager.driversList.drivers.Find(d => d.id == driverId);
         return driver != null ? $"{driver.firstName} {driver.lastName}" : $"Driver {driverId}";
     }
 }

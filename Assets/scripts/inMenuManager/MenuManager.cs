@@ -31,6 +31,8 @@ public class MenuManager : MonoBehaviour
 
     [Header("UI Texts")]
 
+    public TeamsList teamsList;
+    public DriversList driversList;
 
 
     private Dictionary<string, GameObject> panels;
@@ -39,8 +41,9 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        //LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
-        LoadUtility.LoadGame("Cicero_g15866");
+        LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
+        //LoadUtility.LoadGame("Marcelo_FaIcXA");
+        LoadDatabases();
         panels = new Dictionary<string, GameObject>
         {
             { "StandingsPanel", StandingsPanel },
@@ -132,6 +135,21 @@ public class MenuManager : MonoBehaviour
             SponsorNegotiationPanel.SetActive(true);
             MenuPanel.SetActive(false);
         }
+    }
+
+    private void LoadDatabases()
+    {
+        TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
+        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
+
+        string path = Path.Combine(
+            Application.persistentDataPath,
+            "saves",
+            SaveSession.CurrentSaveId,
+            "activeDriversList.json"
+        );
+        string driversLocal = File.ReadAllText(path);
+        driversList = JsonUtility.FromJson<DriversList>(driversLocal);
     }
 
     private void AddLogMessage(string message)

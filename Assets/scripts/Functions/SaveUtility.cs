@@ -56,13 +56,6 @@ public static class SaveUtility
 
     public static void UpdateDrivers(Driver updatedDriver)
     {
-        Debug.Log(
-            updatedDriver.role
-            + " // " +
-            updatedDriver.teamId
-            + " // " +
-            updatedDriver.active
-        );
         string path = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "activeDriversList.json");
         if (!File.Exists(path))
         {
@@ -79,24 +72,14 @@ public static class SaveUtility
         if (updatedDriver.role == 0)
         {
             if (currentDriver1 != null) currentDriver1.role = 1;
-
-            if (currentDriver2 != null)
-            {
-                currentDriver2.teamId = 0;
-                currentDriver2.role = 3;
-                currentDriver2.active = false;
-            }
         }
-        else if (updatedDriver.role == 1)
+        if (currentDriver2 != null)
         {
-            if (currentDriver2 != null)
-            {
-                currentDriver2.teamId = 0;
-                currentDriver2.role = 3;
-                currentDriver2.active = false;
-            }
+            currentDriver2.teamId = 0;
+            currentDriver2.role = 3;
+            currentDriver2.active = false;
         }
-
+        
         var indexSec = driversList.drivers.FindIndex(d => d.id == currentDriver2.id);
         if (indexSec != -1)
         {
@@ -112,7 +95,7 @@ public static class SaveUtility
         {
             driversList.drivers[indexUpdated] = updatedDriver;
         }
-
+        
         string saveFolder = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId);
         string activeDriversPath = Path.Combine(saveFolder, "activeDriversList.json");
         File.WriteAllText(activeDriversPath, JsonUtility.ToJson(driversList, true));
