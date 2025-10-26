@@ -4,6 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class Sponsor
 {
+    public int id;
     public string realName;
     public string name;
     public string presentation;
@@ -11,6 +12,7 @@ public class Sponsor
     public int valuePerGoal;
     public string preferredProfile;
     public int minimumDriverAverage;
+    public int remainingRaces = 0;
     public List<string> goals;
 }
 

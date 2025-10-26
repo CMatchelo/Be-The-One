@@ -7,6 +7,7 @@
       "lowSpeedCorners": 88,
       "acceleration": 90,
       "topSpeed": 98,
+      "minDriverResults": 65,
       "id": 1
     },
     {
@@ -16,6 +17,7 @@
       "lowSpeedCorners": 85,
       "acceleration": 88,
       "topSpeed": 94,
+      "minDriverResults": 65,
       "id": 2
     },
     {
@@ -25,6 +27,7 @@
       "lowSpeedCorners": 84,
       "acceleration": 86,
       "topSpeed": 91,
+      "minDriverResults": 65,
       "id": 3
     },
     {
@@ -34,6 +37,7 @@
       "lowSpeedCorners": 82,
       "acceleration": 83,
       "topSpeed": 90,
+      "minDriverResults": 50,
       "id": 4
     },
     {
@@ -43,6 +47,7 @@
       "lowSpeedCorners": 80,
       "acceleration": 81,
       "topSpeed": 87,
+      "minDriverResults": 50,
       "id": 5
     },
     {
@@ -52,6 +57,7 @@
       "lowSpeedCorners": 75,
       "acceleration": 78,
       "topSpeed": 85,
+      "minDriverResults": 50,
       "id": 6
     },
     {
@@ -61,6 +67,7 @@
       "lowSpeedCorners": 74,
       "acceleration": 75,
       "topSpeed": 83,
+      "minDriverResults": 50,
       "id": 7
     },
     {
@@ -70,6 +77,7 @@
       "lowSpeedCorners": 70,
       "acceleration": 73,
       "topSpeed": 82,
+      "minDriverResults": 0,
       "id": 8
     },
     {
@@ -79,6 +87,7 @@
       "lowSpeedCorners": 67,
       "acceleration": 70,
       "topSpeed": 89,
+      "minDriverResults": 0,
       "id": 9
     },
     {
@@ -88,6 +97,7 @@
       "lowSpeedCorners": 69,
       "acceleration": 71,
       "topSpeed": 84,
+      "minDriverResults": 0,
       "id": 10
     }
   ]

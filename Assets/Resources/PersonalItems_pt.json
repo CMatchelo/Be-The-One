@@ -1,5 +1,5 @@
 {
-  "personalItemsList": [
+  "personalItems": [
     { "id": 1, "name": "Apartamento pequeno em São Paulo", "value": 1500000 },
     { "id": 2, "name": "Apartamento moderno em Belo Horizonte", "value": 2500000 },
     { "id": 3, "name": "Casa de campo simples", "value": 3000000 },
@@ -58,14 +58,6 @@
     { "id": 50, "name": "Obra NFT de artista digital famoso", "value": 300000 },
     { "id": 51, "name": "Coleção de sneakers raros", "value": 150000 },
     { "id": 52, "name": "Drone profissional de filmagem", "value": 80000 },
-    { "id": 53, "name": "Simulador de corrida profissional", "value": 250000 },
-
-    { "id": 54, "name": "Pacote de férias no Caribe", "value": 5000 },
-    { "id": 55, "name": "Cruzeiro de luxo pelo Mediterrâneo", "value": 400000 },
-    { "id": 56, "name": "Safari de luxo na África", "value": 300000 },
-    { "id": 57, "name": "Tour gastronômico pela Europa", "value": 150000 },
-    { "id": 58, "name": "Passeio exclusivo em iate na Costa Amalfitana", "value": 2000000 },
-    { "id": 59, "name": "Estadia em resort privado nas Maldivas", "value": 1200000 },
-    { "id": 60, "name": "Viagem de volta ao mundo em jato particular", "value": 15000000 }
+    { "id": 53, "name": "Simulador de corrida profissional", "value": 250000 }
   ]
 }

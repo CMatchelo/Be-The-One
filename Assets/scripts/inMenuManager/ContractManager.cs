@@ -33,6 +33,7 @@ public class ContractManager : MonoBehaviour
     public Button plusSalaryBtn;
     public Button minusYearsBtn;
     public Button plusYearsBtn;
+    public MenuManager menuManager;
 
 
     [Header("Settings")]
@@ -47,8 +48,8 @@ public class ContractManager : MonoBehaviour
     private int years;
     private int difficulty = 11;
     List<int> listDifficulty = Enumerable.Repeat(11, 10).ToList();
-    private string yearOfferedLocate = ""; 
-    private string salaryOfferedLocate = ""; 
+    private string yearOfferedLocate = "";
+    private string salaryOfferedLocate = "";
 
     [Header("Dialogues")]
     private ContractNegotiationDialogue dialogueData;
@@ -77,14 +78,20 @@ public class ContractManager : MonoBehaviour
     void SignContract()
     {
         SaveSession.CurrentGameData.profile.driver.role = statusOfferedDropdown.value;
-        SaveSession.CurrentGameData.profile.driver.teamId = sortedTeams[selectedTeamIndex].id;
+        SaveSession.CurrentGameData.profile.driver.teamId = teamsList.teams[selectedTeamIndex].id;
         SaveSession.CurrentGameData.profile.driver.yearsOfContract = yearsOffered;
         SaveSession.CurrentGameData.profile.driver.active = true;
+        var playerId = SaveSession.CurrentGameData.profile.driver.id;
+        var playerTeamId = SaveSession.CurrentGameData.profile.driver.teamId;
         SaveUtility.UpdateDrivers(SaveSession.CurrentGameData.profile.driver);
+        var teammate = menuManager.driversList.drivers
+            .Find(d => d.teamId == playerTeamId && d.id != playerId);
+        SaveSession.CurrentGameData.profile.teammateId = teammate.id;
         ContractNegotiationPanel.SetActive(false);
         MenuPanel.SetActive(true);
         SaveUtility.UpdateProfile();
-        StartCoroutine(DisableContractManagerNextFrame());
+        menuManager.CheckNegotiations();
+        /* StartCoroutine(DisableContractManagerNextFrame()); */
     }
 
     void NegotiateContract()
@@ -92,6 +99,10 @@ public class ContractManager : MonoBehaviour
         //Calculate Status difficulty
         int distance = Mathf.Abs(statusOfferedDropdown.value - statusOffered);
         difficulty = listDifficulty[selectedTeamIndex] + 4 * distance;
+        if (SaveSession.CurrentGameData.profile.driver.teamId == teamsList.teams[selectedTeamIndex].id)
+        {
+            difficulty -= SaveSession.CurrentGameData.profile.chiefRelationship;
+        }
 
         //Calculate Salary difficulty
         if (salary == 0f) return;
@@ -110,7 +121,7 @@ public class ContractManager : MonoBehaviour
         ContractDialogueManager dialogueManager = FindFirstObjectByType<ContractDialogueManager>();
 
         listDifficulty[selectedTeamIndex] += 2;
-        if (result == "critFail" | (listDifficulty[selectedTeamIndex] == 17 && result == "fail"))
+        if (result == "critFail" | (listDifficulty[selectedTeamIndex] == 17 && result == "fail")) // Fail Crit or asking too much
         {
             teamDialogueBoxText.text = dialogueManager.GetRandomFailedPhrase("Rising star"); // Fix status
             if (!negotiationLimits.ContainsKey(selectedTeamIndex))
@@ -154,7 +165,6 @@ public class ContractManager : MonoBehaviour
             if (years >= limit.maxYears)
             {
                 years -= qty;
-                Debug.Log("Esse número de anos já foi negado por esse time.");
                 plusYearsBtn.interactable = false;
                 return;
             }
@@ -243,7 +253,13 @@ public class ContractManager : MonoBehaviour
     {
         if (negotiationLimits.ContainsKey(teamIndex) && !negotiationLimits[teamIndex].negotiating && !negotiationLimits[teamIndex].dealClosed)
         {
-            teamDialogueBoxText.text = "Essa equipe recusou negociar com você.";
+            teamDialogueBoxText.text = "Essa equipe recusou continuar negociando com você.";
+            ChangeBtns(false);
+            return; // Não continua com a negociação
+        }
+        if (teamsList.teams[teamIndex].minDriverResults > SaveSession.CurrentGameData.profile.lastResults)
+        {
+            teamDialogueBoxText.text = "Essa equipe não tem interesse negociar com você.";
             ChangeBtns(false);
             return; // Não continua com a negociação
         }
@@ -276,8 +292,8 @@ public class ContractManager : MonoBehaviour
         teamIndex = Mathf.Clamp(teamIndex, 0, 9);
 
         // Interpolar limites baseado na posição do time (0 = melhor, 9 = pior)
-        float firstMin = Mathf.Lerp(95, 80, teamIndex / 9f);
-        float secondMin = Mathf.Lerp(85, 75, teamIndex / 9f);
+        float firstMin = Mathf.Lerp(90, 78, teamIndex / 9f);
+        float secondMin = Mathf.Lerp(80, 68, teamIndex / 9f);
         if (SaveSession.CurrentGameData.profile.driver.Average >= firstMin)
         {
             statusOfferedDropdown.value = 0; // Define o índice selecionado
@@ -305,13 +321,14 @@ public class ContractManager : MonoBehaviour
 
         salary = offerType switch
         {
-            0 => Mathf.RoundToInt(Mathf.Lerp(30000000f, 5000000f, t)),// De 30M (melhor) a 5M (pior)
-            1 => Mathf.RoundToInt(Mathf.Lerp(13000000f, 1000000f, t)),// De 13M (melhor) a 1M (pior)
-            2 => Mathf.RoundToInt(Mathf.Lerp(1000000f, 150000f, t)),// De 1M (melhor) a 150k (pior)
+            0 => Mathf.RoundToInt(Mathf.Lerp(10000000f, 3000000f, t)),
+            1 => Mathf.RoundToInt(Mathf.Lerp(5000000f, 500000f, t)),
+            2 => Mathf.RoundToInt(Mathf.Lerp(5000000f, 150000f, t)),
             _ => 0,// erro, tipo desconhecido
         };
         salary *= (SaveSession.CurrentGameData.profile.lastResults / 100f);
         salaryOffered = Mathf.Round(salary / 10000f) * 10000f;
+        //if (salaryOffered > 5000000) salaryOffered = 5000000;
         salary = salaryOffered;
         salaryOfferedText.text = salaryOfferedLocate + salary;
         CalculateYearsOffered();
@@ -320,35 +337,27 @@ public class ContractManager : MonoBehaviour
     void CalculateYearsOffered()
     {
         yearsOffered = (SaveSession.CurrentGameData.profile.lastResults - 1) / 25 + 1;
+        if (yearsOffered > 3) yearsOffered = 3;
         years = yearsOffered;
         yearsOfferedText.text = yearOfferedLocate + years;
     }
 
     void PopulateTeamDropdown()
     {
-        string path = Path.Combine(Application.persistentDataPath, "saves", "Cicero_g15866", "teamsList.json"); // Fix id load
-
-        if (!File.Exists(path))
-        {
-            Debug.LogError("Save file não encontrado: " + path);
-            return;
-        }
-
-        string jsonContent = File.ReadAllText(path); // Lê o JSON do arquivo físico
-        teamsList = JsonUtility.FromJson<TeamsList>(jsonContent); // Desserializa
-
+        TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
+        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
         if (teamsList?.teams == null) // Verifica se teamsList e teams existem
         {
             Debug.LogError("Falha ao carregar ou lista de times vazia!");
             return;
         }
 
-        sortedTeams = teamsList.teams.OrderByDescending(team => team.Average).ToList();
-
         teamDropdown.ClearOptions();
         List<string> teamNames = new List<string>();
-        foreach (Team team in sortedTeams)
+
+        foreach (Team team in teamsList.teams)
         {
+            //if (team.minDriverResults > SaveSession.CurrentGameData.profile.lastResults) continue;
             teamNames.Add(team.teamName);
         }
         teamDropdown.AddOptions(teamNames);

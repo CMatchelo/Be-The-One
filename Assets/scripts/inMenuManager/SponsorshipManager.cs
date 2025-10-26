@@ -14,6 +14,7 @@ public class SponsorshipManager : MonoBehaviour
     [Header("Canvas Elements")]
     public GameObject SponsorNegotiationPanel;
     public GameObject MenuPanel;
+    public MenuManager menuManager;
 
     [Header("Dropdown/BTN Elements")]
     public TMP_Dropdown sponsorsDropdown;
@@ -32,24 +33,24 @@ public class SponsorshipManager : MonoBehaviour
     private List<Sponsor> availableSponsors = new List<Sponsor>();
     private Sponsor selectedSponsor;
 
+    private bool bonusApplied = false;
+
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
-        Debug.Log(LocalizationSettings.SelectedLocale.Identifier.Code);
-        LoadDatabase();
-        signBtn.onClick.AddListener(SignContract);
-        sponsorsDropdown.onValueChanged.AddListener((int index) => OnSelectSponsor(index));
+
     }
 
-    void LoadDatabase()
+    public void LoadDatabase()
     {
         string languageCode = LocalizationSettings.SelectedLocale.Identifier.Code;
         TextAsset sponsorListJson = null;
         if (languageCode == "en-US") sponsorListJson = Resources.Load<TextAsset>("Sponsors_en");
         if (languageCode == "pt-BR") sponsorListJson = Resources.Load<TextAsset>("Sponsors_pt");
         sponsorsList = JsonUtility.FromJson<SponsorsList>(sponsorListJson.text);
-
+        sponsorsDropdown.onValueChanged.AddListener((int index) => OnSelectSponsor(index));
         PopulateSponsorsDropdown();
+        signBtn.onClick.AddListener(SignContract);
     }
 
     async void OnSelectSponsor(int index)
@@ -58,9 +59,16 @@ public class SponsorshipManager : MonoBehaviour
         selectedSponsor = availableSponsors[index];
         sponsorNameText.text = selectedSponsor.name;
         sponsorPresentationText.text = selectedSponsor.presentation;
+        if (selectedSponsor.id == SaveSession.CurrentGameData.profile.sponsorMaster.id && bonusApplied == false)
+        {
+            bonusApplied = true;
+            selectedSponsor.valuePerGoal += selectedSponsor.valuePerGoal * SaveSession.CurrentGameData.profile.sponsorRelationship / 100;
+        }
+
         objective1Text.text = selectedSponsor.goals[0];
         objective2Text.text = selectedSponsor.goals[1];
-        objective1ValueText.text = localizedString + ": " + selectedSponsor.valuePerGoal;
+        
+        objective1ValueText.text = localizedString + ": " + selectedSponsor.valuePerGoal * 10 / 100;
         objective2ValueText.text = localizedString + ": " + selectedSponsor.valuePerGoal;
     }
 
@@ -70,7 +78,8 @@ public class SponsorshipManager : MonoBehaviour
         SaveUtility.UpdateProfile();
         SponsorNegotiationPanel.SetActive(false);
         MenuPanel.SetActive(true);
-        StartCoroutine(DisableSponsorManagerNextFrame());
+        menuManager.CheckNegotiations();
+        /* StartCoroutine(DisableSponsorManagerNextFrame()); */
     }
 
     void PopulateSponsorsDropdown()
@@ -86,6 +95,7 @@ public class SponsorshipManager : MonoBehaviour
 
         foreach (Sponsor sponsor in sponsorsList.sponsors)
         {
+            Debug.Log(sponsor.name + " " + sponsor.minimumDriverAverage + " " + SaveSession.CurrentGameData.profile.driver.Average);
             if (sponsor.minimumDriverAverage <= SaveSession.CurrentGameData.profile.driver.Average)
             {
                 availableSponsors.Add(sponsor);
@@ -96,9 +106,9 @@ public class SponsorshipManager : MonoBehaviour
         OnSelectSponsor(0);
     }
 
-    private IEnumerator DisableSponsorManagerNextFrame()
+    /* private IEnumerator DisableSponsorManagerNextFrame()
     {
         yield return null; // Espera 1 frame
         gameObject.SetActive(false);
-    } 
+    }  */
 }

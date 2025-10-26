@@ -133,7 +133,7 @@ public class RaceManager : MonoBehaviour
                 var entry = raceState[i];
                 AddLogMessage($"{i + 1}º - {entry.driver.firstName} - {entry.lastLap:F3}s - Total: {entry.totalTime:F3}s");
             }
-            yield return new WaitForSeconds(0.1f);
+            yield return new WaitForSeconds(0.05f);
         }
 
         AddLogMessage("--- Corrida Finalizada! ---");
@@ -144,6 +144,10 @@ public class RaceManager : MonoBehaviour
         }
         var playerResult = raceState.Find(r => r.driver.id == SaveSession.CurrentGameData.profile.driver.id);
         var teammateResult = raceState.Find(r => r.driver.id == SaveSession.CurrentGameData.profile.teammateId);
+        for (int i = 0; i < raceState.Count; i++)
+            {
+                var entry = raceState[i];
+            }
         foreach (string goal in SaveSession.CurrentGameData.profile.sponsorMaster.goals)
         {
             bool achieved = CheckGoal(goal, playerResult, teammateResult);
@@ -390,10 +394,8 @@ public class RaceManager : MonoBehaviour
     public static bool CheckGoal(string goal, DriverResult playerResult, DriverResult teammateResult)
     {
         goal = goal.ToLower();
-        Debug.Log("Goal: " + goal);
         if (goal.Contains("beat teammate") || goal.Contains("superar o companheiro"))
         {
-            Debug.Log("jogador: " + playerResult.position + " // teammate: " + teammateResult.position);
             return playerResult.position < teammateResult.position;
         }
 

@@ -34,6 +34,26 @@ MonoBehaviour:
     m_Localized: "Calend\xE1rio"
     m_Metadata:
       m_Items: []
+  - m_Id: 2477782548172800
+    m_Localized: "Rela\xE7\xF5es Profissionais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2477896134119424
+    m_Localized: "Rela\xE7\xF5es pessoais"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2487476721373184
+    m_Localized: Jogar golfe com o chefe de equipe
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2487837792227328
+    m_Localized: Participar de evento do patrocinador
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2487839469948928
+    m_Localized: Trabalhar no acerto do carro com o engenheiro de corrida
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

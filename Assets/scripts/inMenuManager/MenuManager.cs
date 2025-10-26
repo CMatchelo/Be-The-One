@@ -7,7 +7,7 @@ using UnityEngine.SceneManagement;
 using System.IO;
 
 
-public class RaceSimulator : MonoBehaviour
+public class MenuManager : MonoBehaviour
 {
     [Header("UI Canvas")]
     public GameObject MenuPanel;
@@ -16,6 +16,8 @@ public class RaceSimulator : MonoBehaviour
     public GameObject PracticePanel;
     public GameObject PersonalLifePanel;
     public GameObject ContractNegotiationPanel;
+    public GameObject SponsorNegotiationPanel;
+    public SponsorshipManager sponsorshipManager;
 
 
     [Header("UI Btns and Dropdowns")]
@@ -29,6 +31,8 @@ public class RaceSimulator : MonoBehaviour
 
     [Header("UI Texts")]
 
+    public TeamsList teamsList;
+    public DriversList driversList;
 
 
     private Dictionary<string, GameObject> panels;
@@ -37,8 +41,9 @@ public class RaceSimulator : MonoBehaviour
 
     private void Awake()
     {
-        //LoadUtility.LoadGame(SaveSession.CurrentGameData.saveId); // Fix id load
-        LoadUtility.LoadGame("Cicero_g15866");
+        LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
+        //LoadUtility.LoadGame("Marcelo_FaIcXA");
+        LoadDatabases();
         panels = new Dictionary<string, GameObject>
         {
             { "StandingsPanel", StandingsPanel },
@@ -46,11 +51,10 @@ public class RaceSimulator : MonoBehaviour
             { "PracticePanel", PracticePanel },
             { "PersonalLifePanel", PersonalLifePanel }
         };
-        if (SaveSession.CurrentGameData.profile.driver.yearsOfContract <= 0)
-        {
-            ContractNegotiationPanel.SetActive(true);
-            MenuPanel.SetActive(false);
-        }
+        if (SaveSession.CurrentGameData.profile.engineerRelationship > 0) SaveSession.CurrentGameData.profile.engineerRelationship -= 1;
+        if (SaveSession.CurrentGameData.profile.chiefRelationship > 0) SaveSession.CurrentGameData.profile.chiefRelationship -= 1;
+        if (SaveSession.CurrentGameData.profile.sponsorRelationship > 0) SaveSession.CurrentGameData.profile.sponsorRelationship -= 1;
+        CheckNegotiations();
     }
     private void Start()
     {
@@ -116,6 +120,36 @@ public class RaceSimulator : MonoBehaviour
         {
             Debug.LogWarning($"Painel '{panel}' não encontrado!");
         }
+    }
+
+    public void CheckNegotiations()
+    {
+        if (SaveSession.CurrentGameData.profile.driver.yearsOfContract <= 0)
+        {
+            ContractNegotiationPanel.SetActive(true);
+            MenuPanel.SetActive(false);
+        }
+        else if (SaveSession.CurrentGameData.profile.sponsorMaster.remainingRaces <= 0)
+        {
+            sponsorshipManager.LoadDatabase();
+            SponsorNegotiationPanel.SetActive(true);
+            MenuPanel.SetActive(false);
+        }
+    }
+
+    private void LoadDatabases()
+    {
+        TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
+        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
+
+        string path = Path.Combine(
+            Application.persistentDataPath,
+            "saves",
+            SaveSession.CurrentSaveId,
+            "activeDriversList.json"
+        );
+        string driversLocal = File.ReadAllText(path);
+        driversList = JsonUtility.FromJson<DriversList>(driversLocal);
     }
 
     private void AddLogMessage(string message)

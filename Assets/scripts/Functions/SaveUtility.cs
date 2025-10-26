@@ -4,40 +4,28 @@ using System.IO;
 using UnityEngine;
 using System.Collections.Generic;
 using System.Linq;
-// Novo arquivo: SaveUtility.cs
+
 public static class SaveUtility
 {
     public static void CreateNewSave(
         PlayerProfile profile,
         Driver player,
-        /* int selectedTeamId,
-        TMP_Dropdown companionDropdown, */
         DriversList activeDriversList,
         DriversList inactiveDriversList,
         TeamsList teamsList)
     {
-        /* List<Driver> teamDrivers = activeDriversList.drivers.FindAll(d => d.teamId == selectedTeamId);
-        Driver selectedDriver = teamDrivers[companionDropdown.value];
-        Driver unselectedDriver = teamDrivers.First(d => d.id != selectedDriver.id);
-        unselectedDriver.active = false;
-        unselectedDriver.teamId = 11;
-        inactiveDriversList.drivers.Add(unselectedDriver);
-        activeDriversList.drivers.RemoveAll(d => d.id == unselectedDriver.id);
-        */
         activeDriversList.drivers.Add(player);
+
+        string randomString = RandomStringGenerator.GenerateRandomString();
 
         GameData gameData = new GameData()
         {
             profile = profile,
             playerFirstName = player.firstName,
             playerLastName = player.lastName,
-            /* teamId = selectedTeamId,
-            companionId = selectedDriver.id */
+            saveId = $"{player.firstName}_{randomString}"
         };
 
-        // Save code
-
-        string randomString = RandomStringGenerator.GenerateRandomString();
         SaveSession.CurrentSaveId = $"{player.firstName}_{randomString}";
         string saveFolder = Path.Combine(Application.persistentDataPath, "saves", $"{player.firstName}_{randomString}");
 
@@ -68,13 +56,6 @@ public static class SaveUtility
 
     public static void UpdateDrivers(Driver updatedDriver)
     {
-        Debug.Log(
-            updatedDriver.role
-            + " // " +
-            updatedDriver.teamId
-            + " // " +
-            updatedDriver.active
-        );
         string path = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "activeDriversList.json");
         if (!File.Exists(path))
         {
@@ -91,24 +72,14 @@ public static class SaveUtility
         if (updatedDriver.role == 0)
         {
             if (currentDriver1 != null) currentDriver1.role = 1;
-
-            if (currentDriver2 != null)
-            {
-                currentDriver2.teamId = 0;
-                currentDriver2.role = 3;
-                currentDriver2.active = false;
-            }
         }
-        else if (updatedDriver.role == 1)
+        if (currentDriver2 != null)
         {
-            if (currentDriver2 != null)
-            {
-                currentDriver2.teamId = 0;
-                currentDriver2.role = 3;
-                currentDriver2.active = false;
-            }
+            currentDriver2.teamId = 0;
+            currentDriver2.role = 3;
+            currentDriver2.active = false;
         }
-
+        
         var indexSec = driversList.drivers.FindIndex(d => d.id == currentDriver2.id);
         if (indexSec != -1)
         {
@@ -124,9 +95,9 @@ public static class SaveUtility
         {
             driversList.drivers[indexUpdated] = updatedDriver;
         }
-
+        
         string saveFolder = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId);
-        string activeDriversPath = Path.Combine(saveFolder, "activeDriversList1.json");
+        string activeDriversPath = Path.Combine(saveFolder, "activeDriversList.json");
         File.WriteAllText(activeDriversPath, JsonUtility.ToJson(driversList, true));
     }
 }

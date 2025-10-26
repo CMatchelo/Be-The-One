@@ -242,34 +242,6 @@ public class SaveManager : MonoBehaviour
         nationalityDropdown.AddOptions(countryNames);
     }
 
-    /* void PopulateTeamDropdown()
-    {
-        teamDropdown.ClearOptions();
-
-        List<string> teamNames = new List<string>();
-        foreach (Team team in teamsList.teams)
-        {
-            teamNames.Add(team.teamName);
-        }
-        teamDropdown.AddOptions(teamNames);
-        selectedTeamId = teamsList.teams[0].id;
-    }
-
-    void PopulateCompanionDropdown(int teamId)
-    {
-        companionDropdown.ClearOptions();
-
-        List<Driver> teamDrivers = activeDriversList.drivers.FindAll(d => d.teamId == teamId);
-        List<string> options = new List<string>();
-
-        foreach (Driver driver in teamDrivers)
-        {
-            options.Add(new string(driver.firstName + " " + driver.lastName));
-        }
-
-        companionDropdown.AddOptions(options);
-    } */
-
     public void CreateNewSave()
     {
         if (string.IsNullOrEmpty(firstNameInput.text) || string.IsNullOrEmpty(lastNameInput.text)/*  || selectedTeamId == -1 || companionDropdown.value == -1 */)
@@ -291,7 +263,6 @@ public class SaveManager : MonoBehaviour
             topSpeed = currentInRaceValues[2],
             acceleration = currentInRaceValues[3],
             id = 123321,
-            /* teamId = selectedTeamId, */
             active = false
         };
 
@@ -320,8 +291,6 @@ public class SaveManager : MonoBehaviour
         SaveUtility.CreateNewSave(
             profile,
             player,
-            /* selectedTeamId,
-            companionDropdown, */
             activeDriversList,
             inactiveDriversList,
             teamsList
