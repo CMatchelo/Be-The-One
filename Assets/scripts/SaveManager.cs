@@ -215,7 +215,7 @@ public class SaveManager : MonoBehaviour
 
     async void PopulateAbilitiesToggle()
     {
-        for (int i = 0; i < toggleGroup.Length && i < abilityList.abilities.Length; i++)
+        for (int i = 0; i < toggleGroup.Length && i < abilityList.abilities.Count; i++)
         {
             Toggle toggle = toggleGroup[i];
             string abilityName = abilityList.abilities[i].name;

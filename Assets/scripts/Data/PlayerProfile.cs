@@ -4,7 +4,7 @@ using System.Collections.Generic;
 [Serializable]
 public class AbilityList
 {
-    public Ability[] abilities;
+    public List<Ability> abilities = new List<Ability>();
 }
 [Serializable]
 public class WeekendBonus
@@ -21,11 +21,48 @@ public class Ability
     public string name;
     public string referenceSkill;
 }
+
+[Serializable]
+public class PractingSkills
+{
+    public int corneringMastery = 0;
+    public int vehicleControl = 0;
+    public int showman = 0;
+    public int trackAdaptation = 0;
+    public int fastLapSpecialist = 0;
+    public int aggressiveOvertaking = 0;
+    public int positionDefense = 0;
+    public int simulatorTraining = 0;
+    public int continuousDevelopment = 0;
+    public int telemetryReading = 0;
+    public int technicalCoaching = 0;
+    public int mediaHandling = 0;
+    public int contractNegotiation = 0;
+    public int teamPresence = 0;
+    public int socialMedia = 0;
+    public int negotiator = 0;
+    public int pressureResistance = 0;
+    public int quickDecisionMaking = 0;
+    public int strategicInsight = 0;
+    public int socialPerception = 0;
+    public int mechanicalSensitivity = 0;
+    public int highSpeedCorners = 0;
+    public int lowSpeedCorners = 0;
+    public int acceleration = 0;
+    public int topSpeed = 0;
+    public int technique = 0;
+    public int bravery = 0;
+    public int potential = 0;
+    public int charisma = 0;
+    public int focus = 0;
+    public int awareness = 0;
+}
 [Serializable]
 public class PlayerProfile
 {
     public Driver driver;
     public WeekendBonus weekendBonus = new WeekendBonus();
+    public PractingSkills practingSkills = new PractingSkills();
     public int id;
     public string past;
     public int ambitious = 5;

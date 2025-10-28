@@ -41,8 +41,8 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
-        //LoadUtility.LoadGame("Marcelo_FaIcXA");
+        //LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
+        LoadUtility.LoadGame("Marcelo_FaIcXA");
         LoadDatabases();
         panels = new Dictionary<string, GameObject>
         {
