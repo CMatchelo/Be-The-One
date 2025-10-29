@@ -126,7 +126,7 @@ public class MenuRaceManager : MonoBehaviour
     {
         if (eventNumber == 5)
         {
-            GenerateTestQualifyingGrid();
+            //GenerateTestQualifyingGrid();
             RaceMenuPanel.SetActive(false);
             RacePanel.SetActive(true);
             raceManager.InitializeRace();

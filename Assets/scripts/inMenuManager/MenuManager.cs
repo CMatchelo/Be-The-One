@@ -18,6 +18,8 @@ public class MenuManager : MonoBehaviour
     public GameObject ContractNegotiationPanel;
     public GameObject SponsorNegotiationPanel;
     public SponsorshipManager sponsorshipManager;
+    public PersonalLifeManager personalLifeManager;
+    public PracticeManager practiceManager;
 
 
     [Header("UI Btns and Dropdowns")]
@@ -38,6 +40,21 @@ public class MenuManager : MonoBehaviour
     private Dictionary<string, GameObject> panels;
 
     private List<string> logMessages = new List<string>();
+    private int _weeklyAction = 2;
+    public int WeeklyAction
+    {
+        get => _weeklyAction;
+        set
+        {
+            _weeklyAction = value;
+            // dispara uma ação quando mudar
+            if (_weeklyAction <= 0)
+            {
+                personalLifeManager.DisableBtns();
+                practiceManager.DisableBtns();
+            }
+        }
+    }
 
     private void Awake()
     {
