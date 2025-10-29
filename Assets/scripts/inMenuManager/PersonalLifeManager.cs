@@ -16,6 +16,7 @@ public class PersonalLifeManager
     public Transform buyView;
     public Transform sellView;
     public GameObject luxuryItemPrefab;
+    public MenuManager menuManager;
 
     [Header("Buttons")]
     public Button relationshipChief;
@@ -115,15 +116,33 @@ public class PersonalLifeManager
 
     public void ProfessionalRelationship(int relType)
     {
-        if (relType == 0) SaveSession.CurrentGameData.profile.chiefRelationship += 2;
-        if (relType == 1) SaveSession.CurrentGameData.profile.sponsorRelationship += 2;
-        if (relType == 2) SaveSession.CurrentGameData.profile.engineerRelationship += 2;
-        if (SaveSession.CurrentGameData.profile.chiefRelationship > 10) SaveSession.CurrentGameData.profile.chiefRelationship = 10;
-        if (SaveSession.CurrentGameData.profile.sponsorRelationship > 10) SaveSession.CurrentGameData.profile.sponsorRelationship = 10;
-        if (SaveSession.CurrentGameData.profile.engineerRelationship > 10) SaveSession.CurrentGameData.profile.engineerRelationship = 10;
+        if (relType == 0)
+        {
+            relationshipChief.interactable = false;
+            SaveSession.CurrentGameData.profile.chiefRelationship += 2;
+            if (SaveSession.CurrentGameData.profile.chiefRelationship > 10) SaveSession.CurrentGameData.profile.chiefRelationship = 10;
+        }
+        if (relType == 1)
+        {
+            relationshipSponsor.interactable = false;
+            SaveSession.CurrentGameData.profile.sponsorRelationship += 2;
+            if (SaveSession.CurrentGameData.profile.sponsorRelationship > 10) SaveSession.CurrentGameData.profile.sponsorRelationship = 10;
+        }
+        if (relType == 2)
+        {
+            relationshipEngineer.interactable = false;
+            SaveSession.CurrentGameData.profile.engineerRelationship += 2;
+            if (SaveSession.CurrentGameData.profile.engineerRelationship > 10) SaveSession.CurrentGameData.profile.engineerRelationship = 10;
+        }
+
+        menuManager.WeeklyAction -= 1;
+        SaveUtility.UpdateProfile();
+    }
+
+    public void DisableBtns()
+    {
         relationshipChief.interactable = false;
         relationshipSponsor.interactable = false;
         relationshipEngineer.interactable = false;
-        SaveUtility.UpdateProfile();
     }
 }
