@@ -21,6 +21,8 @@ public class Driver
     public int id;
     public bool active;
     public int role;
+    public int recentResults = 50;
+    public int lastTeamId = 0;
     public List<Result> results = new List<Result>();
     public float Average
     {

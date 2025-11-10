@@ -1,0 +1,19 @@
+{
+    "EndSeasonTextList": [
+        {
+            "id": 1,
+            "driverNoContract1": {
+                "en": "The driver",
+                "pt": "O piloto"
+            },
+            "driverNoContract2": {
+                "en": "has no more contract with the team",
+                "pt": "terminou o contrato com a equipe"
+            },
+            "driverNoContract3": {
+                "en": "and is free to negotiate.",
+                "pt": "e está livre no mercado."
+            }
+        }
+    ]
+}

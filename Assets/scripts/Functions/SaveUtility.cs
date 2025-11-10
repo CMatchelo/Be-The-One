@@ -56,48 +56,80 @@ public static class SaveUtility
 
     public static void UpdateDrivers(Driver updatedDriver)
     {
-        string path = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "activeDriversList.json");
-        if (!File.Exists(path))
+        string saveFolder = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId);
+        string activePath = Path.Combine(saveFolder, "activeDriversList.json");
+        string inactivePath = Path.Combine(saveFolder, "inactiveDriversList.json");
+
+        if (!File.Exists(activePath))
         {
-            Debug.LogError("Save file não encontrado: " + path);
+            Debug.LogError("Save file não encontrado: " + activePath);
             return;
         }
-        string json = File.ReadAllText(path);
-        DriversList driversList = JsonUtility.FromJson<DriversList>(json);
 
-        var sameTeamDrivers = driversList.drivers.Where(d => d.teamId == updatedDriver.teamId).ToList();
-        var currentDriver1 = sameTeamDrivers.FirstOrDefault(d => d.role == 0);
-        var currentDriver2 = sameTeamDrivers.FirstOrDefault(d => d.role == 1);
+        // Carregar ativos
+        var activeJson = File.ReadAllText(activePath);
+        var activeList = JsonUtility.FromJson<DriversList>(activeJson);
 
-        if (updatedDriver.role == 0)
+        // Carregar (ou criar) inativos
+        DriversList inactiveList;
+        if (File.Exists(inactivePath))
+            inactiveList = JsonUtility.FromJson<DriversList>(File.ReadAllText(inactivePath));
+        else
+            inactiveList = new DriversList { drivers = new List<Driver>() };
+
+        var drivers = activeList.drivers;
+
+        // Quem está no mesmo time
+        var sameTeam = drivers.Where(d => d.teamId == updatedDriver.teamId).ToList();
+        var role0 = sameTeam.FirstOrDefault(d => d.role == 0);
+        var role1 = sameTeam.FirstOrDefault(d => d.role == 1);
+
+        // Se o novo piloto for Titular (role 0)
+        if (updatedDriver.role == 0 && role0 != null && role0.id != updatedDriver.id)
         {
-            if (currentDriver1 != null) currentDriver1.role = 1;
+            MoveToInactive(role0, activeList, inactiveList);
         }
-        if (currentDriver2 != null)
+
+        // Se o novo piloto for Segundo Piloto (role 1)
+        if (updatedDriver.role == 1 && role1 != null && role1.id != updatedDriver.id)
         {
-            currentDriver2.teamId = 0;
-            currentDriver2.role = 3;
-            currentDriver2.active = false;
+            MoveToInactive(role1, activeList, inactiveList);
         }
-        
-        var indexSec = driversList.drivers.FindIndex(d => d.id == currentDriver2.id);
-        if (indexSec != -1)
+
+        // Garantir que ninguém do time tenha o mesmo role duplicado
+        foreach (var d in sameTeam)
         {
-            driversList.drivers[indexSec] = currentDriver2;
+            if (d.id != updatedDriver.id && d.role == updatedDriver.role)
+            {
+                MoveToInactive(d, activeList, inactiveList);
+            }
         }
-        var indexFirst = driversList.drivers.FindIndex(d => d.id == currentDriver1.id);
-        if (indexFirst != -1)
-        {
-            driversList.drivers[indexFirst] = currentDriver1;
-        }
-        var indexUpdated = driversList.drivers.FindIndex(d => d.id == updatedDriver.id);
-        if (indexUpdated != -1)
-        {
-            driversList.drivers[indexUpdated] = updatedDriver;
-        }
-        
-        string saveFolder = Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId);
-        string activeDriversPath = Path.Combine(saveFolder, "activeDriversList.json");
-        File.WriteAllText(activeDriversPath, JsonUtility.ToJson(driversList, true));
+
+        // Atualizar o updatedDriver na lista de ativos
+        int idx = activeList.drivers.FindIndex(d => d.id == updatedDriver.id);
+        if (idx != -1)
+            activeList.drivers[idx] = updatedDriver;
+        else
+            activeList.drivers.Add(updatedDriver);
+
+        // Salvar tudo
+        File.WriteAllText(activePath, JsonUtility.ToJson(activeList, true));
+        File.WriteAllText(inactivePath, JsonUtility.ToJson(inactiveList, true));
     }
+
+    // ------- Função Auxiliar --------
+    private static void MoveToInactive(Driver driver, DriversList activeList, DriversList inactiveList)
+    {
+        driver.teamId = 0;
+        driver.role = 3;
+        driver.active = false;
+
+        // Remove da lista de ativos
+        activeList.drivers.RemoveAll(d => d.id == driver.id);
+
+        // Adiciona na lista de inativos se ainda não existir
+        if (!inactiveList.drivers.Any(d => d.id == driver.id))
+            inactiveList.drivers.Add(driver);
+    }
+
 }

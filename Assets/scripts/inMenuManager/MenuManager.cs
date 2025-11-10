@@ -35,6 +35,7 @@ public class MenuManager : MonoBehaviour
 
     public TeamsList teamsList;
     public DriversList driversList;
+    public DriversList inactiveDriversList;
 
 
     private Dictionary<string, GameObject> panels;
@@ -58,8 +59,8 @@ public class MenuManager : MonoBehaviour
 
     private void Awake()
     {
-        //LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
-        LoadUtility.LoadGame("Marcelo_FaIcXA");
+        LoadUtility.LoadGame(SaveSession.CurrentSaveId); // Fix id load
+        //LoadUtility.LoadGame("Marcelo_FaIcXA");
         LoadDatabases();
         panels = new Dictionary<string, GameObject>
         {
@@ -156,17 +157,34 @@ public class MenuManager : MonoBehaviour
 
     private void LoadDatabases()
     {
-        TextAsset teamsLocal = Resources.Load<TextAsset>("TeamsDatabase");
-        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal.text);
+        string pathTeams = Path.Combine(
+            Application.persistentDataPath,
+            "saves",
+            SaveSession.CurrentSaveId,
+            "teamsList.json"
+        );
+        string teamsLocal = File.ReadAllText(pathTeams);
+        teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal);
 
-        string path = Path.Combine(
+
+        string pathDrivers = Path.Combine(
             Application.persistentDataPath,
             "saves",
             SaveSession.CurrentSaveId,
             "activeDriversList.json"
         );
-        string driversLocal = File.ReadAllText(path);
+        string driversLocal = File.ReadAllText(pathDrivers);
         driversList = JsonUtility.FromJson<DriversList>(driversLocal);
+
+
+        string pathInactive = Path.Combine(
+            Application.persistentDataPath,
+            "saves",
+            SaveSession.CurrentSaveId,
+            "inactiveDriversList.json"
+        );
+        string inactiveLocal = File.ReadAllText(pathInactive);
+        inactiveDriversList = JsonUtility.FromJson<DriversList>(inactiveLocal);
     }
 
     private void AddLogMessage(string message)

@@ -80,6 +80,7 @@ public class ContractManager : MonoBehaviour
         SaveSession.CurrentGameData.profile.driver.role = statusOfferedDropdown.value;
         SaveSession.CurrentGameData.profile.driver.teamId = teamsList.teams[selectedTeamIndex].id;
         SaveSession.CurrentGameData.profile.driver.yearsOfContract = yearsOffered;
+        SaveSession.CurrentGameData.profile.salaryPerRace = (int)salaryOffered;
         SaveSession.CurrentGameData.profile.driver.active = true;
         var playerId = SaveSession.CurrentGameData.profile.driver.id;
         var playerTeamId = SaveSession.CurrentGameData.profile.driver.teamId;
@@ -206,7 +207,7 @@ public class ContractManager : MonoBehaviour
         // Calcula o novo salário
         float newSalary = salary + changeAmount;
         // Define os limites superiores
-        float upperLimit1 = salaryOffered + 5000000f;
+        float upperLimit1 = salaryOffered + 250000f;
         float upperLimit2 = salaryOffered * 1.5f;
         float bottonLimit = salaryOffered * 0.5f;
 
@@ -321,16 +322,16 @@ public class ContractManager : MonoBehaviour
 
         salary = offerType switch
         {
-            0 => Mathf.RoundToInt(Mathf.Lerp(10000000f, 3000000f, t)),
-            1 => Mathf.RoundToInt(Mathf.Lerp(5000000f, 500000f, t)),
+            0 => Mathf.RoundToInt(Mathf.Lerp(500000f, 150000f, t)),
+            1 => Mathf.RoundToInt(Mathf.Lerp(250000f, 25000f, t)),
             2 => Mathf.RoundToInt(Mathf.Lerp(5000000f, 150000f, t)),
             _ => 0,// erro, tipo desconhecido
         };
         salary *= (SaveSession.CurrentGameData.profile.lastResults / 100f);
-        salaryOffered = Mathf.Round(salary / 10000f) * 10000f;
-        //if (salaryOffered > 5000000) salaryOffered = 5000000;
+        salaryOffered = Mathf.Round(salary / 500f) * 500f;
+        //if (salaryOffered > 500000) salaryOffered = 500000;
         salary = salaryOffered;
-        salaryOfferedText.text = salaryOfferedLocate + salary;
+        salaryOfferedText.text = salaryOfferedLocate + salary + " por corrida";
         CalculateYearsOffered();
     }
 

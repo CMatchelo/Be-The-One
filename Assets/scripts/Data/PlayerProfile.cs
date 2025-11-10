@@ -71,6 +71,7 @@ public class PlayerProfile
     public int neutral = 0;
     public int lastResults = 49;
     public int teammateId = -1;
+    public int salaryPerRace = 0;
     public Sponsor sponsorMaster;
     public Sponsor sponsorSecondary;
     public string status;

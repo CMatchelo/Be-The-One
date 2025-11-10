@@ -158,7 +158,7 @@ public class RaceManager : MonoBehaviour
             Debug.Log($"{goal}: {(achieved ? "✅ Cumprido" : "❌ Falhou")}");
         }
         var raceResult = new RaceResult("Pista", raceState);
-        SaveSession.CurrentGameData.profile.money += SaveSession.CurrentGameData.profile.sponsorMaster.valuePerRace;
+        SaveSession.CurrentGameData.profile.money += SaveSession.CurrentGameData.profile.sponsorMaster.valuePerRace + SaveSession.CurrentGameData.profile.salaryPerRace;
         WeekendBonus bonus = SaveSession.CurrentGameData.profile.weekendBonus;
         Driver playerDriver = SaveSession.CurrentGameData.profile.driver;
         playerDriver.highSpeedCorners -= bonus.highSpeedCorners;
