@@ -33,7 +33,7 @@ public class Driver
 [Serializable]
 public class DriversList
 {
-    public List<Driver> drivers;
+    public List<Driver> drivers = new List<Driver>();
 }
 
 [Serializable]

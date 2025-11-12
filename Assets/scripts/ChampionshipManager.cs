@@ -11,7 +11,7 @@ public static class ChampionshipManager
         public string nextRace;
     }
 
-    private static string ProgressPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "championship_progress.json");
+    private static string ProgressPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, SaveSession.CurrentGameData.currentSeason.ToString(), "championship_progress.json");
     private static TracksList tracksData;
 
     public static void Initialize()

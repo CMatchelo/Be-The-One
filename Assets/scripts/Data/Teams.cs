@@ -23,3 +23,14 @@ public class TeamsList
 {
     public List<Team> teams;
 }
+
+class TeamSeasonChange
+{
+    public string teamName;
+    public float averageChange;
+    public TeamSeasonChange(string teamName, float averageChange)
+    {
+        this.teamName = teamName;
+        this.averageChange = averageChange;
+    }
+}

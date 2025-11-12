@@ -9,6 +9,7 @@ public static class RaceSaveSystem
         Application.persistentDataPath,
         "saves",
         SaveSession.CurrentSaveId,
+        SaveSession.CurrentGameData.currentSeason.ToString(), 
         "races.json"
     );
 
@@ -53,7 +54,7 @@ public static class RaceSaveSystem
             var existingDriver = activeDriversList.drivers.Find(s => s.id == driverResult.driver.id);
             if (existingDriver != null)
             {
-                Result localResult = new Result(1, newResult.trackName, driverResult.position, driverResult.bestLap, driverResult.totalTime);
+                Result localResult = new Result(SaveSession.CurrentGameData.currentSeason, newResult.trackName, driverResult.position, driverResult.bestLap, driverResult.totalTime);
                 if (existingDriver.results == null)
                 {
                     existingDriver.results = new List<Result>();
@@ -72,8 +73,8 @@ public static class RaceSaveSystem
         return JsonUtility.FromJson<RaceDataWrapper>(json);
     }
 
-    private static string ChampionshipDriversPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "championship_driversStandings.json");
-    private static string ChampionshipTeamsPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, "championship_teamsStandings.json");
+    private static string ChampionshipDriversPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, SaveSession.CurrentGameData.currentSeason.ToString(), "championship_driversStandings.json");
+    private static string ChampionshipTeamsPath => Path.Combine(Application.persistentDataPath, "saves", SaveSession.CurrentSaveId, SaveSession.CurrentGameData.currentSeason.ToString(), "championship_teamsStandings.json");
 
     public static void UpdateChampionship(List<DriverResult> raceResults)
     {

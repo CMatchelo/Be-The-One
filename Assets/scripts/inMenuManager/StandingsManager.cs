@@ -12,7 +12,7 @@ public class StandingManager
  : MonoBehaviour
 {
     [Header("UI Canvas")]
-    public MenuManager menuManager;
+    //public MenuManager menuManager;
 
 
     [Header("UI Btns and Dropdowns")]
@@ -28,9 +28,6 @@ public class StandingManager
 
     public DriversChampionshipStatus driversChampionshipStatus;
     public TeamsChampionshipStatus teamsChampionshipStatus;
-    //public TeamsList teamsList;
-    //public DriversList driversList;
-
 
     private void Awake()
     {
@@ -38,6 +35,7 @@ public class StandingManager
     }
     private void Start()
     {
+        LoadUtility.LoadGame("Marcelo_FaIcXA");
         PopulateStandings();
     }
 
@@ -47,12 +45,14 @@ public class StandingManager
             Application.persistentDataPath,
             "saves",
             SaveSession.CurrentSaveId,
+            SaveSession.CurrentGameData.currentSeason.ToString(),
             "championship_driversStandings.json"
         );
         string pathTeams = Path.Combine(
             Application.persistentDataPath,
             "saves",
             SaveSession.CurrentSaveId,
+            SaveSession.CurrentGameData.currentSeason.ToString(), 
             "championship_teamsStandings.json"
         );
 
@@ -130,16 +130,16 @@ public class StandingManager
 
     string GetTeamName(int teamId)
     {
-        if (menuManager.teamsList == null || menuManager.teamsList.teams == null) return $"Team {teamId}";
+        if (GameDataCache.teamsList == null || GameDataCache.teamsList.teams == null) return $"Team {teamId}";
 
-        var team = menuManager.teamsList.teams.Find(t => t.id == teamId);
+        var team = GameDataCache.teamsList.teams.Find(t => t.id == teamId);
         return team != null ? team.teamName : $"Team {teamId}";
     }
 
     string GetDriverName(int driverId)
     {
-        if (menuManager.driversList == null || menuManager.driversList.drivers == null) return $"Driver {driverId}";
-        var driver = menuManager.driversList.drivers.Find(d => d.id == driverId);
+        if (GameDataCache.driversList == null || GameDataCache.driversList.drivers == null) return $"Driver {driverId}";
+        var driver = GameDataCache.driversList.drivers.Find(d => d.id == driverId);
         return driver != null ? $"{driver.firstName} {driver.lastName}" : $"Driver {driverId}";
     }
 }

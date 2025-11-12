@@ -166,7 +166,6 @@ public class MenuManager : MonoBehaviour
         string teamsLocal = File.ReadAllText(pathTeams);
         teamsList = JsonUtility.FromJson<TeamsList>(teamsLocal);
 
-
         string pathDrivers = Path.Combine(
             Application.persistentDataPath,
             "saves",
@@ -175,6 +174,9 @@ public class MenuManager : MonoBehaviour
         );
         string driversLocal = File.ReadAllText(pathDrivers);
         driversList = JsonUtility.FromJson<DriversList>(driversLocal);
+
+        GameDataCache.driversList = driversList;
+        GameDataCache.teamsList = teamsList;
 
 
         string pathInactive = Path.Combine(

@@ -57,6 +57,7 @@ public class CalendarManager
             Application.persistentDataPath,
             "saves",
             SaveSession.CurrentSaveId,
+            SaveSession.CurrentGameData.currentSeason.ToString(), 
             "races.json"
         );
         if (!File.Exists(pathRaces))
